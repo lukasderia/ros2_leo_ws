@@ -1,15 +1,16 @@
-/**:
-  ros__parameters:
-    topics:
-      - topic: /cmd_vel
-        type: geometry_msgs/msg/Twist
-        queue_size: 10
-      - topic: /firmware/battery_averaged
-        type: std_msgs/msg/Float32
-        queue_size: 1
-      - topic: /diagnostics
-        type: diagnostic_msgs/msg/DiagnosticArray
-        queue_size: 10
-      - topic: /odometry_merged
-        type: nav_msgs/msg/Odometry
-        queue_size: 10
+topics:
+  - topic: /cmd_vel
+    type: geometry_msgs/msg/Twist
+    queue_size: 10
+    qos:
+      reliability: reliable
+      durability: volatile
+  - topic: /firmware/battery_averaged
+    type: std_msgs/msg/Float32
+    queue_size: 1
+  - topic: /diagnostics
+    type: diagnostic_msgs/msg/DiagnosticArray
+    queue_size: 10
+  - topic: /odometry_merged
+    type: nav_msgs/msg/Odometry
+    queue_size: 10
