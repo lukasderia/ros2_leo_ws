@@ -8,7 +8,6 @@ from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch.actions import TimerAction
 
-
 def generate_launch_description():
 
     # Include robotdescription
@@ -21,6 +20,11 @@ def generate_launch_description():
             get_package_share_directory('leo_teleop'), 'launch', 'controller_teleop.launch.py')])
     )
 
+    # Include SLAM Launcher
+    slam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('leo_slam'), 'launch', 'slam_launch.py')])
+    )
 
     # Include Odom2TF
     odom2TF_node = Node(
@@ -38,11 +42,25 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Include Rviz2 with saved configuration
+    rviz_config = os.path.join(
+        get_package_share_directory('leo_bringup'),
+        'rviz', 'real_launch_rviz.rviz'
+    )
+
+    rviz2 = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config],
+        output='screen'
+    )
 
     return LaunchDescription([
         real_launch,
         teleop_launch,
         odom2TF_node,
-        ScanFilter
-
+        ScanFilter,
+        slam_launch,
+        rviz2
     ])

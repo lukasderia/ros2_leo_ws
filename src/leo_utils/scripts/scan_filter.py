@@ -17,8 +17,9 @@ class ScanFilter(Node):
         if math.isnan(msg.intensities[0]):
             msg.intensities[0] = 0.0
 
-        # Tweak angle_max to make slam work
-        msg.angle_max = msg.angle_min + (len(msg.ranges) - 1) * msg.angle_increment
+        # Tweak the incremetns to make the number match slam
+        N = len(msg.ranges)
+        msg.angle_increment = (msg.angle_max - msg.angle_min) / (N-1)
         
         self.pub.publish(msg)
 
