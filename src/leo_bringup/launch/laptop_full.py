@@ -60,7 +60,7 @@ def generate_launch_description():
         real_launch,
         teleop_launch,
         odom2TF_node,
-        ScanFilter,
-        slam_launch,
+        #ScanFilter,
+        #slam_launch,
         rviz2
     ])
