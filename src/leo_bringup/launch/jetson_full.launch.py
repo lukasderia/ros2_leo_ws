@@ -38,9 +38,16 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Include the velodyne-all-nodes
+    velodyne_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('velodyne'), "launch", "velodyne-all-nodes-VLP16-launch.py")])
+    )
+
     return LaunchDescription([
         odom2TF_node,
         #teleop_launch,
+        velodyne_launch,
         ScanFilter,
         slam_launch,
     ])
