@@ -60,7 +60,7 @@ def generate_launch_description():
         }],
         remappings=[
             ('cloud_in', '/velodyne_points'),
-            ('scan', '/scan'),
+            ('scan', '/scan_filter'),
         ],
         condition=IfCondition(use_converter)
     )
