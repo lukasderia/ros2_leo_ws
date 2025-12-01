@@ -27,7 +27,8 @@ def generate_launch_description():
     # Include SLAM
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('leo_slam'), 'launch', 'slam_launch.py')])
+            get_package_share_directory('leo_slam'), 'launch', 'slam_launch.py')]),
+            launch_arguments={'use_sim_time': 'true'}.items()  # Override to true for sim
     )
     
     # Include Nav2 (with delay to wait for robot spawn)

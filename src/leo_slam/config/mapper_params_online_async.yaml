@@ -6,7 +6,6 @@ slam_toolbox:
     scan_topic: /scan_filter
     mode: mapping
     
-    use_sim_time: false
     
     resolution: 0.05
     max_laser_range: 20.0

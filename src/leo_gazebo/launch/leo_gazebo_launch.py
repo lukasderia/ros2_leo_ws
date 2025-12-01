@@ -11,7 +11,7 @@ import xacro
 def generate_launch_description():
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory('leo_gazebo'))
-    xacro_file = os.path.join(pkg_path,'description','leo.xacro')
+    xacro_file = os.path.join(pkg_path,'description','leo_sim.xacro')
     robot_description_config = xacro.process_file(xacro_file)
 
     # Declare argument
@@ -26,12 +26,9 @@ def generate_launch_description():
         "'", empty_world_config, "' == 'true' and '' or '",
         os.path.join(pkg_path, 'worlds', 'house_bigger_test.world'), "'"
     ])
-
-
     
     use_sim_time = LaunchConfiguration('use_sim_time')
 
-    
     # Robot state publisher
     params = {'robot_description': robot_description_config.toxml(), 'use_sim_time': use_sim_time}
     node_robot_state_publisher = Node(
@@ -46,7 +43,7 @@ def generate_launch_description():
         package='gazebo_ros',
         executable='spawn_entity.py',
         arguments=[
-            '-file', os.path.join(pkg_path, 'description', 'leo.xacro'),
+            '-file', 'robot_description',
             '-entity', 'leo',
             '-x', '0',
             '-y', '0',
