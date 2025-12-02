@@ -72,7 +72,7 @@ controller_server:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.15  # Loosened to match behavior better
-      yaw_goal_tolerance: 0.25  # Loosened slightly
+      yaw_goal_tolerance: 0.3  # Loosened slightly
 
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
@@ -84,8 +84,8 @@ controller_server:
       
       # Lookahead distance (how far ahead on path to aim for)
       lookahead_dist: 0.8  # Start here, tune based on behavior
-      min_lookahead_dist: 0.3
-      max_lookahead_dist: 0.9
+      min_lookahead_dist: 0.4
+      max_lookahead_dist: 1.2
       lookahead_time: 1.5  # Adjusts lookahead based on velocity
       
       # Rotation
@@ -103,13 +103,21 @@ controller_server:
       
       # Regulation (slowing near obstacles/goals)
       use_regulated_linear_velocity_scaling: false
-      use_cost_regulated_linear_velocity_scaling: false
+      use_cost_regulated_linear_velocity_scaling: true
+      cost_scaling_dist: 0.4  # Distance at which to start slowing
+      cost_scaling_gain: 1.0  # Lower = less aggressive slowing
+      inflation_cost_scaling_factor: 5.0  # Should match costmap
       regulated_linear_scaling_min_radius: 0.5
       regulated_linear_scaling_min_speed: 0.15
       
       # Goal tolerance
       xy_goal_tolerance: 0.15
-      yaw_goal_tolerance: 0.25
+      yaw_goal_tolerance: 0.3
+
+      # Also add these to help with final rotation:
+      allow_reversing: false  # Prevent backing up
+      use_rotate_to_heading: true  # Enable explicit rotation behavior
+      rotate_to_heading_min_angle: 0.5  # Only rotate if off by >0.5 rad (~28°)
 
     # FollowPath:
     #   plugin: "dwb_core::DWBLocalPlanner"
@@ -167,7 +175,7 @@ local_costmap:
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
+        cost_scaling_factor: 5.0
         inflation_radius: 0.5
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
@@ -222,7 +230,7 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
+        cost_scaling_factor: 5.0
         inflation_radius: 0.5
       always_send_full_costmap: True
 
