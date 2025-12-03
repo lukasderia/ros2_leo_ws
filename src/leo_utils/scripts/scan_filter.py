@@ -7,8 +7,8 @@ import math
 class ScanFilter(Node):
     def __init__(self):
         super().__init__('scan_filter')
-        self.sub = self.create_subscription(LaserScan, '/scan_converted', self.callback, 10)
-        self.pub = self.create_publisher(LaserScan, '/scan_filtered', 10)
+        self.sub = self.create_subscription(LaserScan, '/scan', self.callback, 10)
+        self.pub = self.create_publisher(LaserScan, '/scan_filter', 10)
 
     def callback(self, msg):
         # Replace NaN with inf
