@@ -30,12 +30,32 @@ def generate_launch_description():
         output='screen'
     )    
 
-    # Inclde scan_filter
-    ScanFilter = Node(
-        package='leo_utils',
-        executable='scan_filter.py',
-        name='scan_filter',
-        output='screen'
+    # # Inclde scan_filter
+    # ScanFilter = Node(
+    #     package='leo_utils',
+    #     executable='scan_filter.py',
+    #     name='scan_filter',
+    #     output='screen'
+    # )
+
+    pointcloud_to_laserscan_node = Node(
+        package='pointcloud_to_laserscan',
+        executable='pointcloud_to_laserscan_node',
+        name='pointcloud_to_laserscan',
+        remappings=[
+            ('cloud_in', '/velodyne_points'),
+            ('scan', '/scan_filter')
+        ],
+        parameters=[{
+            'min_height': 0.05,
+            'max_height': 0.40,
+            'angle_min': -3.14,
+            'angle_max': 3.14,
+            'scan_time': 0.1,
+            'range_min': 0.45,
+            'range_max': 100.0,
+            'use_inf': True,
+        }]
     )
 
     # Include the velodyne-all-nodes
@@ -48,6 +68,7 @@ def generate_launch_description():
         odom2TF_node,
         #teleop_launch,
         velodyne_launch,
-        ScanFilter,
+        #ScanFilter,
+        pointcloud_to_laserscan_node,
         slam_launch,
     ])
