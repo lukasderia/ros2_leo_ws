@@ -38,6 +38,7 @@ def generate_launch_description():
     #     output='screen'
     # )
 
+    # Pointcloud to LaserScan conversion
     pointcloud_to_laserscan_node = Node(
         package='pointcloud_to_laserscan',
         executable='pointcloud_to_laserscan_node',
@@ -47,14 +48,10 @@ def generate_launch_description():
             ('scan', '/scan_filter')
         ],
         parameters=[{
-            'min_height': 0.05,
-            'max_height': 0.40,
-            'angle_min': -3.14,
-            'angle_max': 3.14,
-            'scan_time': 0.1,
-            'range_min': 0.45,
+            'min_height': -0.15,
+            'max_height': 0.25,
+            'range_min': 0.25,
             'range_max': 100.0,
-            'use_inf': True,
         }]
     )
 
