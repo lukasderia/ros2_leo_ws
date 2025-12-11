@@ -57,5 +57,5 @@ def generate_launch_description():
         ScanFilter,
         #pointcloud_to_laserscan_node,
         slam_launch,
-        #nav_launch,
+        nav_launch,
     ])
