@@ -90,13 +90,13 @@ class FrontierExplorer : public rclcpp::Node{
                                         (frontier_cells[i].y + 0.5) * latest_map_->info.resolution;
                 marker.pose.position.z = 0.0;
                 
-                marker.scale.x = 0.2;
-                marker.scale.y = 0.2;
-                marker.scale.z = 0.2;
+                marker.scale.x = 0.1;
+                marker.scale.y = 0.1;
+                marker.scale.z = 0.1;
                 
-                marker.color.r = 1.0;
+                marker.color.r = 0.50;
                 marker.color.g = 0.0;
-                marker.color.b = 0.0;
+                marker.color.b = 0.50;
                 marker.color.a = 1.0;
                 
                 marker_array.markers.push_back(marker);
