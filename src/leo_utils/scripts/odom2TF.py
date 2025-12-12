@@ -27,7 +27,7 @@ class odom2TF(Node):
         t.header.stamp = self.get_clock().now().to_msg()
         t.transform.translation.x = msg.pose.pose.position.x
         t.transform.translation.y = msg.pose.pose.position.y
-        t.transform.translation.z = 0.0 # msg.pose.pose.position.z
+        t.transform.translation.z =  msg.pose.pose.position.z
         q = msg.pose.pose.orientation
         yaw = self.quat_to_yaw(q)          # extract yaw from quaternion
         t.transform.rotation = self.yaw_to_quat(yaw)
