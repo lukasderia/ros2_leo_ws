@@ -20,7 +20,6 @@ class odom2TF(Node):
         self.get_logger().info('Odometry to TF started')
 
     def odom_callback(self, msg):
-        self.get_logger().info('Recieved Odom msg')
         t = TransformStamped()
 
         t.header.frame_id = "odom"
