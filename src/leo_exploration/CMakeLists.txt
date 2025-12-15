@@ -31,7 +31,7 @@ add_executable(frontier_detector src/frontier_detector.cpp)
 ament_target_dependencies(frontier_detector rclcpp nav_msgs geometry_msgs visualization_msgs)
 
 install(TARGETS
-  frontier_explorer
+  frontier_detector
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
