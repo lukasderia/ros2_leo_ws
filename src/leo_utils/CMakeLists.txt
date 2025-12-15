@@ -19,6 +19,7 @@ endif()
 install(PROGRAMS
   scripts/odom2TF.py
   scripts/scan_filter.py
+  scripts/map_filter.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
