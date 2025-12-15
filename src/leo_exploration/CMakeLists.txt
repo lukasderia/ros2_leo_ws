@@ -27,8 +27,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(frontier_explorer src/manual_exploration.cpp)
-ament_target_dependencies(frontier_explorer rclcpp nav_msgs geometry_msgs visualization_msgs)
+add_executable(frontier_detector src/frontier_detector.cpp)
+ament_target_dependencies(frontier_detector rclcpp nav_msgs geometry_msgs visualization_msgs)
 
 install(TARGETS
   frontier_explorer

@@ -14,15 +14,15 @@ struct Point {
     int y;
 };
 
-class FrontierExplorer : public rclcpp::Node{
+class FrontierDetector : public rclcpp::Node{
     public:
-        FrontierExplorer() : Node("frontier_explorer"){
+        FrontierDetector() : Node("frontier_detector"){
             map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
-                "/map", 10, std::bind(&FrontierExplorer::map_callback, this, _1));
+                "/map", 10, std::bind(&FrontierDetector::map_callback, this, _1));
 
             marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/frontier_markers", 10);
 
-            timer_ = this->create_wall_timer(std::chrono::seconds(2), std::bind(&FrontierExplorer::detect_frontiers, this));
+            timer_ = this->create_wall_timer(std::chrono::seconds(2), std::bind(&FrontierDetector::detect_frontiers, this));
         }
 
     private:
@@ -110,7 +110,7 @@ class FrontierExplorer : public rclcpp::Node{
 
 int main(int argc, char** argv){
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<FrontierExplorer>());
+    rclcpp::spin(std::make_shared<FrontierDetector>());
     rclcpp::shutdown();
     return 0;
 }
