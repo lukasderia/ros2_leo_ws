@@ -44,10 +44,10 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Include the velodyne-all-nodes
+    # Include the custom launcher
     velodyne_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('velodyne'), "launch", "velodyne-all-nodes-VLP16-launch.py")])
+            get_package_share_directory('leo_velodyne'), "launch", "velodyne.launch.py")])
     )
 
     return LaunchDescription([
