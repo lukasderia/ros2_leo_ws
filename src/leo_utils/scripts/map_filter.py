@@ -52,8 +52,8 @@ class MapFilter (Node):
         free_binary = (map_removedObstacles == 0).astype(np.uint8) * 255
         
         # Opening: remove stray pixels, smooth boundaries
-        kernel = np.ones((3, 3), np.uint8)
-        opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=1)
+        kernel = np.ones((2, 2), np.uint8)
+        opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=3)
         
         # Convert back to occupancy format
         result = np.where(opened == 255, 0, -1)  # 0=free, -1=unknown
@@ -67,7 +67,7 @@ class MapFilter (Node):
         obstacles_binary = (map_onlyObstacles > 0).astype(np.uint8) * 255
         
         # Morphological closing to fill gaps and make consistent
-        kernel = np.ones((9, 9), np.uint8)
+        kernel = np.ones((2, 2), np.uint8)
         closed = cv2.morphologyEx(obstacles_binary, cv2.MORPH_CLOSE, kernel, iterations=1)
         
         # Convert back to occupancy format (100 for obstacles)
