@@ -7,64 +7,84 @@ import cv2
 import numpy as np
 
 class MapFilter (Node):
+
+
     def __init__(self):
+        self.recievedFirstMap = False
         super().__init__('map_filter')
         self.map_sub = self.create_subscription(OccupancyGrid, '/map', self.map_callback, 10)
-
         self.filtered_map_pub = self.create_publisher(OccupancyGrid, '/map_filtered', 10)
 
     def map_callback(self, msg):
-        # Here recieve the map and convert it to be fitlered
+        if not self.recievedFirstMap:
+            self.get_logger().info('First map recieved. Processing...')
+            self.recievedFirstMap = True
+
+        # Extract data
         width = msg.info.width
         height = msg.info.height
-
-        # Convert the map to numpy array for opencv
-        map_array = np.array(msg.data, dtype=np.int8).reshape((height, width)) # type: ignore
-        filtered_array = self.apply_filtering(map_array)
-
-        filtered_msg = OccupancyGrid()
-        filtered_msg.header = msg.header
-        filtered_msg.info = msg.info
-        filtered_msg.data = filtered_array.flatten().tolist()
-
-        self.filtered_map_pub.publish(filtered_msg)
-
-
-
-    def apply_filtering(self, map_array):
-        # Prepare map for OpenCV (needs uint8)
-        # Convert: -1 (unknown) → 205, 0-100 (occupancy) → 0-100, free space → 255
-        filtered = np.copy(map_array)
+        data = np.array(msg.data, dtype=np.int8).reshape((height, width))
         
-        # Remap values for processing
-        filtered[map_array == -1] = 205  # Unknown
-        filtered[map_array == 0] = 255   # Free space
-        # Occupied cells (1-100) stay as-is (closer to 0 = black obstacles)
+        # Remove obstacles and apply smoothing
+        map_removedObstacles_smooth = self.smoothFreeSpace(data)
+
+        # Apply filtering on the obstacles
+        map_smoothObstacles = self.smoothObstacles(data)
+
+        # Combine the two maps
+        map_smooth = self.combineMaps(map_removedObstacles_smooth, map_smoothObstacles)
+
+        # Create new msg to be published wth the same headers as original
+        filtered_map_msg = OccupancyGrid()
+        filtered_map_msg.header = msg.header
+        filtered_map_msg.info = msg.info
+        filtered_map_msg.data = map_smooth.flatten().tolist()  # Must be flat list
+
+        self.filtered_map_pub.publish(filtered_map_msg)
+
+    def smoothFreeSpace(self, data):
+        # occupancy_data_no_obstacles has: 0=free, -1=unknown
+        # Convert to binary: 255=free, 0=unknown
+
+        map_removedObstacles = np.copy(data)
+        map_removedObstacles[map_removedObstacles > 0] = 0  # Replace all obstacles with free 
+
+        free_binary = (map_removedObstacles == 0).astype(np.uint8) * 255
         
-        # Convert to uint8 for OpenCV
-        filtered = filtered.astype(np.uint8)
+        # Opening: remove stray pixels, smooth boundaries
+        kernel = np.ones((3, 3), np.uint8)
+        opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=1)
         
-        # Bilateral filter parameters (tune these)
-        d = 5           # Diameter of pixel neighborhood
-        sigma_color = 50   # Filter sigma in the color space (σr)
-        sigma_space = 50   # Filter sigma in the coordinate space (σs)
+        # Convert back to occupancy format
+        result = np.where(opened == 255, 0, -1)  # 0=free, -1=unknown
         
-        # Apply bilateral filter
-        filtered = cv2.bilateralFilter(filtered, d, sigma_color, sigma_space)
+        return result.astype(np.int8)
+    
+    def smoothObstacles(self, data):
+
+        map_onlyObstacles = np.copy(data)
+        # Extract obstacles: values > 0
+        obstacles_binary = (map_onlyObstacles > 0).astype(np.uint8) * 255
         
-        # Dilation to expand free space and remove small unknown regions
-        kernel_size = 3  # Size of dilation kernel
-        kernel = np.ones((kernel_size, kernel_size), np.uint8)
-        filtered = cv2.dilate(filtered, kernel, iterations=1)
+        # Morphological closing to fill gaps and make consistent
+        kernel = np.ones((9, 9), np.uint8)
+        closed = cv2.morphologyEx(obstacles_binary, cv2.MORPH_CLOSE, kernel, iterations=1)
         
-        # Convert back to occupancy grid format
-        result = np.copy(filtered).astype(np.int8)
-        result[filtered == 205] = -1   # Unknown
-        result[filtered == 255] = 0    # Free
-        # Occupied stays as-is
+        # Convert back to occupancy format (100 for obstacles)
+        result = np.where(closed == 255, 100, 0)
+        
+        return result.astype(np.int8)
+
+    def combineMaps(self, map_removedObstacles_smooth, map_smoothObstacles):
+        # Start with smoothed free/unknown (0=free, -1=unknown)
+        result = np.copy(map_removedObstacles_smooth)
+        
+        # Put obstacles on top (obstacles are 100 in map_smoothObstacles)
+        obstacle_mask = (map_smoothObstacles == 100)
+        result[obstacle_mask] = 100  # Obstacles
         
         return result
-
+    
 def main(args=None):
     rclpy.init(args=args)
     node = MapFilter()
