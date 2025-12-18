@@ -37,7 +37,7 @@ def generate_launch_description():
         actions=[
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('leo_nav2'), 'launch', 'nav2_launch.py')])
+                    get_package_share_directory('leo_nav2'), 'launch', 'nav2_launch_sim.py')])
             )
         ]
     )
