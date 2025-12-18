@@ -20,55 +20,70 @@ class MapFilter (Node):
             self.get_logger().info('First map recieved. Processing...')
             self.recievedFirstMap = True
 
-        # Extract data
         width = msg.info.width
         height = msg.info.height
         data = np.array(msg.data, dtype=np.int8).reshape((height, width))
         
-        # Remove obstacles and apply smoothing
-        map_removedObstacles_smooth = self.smoothFreeSpace(data)
-
-        # Apply filtering on the obstacles
-        map_smoothObstacles = self.smoothObstacles(data)
-
-        # Combine the two maps
-        map_smooth = self.combineMaps(map_removedObstacles_smooth, map_smoothObstacles)
-
-        # Create new msg to be published wth the same headers as original
+        # Step 1: Process obstacles FIRST (thicken them)
+        map_with_thick_obstacles = self.smoothObstacles(data)
+        
+        # Step 2: Overlay thickened obstacles back onto original
+        combined = np.copy(data)
+        obstacle_mask = (map_with_thick_obstacles == 100)
+        combined[obstacle_mask] = 100
+        
+        # Step 3: Smooth free space around the thickened obstacles
+        map_smooth = self.smoothFreeSpace(combined)
+        
+        # Publish
         filtered_map_msg = OccupancyGrid()
         filtered_map_msg.header = msg.header
         filtered_map_msg.info = msg.info
-        filtered_map_msg.data = map_smooth.flatten().tolist()  # Must be flat list
-
+        filtered_map_msg.data = map_smooth.flatten().tolist()
         self.filtered_map_pub.publish(filtered_map_msg)
 
-    def smoothFreeSpace(self, data):
-        # occupancy_data_no_obstacles has: 0=free, -1=unknown
-        # Convert to binary: 255=free, 0=unknown
+    # def smoothFreeSpace(self, data):
+    #     # occupancy_data_no_obstacles has: 0=free, -1=unknown
+    #     # Convert to binary: 255=free, 0=unknown
 
-        map_removedObstacles = np.copy(data)
-        map_removedObstacles[map_removedObstacles > 0] = 0  # Replace all obstacles with free 
+    #     map_removedObstacles = np.copy(data)
+    #     map_removedObstacles[map_removedObstacles > 0] = 0  # Replace all obstacles with free 
 
-        free_binary = (map_removedObstacles == 0).astype(np.uint8) * 255
+    #     free_binary = (map_removedObstacles == 0).astype(np.uint8) * 255
         
-        # Opening: remove stray pixels, smooth boundaries
-        kernel = np.ones((2, 2), np.uint8)
-        opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=3)
+    #     # Opening: remove stray pixels, smooth boundaries
+    #     kernel = np.ones((2, 2), np.uint8)
+    #     opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=3)
         
-        # Convert back to occupancy format
-        result = np.where(opened == 255, 0, -1)  # 0=free, -1=unknown
+    #     # Convert back to occupancy format
+    #     result = np.where(opened == 255, 0, -1)  # 0=free, -1=unknown
         
-        return result.astype(np.int8)
+    #     return result.astype(np.int8)
     
-    def smoothObstacles(self, data):
+    def smoothFreeSpace(self, data):
+        map_copy = np.copy(data)
+        free_binary = (map_copy == 0).astype(np.uint8) * 255
+        obstacle_mask = (map_copy == 100)  # Don't touch obstacles
+        
+        # Your existing closing logic...
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        closed = cv2.morphologyEx(free_binary, cv2.MORPH_CLOSE, kernel, iterations=2)
+        
+        # Make sure obstacles stay obstacles
+        closed[obstacle_mask] = 0
+        
+        result = np.where(obstacle_mask, 100,
+                        np.where(closed == 255, 0, -1))
+        return result.astype(np.int8)
 
+    def smoothObstacles(self, data):
         map_onlyObstacles = np.copy(data)
         # Extract obstacles: values > 0
         obstacles_binary = (map_onlyObstacles > 0).astype(np.uint8) * 255
         
         # Morphological closing to fill gaps and make consistent
-        kernel = np.ones((2, 2), np.uint8)
-        closed = cv2.morphologyEx(obstacles_binary, cv2.MORPH_CLOSE, kernel, iterations=1)
+        kernel = np.ones((3, 3), np.uint8)
+        closed = cv2.morphologyEx(obstacles_binary, cv2.MORPH_CLOSE, kernel, iterations=2)
         
         # Convert back to occupancy format (100 for obstacles)
         result = np.where(closed == 255, 100, 0)

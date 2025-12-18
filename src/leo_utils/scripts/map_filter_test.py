@@ -4,152 +4,140 @@ from rosbags.serde import deserialize_cdr
 import cv2
 import numpy as np
 
-def bag_to_image(bag_path):
-    # Open bag with rosbags library
-    with Reader(bag_path) as reader:
-        # Find map messages
-        map_msg = None
-        for connection, timestamp, rawdata in reader.messages():
-            if connection.topic == '/map':
-                msg = deserialize_cdr(rawdata, connection.msgtype)
-                map_msg = msg
+
+class MapFilterStandalone:
+    def __init__(self, show=True, win_size=(1200, 800)):
+        self.show = show
+        self.win_size = win_size
+
+    # -----------------------
+    # Bag IO (like "subscription")
+    # -----------------------
+    def read_last_map_from_bag(self, bag_path, topic="/map"):
+        with Reader(bag_path) as reader:
+            last_msg = None
+            last_conn = None
+            for connection, timestamp, rawdata in reader.messages():
+                if connection.topic == topic:
+                    last_msg = deserialize_cdr(rawdata, connection.msgtype)
+                    last_conn = connection
+
+        if last_msg is None:
+            raise RuntimeError(f"No map message found on topic '{topic}' in bag: {bag_path}")
+
+        width = last_msg.info.width
+        height = last_msg.info.height
+        data = np.array(last_msg.data, dtype=np.int8).reshape((height, width))
+
+        return last_msg, data  # msg kept if you want metadata
+
+    # -----------------------
+    # Same processing pipeline as your ROS2 node
+    # -----------------------
+    def process(self, occupancy_data: np.ndarray) -> np.ndarray:
+        # Remove obstacles and apply smoothing
+        map_removedObstacles_smooth = self.smoothFreeSpace(occupancy_data)
+
+        # Apply filtering on the obstacles
+        map_smoothObstacles = self.smoothObstacles(occupancy_data)
+
+        # Combine the two maps
+        map_smooth = self.combineMaps(map_removedObstacles_smooth, map_smoothObstacles)
+
+        return map_smooth.astype(np.int8)
+
+    # def smoothFreeSpace(self, data: np.ndarray) -> np.ndarray:
+    #     # 0=free, -1=unknown, >0=occupied
+    #     map_removedObstacles = np.copy(data)
+    #     map_removedObstacles[map_removedObstacles > 0] = 0  # replace obstacles with free
+
+    #     free_binary = (map_removedObstacles == 0).astype(np.uint8) * 255
+
+    #     kernel = np.ones((2, 2), np.uint8)
+    #     opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=3)
+    
+    def smoothFreeSpace(self, data):
+        # Create binary map: 255=free, 0=everything else
+        map_copy = np.copy(data)
+        free_binary = (map_copy == 0).astype(np.uint8) * 255
         
-        if not map_msg:
-            print("No map message found in bag!")
-            return None
+        # CLOSING instead of opening - fills gaps between sparse beams
+        # Larger kernel to bridge distance between sparse laser beams
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+        closed = cv2.morphologyEx(free_binary, cv2.MORPH_CLOSE, kernel, iterations=5)
         
-        # Extract data
-        width = map_msg.info.width
-        height = map_msg.info.height
-        data = np.array(map_msg.data, dtype=np.int8).reshape((height, width))
+        # Convert back: closed regions become free, rest stays unknown
+        result = np.where(closed == 255, 0, -1)
         
-        print(f"Map size: {width}x{height}")
-        print(f"Resolution: {map_msg.info.resolution} m/cell")
-        
-        # Convert to image
-        image = np.zeros_like(data, dtype=np.uint8)
-        image[data == 0] = 254      # Free
-        image[data == -1] = 205     # Unknown  
-        image[data > 0] = 0         # Occupied
-        
-        return image, data
-    
-def removeBlack(data):
-   
-    result = np.copy(data)
-    result[result > 0] = 0  # Replace all obstacles with free space
-    
-    # Convert to image
-    image = np.zeros_like(result, dtype=np.uint8)
-    image[result == 0] = 254      # Free
-    image[result == -1] = 205     # Unknown  
-    
-    return image
+        return result.astype(np.int8)
 
-def excludeBlack(data):
-    result = np.copy(data)
-    result[result <= 0] = 0
+    def smoothObstacles(self, data: np.ndarray) -> np.ndarray:
+        obstacles_binary = (data > 0).astype(np.uint8) * 255
 
-    #convert back to image
-    image = np.zeros_like(result, dtype=np.uint8)
-    image[result == 0] = 254      # Free
-    image[result == -1] = 205     # Unknown  
-    image[result > 0] = 0         # Occupied
+        kernel = np.ones((3, 3), np.uint8)
+        closed = cv2.morphologyEx(obstacles_binary, cv2.MORPH_CLOSE, kernel, iterations=1)
 
-    return image
+        result = np.where(closed == 255, 100, 0)  # 100=occupied, 0=free
+        return result.astype(np.int8)
 
-def make_obstacles_consistent_on_image(image):
-    # Work directly on the image
-    # Assume: 0=black (obstacles), 254=light (free/background)
-    
-    # Invert so obstacles are white (255) for morphology
-    inverted = 255 - image
-    
-    # Morphological operations
-    kernel = np.ones((9, 9), np.uint8)
-    closed = cv2.morphologyEx(inverted, cv2.MORPH_CLOSE, kernel, iterations=1)
-    
-    # Invert back (obstacles=black agaisn)
-    result = 255 - closed
-    
-    return result
+    def combineMaps(self, map_removedObstacles_smooth: np.ndarray, map_smoothObstacles: np.ndarray) -> np.ndarray:
+        result = np.copy(map_removedObstacles_smooth)
+        obstacle_mask = (map_smoothObstacles == 100)
+        result[obstacle_mask] = 100
+        return result
 
-def smooth_free_space_on_image(image_no_obstacles):
-    # image_no_obstacles has: 254=free, 205=unknown
-    # Convert to binary: 255=free, 0=unknown
-    free_binary = (image_no_obstacles == 254).astype(np.uint8) * 255
-    
-    # Closing: fill gaps in free space
-    kernel = np.ones((3, 3), np.uint8)
-    #closed = cv2.morphologyEx(free_binary, cv2.MORPH_CLOSE, kernel, iterations=2)
-    opened = cv2.morphologyEx(free_binary, cv2.MORPH_OPEN, kernel, iterations=1)
-    
-    # Convert back to image format
-    result = np.where(opened == 255, 254, 205)  # 254=free, 205=unknown
-    
-    return result.astype(np.uint8)
+    # -----------------------
+    # Visualization helpers
+    # -----------------------
+    def occupancy_to_image(self, occ: np.ndarray) -> np.ndarray:
+        """
+        Display mapping similar to your old script:
+          occupied -> 0 (black)
+          unknown  -> 205 (gray)
+          free     -> 254 (light)
+        """
+        img = np.zeros_like(occ, dtype=np.uint8)
+        img[occ == 0] = 254
+        img[occ == -1] = 205
+        img[occ > 0] = 0
+        return img
+
+    def show_image(self, title: str, img: np.ndarray, wait=True):
+        if not self.show:
+            return
+        cv2.namedWindow(title, cv2.WINDOW_NORMAL)
+        cv2.resizeWindow(title, self.win_size[0], self.win_size[1])
+        cv2.imshow(title, img)
+        if wait:
+            cv2.waitKey(0)
+
+    # -----------------------
+    # End-to-end run
+    # -----------------------
+    def run(self, bag_path: str):
+        msg, occ = self.read_last_map_from_bag(bag_path, topic="/map")
+
+        print(f"Map size: {msg.info.width}x{msg.info.height}")
+        print(f"Resolution: {msg.info.resolution} m/cell")
+
+        # Original
+        self.show_image("Original (from bag)", self.occupancy_to_image(occ))
+
+        # Node-like intermediate steps
+        free_smoothed = self.smoothFreeSpace(occ)
+        self.show_image("Free/Unknown smoothed", self.occupancy_to_image(free_smoothed))
+
+        obstacles_smoothed = self.smoothObstacles(occ)
+        self.show_image("Obstacles smoothed (binary-ish)", self.occupancy_to_image(obstacles_smoothed))
+
+        combined = self.combineMaps(free_smoothed, obstacles_smoothed)
+        self.show_image("Final combined", self.occupancy_to_image(combined))
+
+        cv2.destroyAllWindows()
+        return combined
 
 
-def combine_layers(image_smoothed, image_consistent_obstacles):
-    # Start with smoothed free/unknown
-    result = np.copy(image_smoothed)
-    
-    # Put black obstacles on top (obstacles are 0=black in image_consistent_obstacles)
-    obstacle_mask = (image_consistent_obstacles == 0)
-    result[obstacle_mask] = 0  # Black = obstacles
-    
-    return result
-
-if __name__ == '__main__':
-    bag_path = '/home/lukas/ros2_ws/test_map_bag'
-    
-    result = bag_to_image(bag_path)
-    if result:
-        image, occupancy_data = result
-
-        # Create resizable window
-        cv2.namedWindow('Map from bag', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Map from bag', 1200, 800)
-        cv2.imshow('Map from bag', image)
-        print("Press any key to close...")
-        cv2.waitKey(0)
-
-        image_noBlack = removeBlack(occupancy_data)
-        cv2.namedWindow('Map Without obstacles', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Map Without obstacles', 1200, 800)
-        cv2.imshow('Map Without obstacles', image_noBlack)
-        print("Press any key to close...")
-        cv2.waitKey(0)
-
-        # Smoothed
-        image_smoothed = smooth_free_space_on_image(image_noBlack)
-        cv2.namedWindow('Smoothed Free Space', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Smoothed Free Space', 1200, 800)
-        cv2.imshow('Smoothed Free Space', image_smoothed)
-        cv2.waitKey(0)
-
-        image_onlyBlack = excludeBlack(occupancy_data)
-        cv2.namedWindow('Map With only obstacles', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Map With only obstacles', 1200, 800)
-        cv2.imshow('Map With only obstacles', image_onlyBlack)
-        print("Press any key to close...")
-        cv2.waitKey(0)
-        
-        # # Make obstacles consistent
-        image_consistent_obstacles = make_obstacles_consistent_on_image(image_onlyBlack)
-        cv2.namedWindow('Consistent obstacles', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Consistent obstacles', 1200, 800)
-        cv2.imshow('Consistent obstacles', image_consistent_obstacles)
-        cv2.waitKey(0)
-
-        # Combined final result
-        final_image = combine_layers(image_smoothed, image_consistent_obstacles)
-        cv2.namedWindow('Final Combined', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Final Combined', 1200, 800)
-        cv2.imshow('Final Combined', final_image)
-        cv2.waitKey(0)
-        
-        # Save both images
-        # cv2.imwrite('original_map.pgm', image)
-        # cv2.imwrite('filtered_map.pgm', final_image)
-        # print("Saved original_map.pgm and filtered_map.pgm")
+if __name__ == "__main__":
+    bag_path = "/home/lukas/ros2_ws/test_map_bag2"
+    filt = MapFilterStandalone(show=True)
+    filtered_occ = filt.run(bag_path)
