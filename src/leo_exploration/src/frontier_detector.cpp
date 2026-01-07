@@ -18,7 +18,7 @@ class FrontierDetector : public rclcpp::Node{
     public:
         FrontierDetector() : Node("frontier_detector"){
             map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
-                "/map", 10, std::bind(&FrontierDetector::map_callback, this, _1));
+                "/map_filtered", 10, std::bind(&FrontierDetector::map_callback, this, _1));
 
             marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/frontier_markers", 10);
 
