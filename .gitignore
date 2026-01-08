@@ -2,6 +2,7 @@
 build/
 install/
 log/
+src/leo_utils/frontier_data/
 *.pyc
 __pycache__/
 COLCON_IGNORE
