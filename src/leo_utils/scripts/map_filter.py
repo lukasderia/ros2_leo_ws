@@ -6,33 +6,43 @@ from nav_msgs.msg import OccupancyGrid
 import cv2
 import numpy as np
 
-class MapFilter (Node):
-
-
+class MapFilter(Node):
     def __init__(self):
         self.recievedFirstMap = False
         super().__init__('map_filter')
         self.map_sub = self.create_subscription(OccupancyGrid, '/map', self.map_callback, 10)
         self.filtered_map_pub = self.create_publisher(OccupancyGrid, '/map_filtered', 10)
+        
+        self.latest_map = None
+        
+        # Timer
+        self.timer = self.create_timer(1.0, self.process_and_publish)
 
     def map_callback(self, msg):
+        # Just store the latest map
+        self.latest_map = msg
         if not self.recievedFirstMap:
-            self.get_logger().info('First map recieved. Processing...')
+            self.get_logger().info('First map received.')
             self.recievedFirstMap = True
 
+    def process_and_publish(self):
+        if self.latest_map is None:
+            return
+        
+        msg = self.latest_map
         width = msg.info.width
         height = msg.info.height
-        data = np.array(msg.data, dtype=np.int8).reshape((height, width)) # type: ignore
+        data = np.array(msg.data, dtype=np.int8).reshape((height, width))
         
-        # Step 1: Process obstacles FIRST (thicken them)
+        # Step 1: Process obstacles FIRST
         map_with_thick_obstacles = self.smoothObstacles(data)
         
-        # Step 2: Overlay thickened obstacles back onto original
+        # Step 2: Overlay thickened obstacles
         combined = np.copy(data)
         obstacle_mask = (map_with_thick_obstacles == 100)
         combined[obstacle_mask] = 100
         
-        # Step 3: Smooth free space around the thickened obstacles
+        # Step 3: Smooth free space
         map_smooth = self.smoothFreeSpace(combined)
         
         # Publish
@@ -41,7 +51,7 @@ class MapFilter (Node):
         filtered_map_msg.info = msg.info
         filtered_map_msg.data = map_smooth.flatten().tolist()
         self.filtered_map_pub.publish(filtered_map_msg)
-    
+
     def smoothFreeSpace(self, data):
         map_copy = np.copy(data)
         free_binary = (map_copy == 0).astype(np.uint8) * 255 # type: ignore
