@@ -6,6 +6,8 @@
 #include "nav_msgs/msg/occupancy_grid.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include "visualization_msgs/msg/marker_array.hpp"
+#include "leo_exploration/msg/frontier_clusters.hpp"
+
 
 using std::placeholders::_1;
 
@@ -22,32 +24,31 @@ class FrontierDetector : public rclcpp::Node{
 
             marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/frontier_markers", 10);
 
-            centroid_pub_ = this->create_publisher<>("/frontier_centroids", 10);
-
-            timer_ = this->create_wall_timer(std::chrono::seconds(2), std::bind(&FrontierDetector::detect_frontiers, this));
+            centroid_pub_ = this->create_publisher<leo_exploration::msg::FrontierClusters>("/frontier_centroids", 10);
         }
 
     private:
         rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
         nav_msgs::msg::OccupancyGrid::SharedPtr latest_map_;
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
-        rclcpp::TimerBase::SharedPtr timer_;
+        rclcpp::Publisher<leo_exploration::msg::FrontierClusters>::SharedPtr centroid_pub_;
         
         void map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg){
             // Store the map, process it later
             latest_map_ = msg;
+
+            detect_frontiers();
         }
 
-        private:
-        // Member variable to store frontier cells after detection
-        std::vector<Point> frontier_cells_;
-        std::vector<Cluster> clusters_;  // Add this to store cluster info
-        
         struct Cluster {
             Point centroid;  // World coordinates
             int size;        // Number of points in cluster
             int id;          // Cluster ID
         };
+
+        // Member variable to store frontier cells after detection
+        std::vector<Point> frontier_cells_;
+        std::vector<Cluster> clusters_;  // Add this to store cluster info
 
         void detect_frontiers() {
             if (!latest_map_) return;
@@ -77,6 +78,10 @@ class FrontierDetector : public rclcpp::Node{
                     }
                 }
             }
+            // After detection, run the full pipeline:
+            cluster_frontiers();       // Cluster the detected frontiers
+            publish_visualization();   // Visualize all frontier cells
+            publish_centroids();       // Publish cluster centroids
         }
         
         void cluster_frontiers() {
@@ -191,8 +196,23 @@ class FrontierDetector : public rclcpp::Node{
         }
         
         void publish_centroids() {
-            // TODO: Create and publish custom message with cluster centroids and sizes
-            // For now, placeholder - you need to define the message type first
+            if (clusters_.empty()) return;
+
+            // Create message using user defined template
+            leo_exploration::msg::FrontierClusters msg;
+            msg.header.stamp = this->now();
+            msg.header.frame_id = latest_map_->header.frame_id;
+
+            for (const auto& cluster : clusters_){
+                leo_exploration::msg::FrontierCluster cluster_msg;
+                cluster_msg.x = cluster.centroid.x;
+                cluster_msg.y = cluster.centroid.y;
+                cluster_msg.size = cluster.size;
+
+                msg.clusters.push_back(cluster_msg);
+            }
+
+            centroid_pub_->publish(msg);
         }
     };
 
