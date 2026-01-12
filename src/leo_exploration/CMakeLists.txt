@@ -45,11 +45,23 @@ ament_target_dependencies(frontier_detector
   visualization_msgs
 )
 
+add_executable(frontier_explorer src/frontier_explorer.cpp)
+ament_target_dependencies(frontier_explorer 
+  rclcpp 
+  nav_msgs 
+  geometry_msgs 
+  visualization_msgs
+)
+
 # Link the custom messages to the executable
 rosidl_target_interfaces(frontier_detector ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
+# Link the custom messages to the executable
+rosidl_target_interfaces(frontier_explorer ${PROJECT_NAME} "rosidl_typesupport_cpp")
+
 install(TARGETS
   frontier_detector
+  frontier_explorer
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

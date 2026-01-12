@@ -8,7 +8,6 @@
 #include "visualization_msgs/msg/marker_array.hpp"
 #include "leo_exploration/msg/frontier_clusters.hpp"
 
-
 using std::placeholders::_1;
 
 struct Point {
@@ -25,6 +24,8 @@ class FrontierDetector : public rclcpp::Node{
             marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/frontier_markers", 10);
 
             centroid_pub_ = this->create_publisher<leo_exploration::msg::FrontierClusters>("/frontier_centroids", 10);
+
+            centroid_marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("/frontier_centroid_markers", 10);
         }
 
     private:
@@ -32,12 +33,18 @@ class FrontierDetector : public rclcpp::Node{
         nav_msgs::msg::OccupancyGrid::SharedPtr latest_map_;
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
         rclcpp::Publisher<leo_exploration::msg::FrontierClusters>::SharedPtr centroid_pub_;
+        rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr centroid_marker_pub_;
         
         void map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg){
             // Store the map, process it later
             latest_map_ = msg;
 
             detect_frontiers();
+            // After detection, run the full pipeline:
+            cluster_frontiers();       // Cluster the detected frontiers
+            publish_frontier_markers();   // Visualize all frontier cells
+            publish_centroids();       // Publish cluster centroids
+            publish_centroid_markers(); //Publish the centroids as points to visualize
         }
 
         struct Cluster {
@@ -78,10 +85,6 @@ class FrontierDetector : public rclcpp::Node{
                     }
                 }
             }
-            // After detection, run the full pipeline:
-            cluster_frontiers();       // Cluster the detected frontiers
-            publish_visualization();   // Visualize all frontier cells
-            publish_centroids();       // Publish cluster centroids
         }
         
         void cluster_frontiers() {
@@ -159,7 +162,7 @@ class FrontierDetector : public rclcpp::Node{
             RCLCPP_INFO(this->get_logger(), "Found %zu clusters", clusters_.size());
         }
         
-        void publish_visualization() {
+        void publish_frontier_markers() {
             if (!latest_map_ || frontier_cells_.empty()) return;
             
             visualization_msgs::msg::MarkerArray marker_array;
@@ -213,6 +216,40 @@ class FrontierDetector : public rclcpp::Node{
             }
 
             centroid_pub_->publish(msg);
+        }
+
+        void publish_centroid_markers(){
+            if(clusters_.empty()) return;
+            
+            // Create message and iunitiate with time and frame from map
+            visualization_msgs::msg::MarkerArray centroid_marker_array;
+
+            for (size_t i = 0; i < clusters_.size(); i++){
+                visualization_msgs::msg::Marker centroid_marker;
+                centroid_marker.header.stamp = this->now();
+                centroid_marker.header.frame_id = latest_map_->header.frame_id;
+                centroid_marker.ns = "centroids";
+                centroid_marker.id = i;
+                centroid_marker.type = visualization_msgs::msg::Marker::SPHERE;
+                centroid_marker.action = visualization_msgs::msg::Marker::ADD;
+
+                centroid_marker.pose.position.x = clusters_[i].centroid.x;
+                centroid_marker.pose.position.y = clusters_[i].centroid.y;
+                centroid_marker.pose.position.z = 0.0;
+                
+                centroid_marker.scale.x = 0.1;
+                centroid_marker.scale.y = 0.1;
+                centroid_marker.scale.z = 0.1;
+                
+                centroid_marker.color.r = 0.50;
+                centroid_marker.color.g = 0.0;
+                centroid_marker.color.b = 0.50;
+                centroid_marker.color.a = 1.0;
+                
+                centroid_marker_array.markers.push_back(centroid_marker);
+            }
+
+            centroid_marker_pub_->publish(centroid_marker_array);
         }
     };
 
