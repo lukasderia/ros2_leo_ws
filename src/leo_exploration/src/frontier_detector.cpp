@@ -154,8 +154,9 @@ class FrontierDetector : public rclcpp::Node{
                         count++;
                     }
                 }
-                
-                if (count > 0) {
+                const int min_cluster_size = 15;
+
+                if (count > min_cluster_size) {
                     Cluster cluster;
                     cluster.centroid.x = sum_x / count;
                     cluster.centroid.y = sum_y / count;
