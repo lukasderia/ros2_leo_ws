@@ -18,7 +18,7 @@ struct Point {
 struct WorldPoint {
     double x;
     double y;
-}
+};
 
 struct Cluster {
     WorldPoint centroid;  // World coordinates
