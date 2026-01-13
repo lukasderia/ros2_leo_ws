@@ -35,16 +35,16 @@ class FrontierDetector : public rclcpp::Node{
         rclcpp::Publisher<leo_exploration::msg::FrontierClusters>::SharedPtr centroid_pub_;
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr centroid_marker_pub_;
 
-        // Member variable to store frontier cells after detection
-        std::vector<Point> frontier_cells_;
-        std::vector<Cluster> clusters_;
-        std::vector<int> frontier_labels_;
-
         struct Cluster {
             Point centroid;  // World coordinates
             int size;        // Number of points in cluster
             int id;          // Cluster ID
         };
+
+        // Member variable to store frontier cells after detection
+        std::vector<Point> frontier_cells_;
+        std::vector<Cluster> clusters_;
+        std::vector<int> frontier_labels_;
         
         void map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg){
             // Store the map, process it later
