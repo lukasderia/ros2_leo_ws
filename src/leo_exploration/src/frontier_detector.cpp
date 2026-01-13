@@ -15,6 +15,17 @@ struct Point {
     int y;
 };
 
+struct WorldPoint {
+    double x;
+    double y;
+}
+
+struct Cluster {
+    WorldPoint centroid;  // World coordinates
+    int size;        // Number of points in cluster
+    int id;          // Cluster ID
+};
+
 class FrontierDetector : public rclcpp::Node{
     public:
         FrontierDetector() : Node("frontier_detector"){
@@ -34,12 +45,6 @@ class FrontierDetector : public rclcpp::Node{
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
         rclcpp::Publisher<leo_exploration::msg::FrontierClusters>::SharedPtr centroid_pub_;
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr centroid_marker_pub_;
-
-        struct Cluster {
-            Point centroid;  // World coordinates
-            int size;        // Number of points in cluster
-            int id;          // Cluster ID
-        };
 
         // Member variable to store frontier cells after detection
         std::vector<Point> frontier_cells_;
@@ -94,9 +99,9 @@ class FrontierDetector : public rclcpp::Node{
             if (frontier_cells_.empty()) return;
             
             // Convert grid coordinates to world coordinates for clustering
-            std::vector<Point> world_points;
+            std::vector<WorldPoint> world_points;
             for (const auto& cell : frontier_cells_) {
-                Point world;
+                WorldPoint world;
                 world.x = latest_map_->info.origin.position.x + 
                         (cell.x + 0.5) * latest_map_->info.resolution;
                 world.y = latest_map_->info.origin.position.y + 
