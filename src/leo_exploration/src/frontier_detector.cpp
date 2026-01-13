@@ -34,6 +34,17 @@ class FrontierDetector : public rclcpp::Node{
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
         rclcpp::Publisher<leo_exploration::msg::FrontierClusters>::SharedPtr centroid_pub_;
         rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr centroid_marker_pub_;
+
+        // Member variable to store frontier cells after detection
+        std::vector<Point> frontier_cells_;
+        std::vector<Cluster> clusters_;
+        std::vector<int> frontier_labels_;
+
+        struct Cluster {
+            Point centroid;  // World coordinates
+            int size;        // Number of points in cluster
+            int id;          // Cluster ID
+        };
         
         void map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg){
             // Store the map, process it later
@@ -46,16 +57,6 @@ class FrontierDetector : public rclcpp::Node{
             publish_centroids();       // Publish cluster centroids
             publish_centroid_markers(); //Publish the centroids as points to visualize
         }
-
-        struct Cluster {
-            Point centroid;  // World coordinates
-            int size;        // Number of points in cluster
-            int id;          // Cluster ID
-        };
-
-        // Member variable to store frontier cells after detection
-        std::vector<Point> frontier_cells_;
-        std::vector<Cluster> clusters_;  // Add this to store cluster info
 
         void detect_frontiers() {
             if (!latest_map_) return;
@@ -159,6 +160,7 @@ class FrontierDetector : public rclcpp::Node{
                 }
             }
             
+            frontier_labels_ = labels;
             RCLCPP_INFO(this->get_logger(), "Found %zu clusters", clusters_.size());
         }
         
@@ -173,7 +175,6 @@ class FrontierDetector : public rclcpp::Node{
                 marker.header.stamp = this->now();
                 marker.ns = "frontiers";
                 marker.id = i;
-                marker.type = visualization_msgs::msg::Marker::SPHERE;
                 marker.action = visualization_msgs::msg::Marker::ADD;
                 
                 // Convert grid coordinates to world coordinates
@@ -182,16 +183,66 @@ class FrontierDetector : public rclcpp::Node{
                 marker.pose.position.y = latest_map_->info.origin.position.y + 
                                         (frontier_cells_[i].y + 0.5) * latest_map_->info.resolution;
                 marker.pose.position.z = 0.0;
-                
+
                 marker.scale.x = 0.1;
                 marker.scale.y = 0.1;
                 marker.scale.z = 0.1;
                 
-                marker.color.r = 0.50;
-                marker.color.g = 0.0;
-                marker.color.b = 0.50;
+                // Get cluster ID for this frontier cell
+                int cluster_id = frontier_labels_[i];
+
+                // Determine color (10 colors)
+                int color_index = cluster_id % 10;
+                switch(color_index) {
+                    case 0: // Red
+                        marker.color.r = 1.0; marker.color.g = 0.0; marker.color.b = 0.0;
+                        break;
+                    case 1: // Green
+                        marker.color.r = 0.0; marker.color.g = 1.0; marker.color.b = 0.0;
+                        break;
+                    case 2: // Blue
+                        marker.color.r = 0.0; marker.color.g = 0.0; marker.color.b = 1.0;
+                        break;
+                    case 3: // Yellow
+                        marker.color.r = 1.0; marker.color.g = 1.0; marker.color.b = 0.0;
+                        break;
+                    case 4: // Cyan
+                        marker.color.r = 0.0; marker.color.g = 1.0; marker.color.b = 1.0;
+                        break;
+                    case 5: // Magenta
+                        marker.color.r = 1.0; marker.color.g = 0.0; marker.color.b = 1.0;
+                        break;
+                    case 6: // Orange
+                        marker.color.r = 1.0; marker.color.g = 0.5; marker.color.b = 0.0;
+                        break;
+                    case 7: // White
+                        marker.color.r = 1.0; marker.color.g = 1.0; marker.color.b = 1.0;
+                        break;
+                    case 8: // Lime
+                        marker.color.r = 0.5; marker.color.g = 1.0; marker.color.b = 0.0;
+                        break;
+                    case 9: // Pink
+                        marker.color.r = 1.0; marker.color.g = 0.4; marker.color.b = 0.7;
+                        break;
+                }
                 marker.color.a = 1.0;
-                
+
+                // Determine shape (3 shapes)
+                int shape_index = cluster_id / 10;
+                switch(shape_index) {
+                    case 0:
+                        marker.type = visualization_msgs::msg::Marker::SPHERE;
+                        break;
+                    case 1:
+                        marker.type = visualization_msgs::msg::Marker::CUBE;
+                        break;
+                    case 2:
+                        marker.type = visualization_msgs::msg::Marker::CYLINDER;
+                        break;
+                    default:
+                        marker.type = visualization_msgs::msg::Marker::SPHERE;
+                        break;
+                }
                 marker_array.markers.push_back(marker);
             }
             
