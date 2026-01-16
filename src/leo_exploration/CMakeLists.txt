@@ -23,6 +23,9 @@ find_package(geometry_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 
 # Declare messages
@@ -47,11 +50,14 @@ ament_target_dependencies(frontier_detector
 
 add_executable(frontier_explorer src/frontier_explorer.cpp)
 ament_target_dependencies(frontier_explorer 
-  rclcpp 
-  nav_msgs 
-  geometry_msgs 
-  visualization_msgs
-)
+    rclcpp 
+    nav_msgs 
+    geometry_msgs
+    std_msgs
+    tf2
+    tf2_ros
+    tf2_geometry_msgs
+    )
 
 # Link the custom messages to the executable
 rosidl_target_interfaces(frontier_detector ${PROJECT_NAME} "rosidl_typesupport_cpp")

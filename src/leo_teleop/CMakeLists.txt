@@ -17,13 +17,20 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
 
 # Executable
 add_executable(teleop src/teleop.cpp)
 ament_target_dependencies(teleop rclcpp geometry_msgs)
 
+add_executable(leo_mode src/leo_mode.cpp)
+ament_target_dependencies(leo_mode rclcpp sensor_msgs std_msgs)  # Add whatever dependencies you need
+
 # Install binary
-install(TARGETS teleop
+install(TARGETS 
+  teleop
+  leo_mode
   DESTINATION lib/${PROJECT_NAME})
 
 # Optional: install headers (nice practice)

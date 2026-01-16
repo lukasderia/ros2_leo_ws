@@ -4,7 +4,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    # Patch to Xbox config file
+    # Path to Xbox config file
     config_filepath = os.path.join(
         get_package_share_directory('leo_teleop'),
         'config',
@@ -20,7 +20,7 @@ def generate_launch_description():
             parameters=[{
                 'dev': '/dev/input/js0',
                 'deadzone': 0.1,
-                'autorepeat_rate': 20.0,
+                'autorepeat_rate': 10.0,
             }]
         ),
         
@@ -30,5 +30,12 @@ def generate_launch_description():
             executable='teleop_node',
             name='teleop_twist_joy_node',
             parameters=[config_filepath]
+        ),
+        
+        # Mode toggle node
+        Node(
+            package='leo_teleop',
+            executable='leo_mode',
+            name='mode_node'
         ),
     ])

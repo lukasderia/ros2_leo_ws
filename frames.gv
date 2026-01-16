@@ -1,13 +1,15 @@
 digraph G {
 "base_link" -> "chassis"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"odom" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 29.919\nBuffer length: 1.972\nMost recent transform: 415.33\nOldest transform: 413.358\n"];
 "chassis" -> "jetson_mount"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 "chassis" -> "velodyne"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"chassis" -> "wheel_fl"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"chassis" -> "wheel_fr"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"chassis" -> "wheel_rl"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"chassis" -> "wheel_rr"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "wheel_fl"[label=" Broadcaster: default_authority\nAverage rate: 48.762\nBuffer length: 2.666\nMost recent transform: 415.364\nOldest transform: 412.698\n"];
+"base_link" -> "wheel_fr"[label=" Broadcaster: default_authority\nAverage rate: 48.762\nBuffer length: 2.666\nMost recent transform: 415.364\nOldest transform: 412.698\n"];
+"base_link" -> "wheel_rl"[label=" Broadcaster: default_authority\nAverage rate: 49.012\nBuffer length: 2.632\nMost recent transform: 415.33\nOldest transform: 412.698\n"];
+"base_link" -> "wheel_rr"[label=" Broadcaster: default_authority\nAverage rate: 49.012\nBuffer length: 2.632\nMost recent transform: 415.33\nOldest transform: 412.698\n"];
+"map" -> "odom"[label=" Broadcaster: default_authority\nAverage rate: 26.22\nBuffer length: 2.479\nMost recent transform: 415.824\nOldest transform: 413.345\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 1767609328.5397868"[ shape=plaintext ] ;
-}->"base_link";
+"Recorded at time: 1768481293.2784758"[ shape=plaintext ] ;
+}->"map";
 }
