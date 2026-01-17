@@ -30,7 +30,7 @@ class FrontierExplorer : public rclcpp::Node{
         tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
         tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
-        detector_sub_ = this->create_subscription<leo_exploration::msg::FrontierClusters>("/frontier_clentroids", 10, std::bind(&FrontierExplorer::detector_callback, this, _1));
+        detector_sub_ = this->create_subscription<leo_exploration::msg::FrontierClusters>("/frontier_centroids", 10, std::bind(&FrontierExplorer::detector_callback, this, _1));
 
         odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>("/odom",10, std::bind(&FrontierExplorer::odom_callback, this, _1));
         
