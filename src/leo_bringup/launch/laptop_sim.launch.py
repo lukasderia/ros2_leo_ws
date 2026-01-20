@@ -38,14 +38,18 @@ def generate_launch_description():
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('leo_nav2'), 'launch', 'nav2_launch_sim.py')])
-            )
-        ]
-    )
+            )])
     
     # Include Teleop
     teleop_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('leo_teleop'), 'launch', 'controller_teleop.launch.py')])
+    )
+
+    # Include the exploration launcher
+    exploration_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('leo_exploration'), "launch", "exploration.launch.py")])
     )
     
     # Pointcloud to laserscan converter (conditional)
@@ -72,4 +76,5 @@ def generate_launch_description():
         nav2_launch,
         teleop_launch,
         converter_node,
+        exploration_launch,
     ])

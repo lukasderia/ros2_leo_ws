@@ -27,17 +27,21 @@ struct Frontier {
 class FrontierExplorer : public rclcpp::Node{
     public:
     FrontierExplorer() : Node("frontier_explorer"){
+        // Declare and get parameter
+        this->declare_parameter<std::string>("odom_topic", "/odom");
+        std::string odom_topic = this->get_parameter("odom_topic").as_string();
+
+
         tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
         tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
         detector_sub_ = this->create_subscription<leo_exploration::msg::FrontierClusters>("/frontier_centroids", 10, std::bind(&FrontierExplorer::detector_callback, this, _1));
 
-        odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>("/odom",10, std::bind(&FrontierExplorer::odom_callback, this, _1));
+        odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(odom_topic,10, std::bind(&FrontierExplorer::odom_callback, this, _1));
         
         mode_sub_ = this->create_subscription<std_msgs::msg::Bool>("/auto_mode", rclcpp::QoS(10).transient_local(), std::bind(&FrontierExplorer::mode_callback, this, _1));
 
         explorer_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/goal_pose", 10);
-
     }
 
     private:
@@ -133,8 +137,6 @@ class FrontierExplorer : public rclcpp::Node{
 
             // Publish the best frontier
             publish_goal(*best);
-
-
         }
 
         void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg){

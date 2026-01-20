@@ -65,9 +65,15 @@ rosidl_target_interfaces(frontier_detector ${PROJECT_NAME} "rosidl_typesupport_c
 # Link the custom messages to the executable
 rosidl_target_interfaces(frontier_explorer ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
+# Install executables
 install(TARGETS
   frontier_detector
   frontier_explorer
   DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/)
 
 ament_package()
