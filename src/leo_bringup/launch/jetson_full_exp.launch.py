@@ -8,6 +8,8 @@ from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch.actions import TimerAction
 
+
+# Full launcher with explroation
 def generate_launch_description():
 
     # Include SLAM Launcher
