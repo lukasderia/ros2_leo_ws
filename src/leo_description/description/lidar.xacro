@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="lidar" params="parent">
+        <link name="velodyne">
+            <visual>
+                <geometry>
+                    <cylinder radius="0.0516" length="0.0717"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="0.0516" length="0.0717"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="velodyne_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="velodyne"/>
+            <origin xyz="0 0 0.17135" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+</robot>

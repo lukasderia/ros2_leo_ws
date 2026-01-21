@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="gazebo_materials">
+        <gazebo reference="chassis">
+            <material>Gazebo/Red</material>
+        </gazebo>
+
+        <gazebo reference="wheel_fl">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <gazebo reference="wheel_fr">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <gazebo reference="wheel_rl">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <gazebo reference="wheel_rr">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <gazebo reference="velodyne">
+            <material>Gazebo/Black</material>
+        </gazebo>
+    </xacro:macro>
+</robot>

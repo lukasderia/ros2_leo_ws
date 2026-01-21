@@ -10,10 +10,6 @@ from launch.actions import TimerAction
 
 def generate_launch_description():
 
-    # Include robotdescription
-    real_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource([os.path.join(
-        get_package_share_directory('leo_gazebo'), 'launch', 'real_launch.py')]))
-
     # Include Teleop
     teleop_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -35,7 +31,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        real_launch,
         teleop_launch,
         rviz2
     ])

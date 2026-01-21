@@ -12,10 +12,10 @@ from launch.actions import TimerAction
 # Full launcher without the exploration
 def generate_launch_description():
 
-    # Include Teleop
-    teleop_launch = IncludeLaunchDescription(
+    # Include Robot Description
+    description_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('leo_teleop'), 'launch', 'controller_teleop.launch.py')])
+            get_package_share_directory('leo_description'), 'launch', 'real.launch.py')])
     )
 
     # Include SLAM Launcher
@@ -53,11 +53,10 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        description_launch,
         odom2TF_node,
-        #teleop_launch,
         velodyne_launch,
         ScanFilter,
-        #pointcloud_to_laserscan_node,
         slam_launch,
         nav_launch,
     ])

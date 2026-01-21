@@ -12,6 +12,12 @@ from launch.actions import TimerAction
 # Full launcher with explroation
 def generate_launch_description():
 
+    # Include Robot Description
+    description_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('leo_description'), 'launch', 'real.launch.py')])
+    )
+
     # Include SLAM Launcher
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -54,6 +60,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        description_launch,
         odom2TF_node,
         velodyne_launch,
         ScanFilter,

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="chassis" params="parent">
+        <!-- All your wheel links and joints here -->
+             <!-- Chassis to Base joint -->
+        <joint name="chassis_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="chassis"/>
+            <origin xyz="0.0 0.0 0.0645"/>
+        </joint>
+
+        <!-- Chassis Link -->
+        <link name="chassis">
+            <visual>
+                <origin xyz="0.0 0.0 0.0895"/>
+                <geometry>
+                    <box size="0.295 0.354 0.092"/>
+                </geometry>
+                <material name="red"/>
+            </visual>
+            <collision>  <!-- Add this -->
+                <origin xyz="0.0 0.0 0.0895"/>
+                <geometry>
+                    <box size="0.295 0.354 0.092"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="10"/>
+                <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+            </inertial>
+        </link>
+    </xacro:macro>
+</robot>
