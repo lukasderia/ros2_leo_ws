@@ -57,6 +57,7 @@ class FrontierExplorer : public rclcpp::Node{
         nav_msgs::msg::Odometry::SharedPtr latest_odom_;
         bool auto_mode_enabled_ = false;
         double robot_yaw_, robot_y_, robot_x_;
+        bool odom_recieved_ = false;
 
         std::vector<Frontier> frontier_list_;
 
@@ -66,7 +67,7 @@ class FrontierExplorer : public rclcpp::Node{
             frontier_list_.clear();
 
             // Check if we have odometry data
-            if (!latest_odom_) {
+            if (!odom_recieved_) {  // Check the flag instead
                 RCLCPP_WARN(this->get_logger(), "No odometry data available");
                 return;
             }
@@ -141,6 +142,7 @@ class FrontierExplorer : public rclcpp::Node{
 
         void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg){
             latest_odom_ = msg;
+            odom_recieved_ = true;
         }
 
         void mode_callback (const std_msgs::msg::Bool::SharedPtr msg){
