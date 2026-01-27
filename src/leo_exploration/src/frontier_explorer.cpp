@@ -61,6 +61,11 @@ class FrontierExplorer : public rclcpp::Node{
 
         std::vector<Frontier> frontier_list_;
 
+        // In private section
+        bool has_published_goal_ = false;
+        double last_goal_x_ = 0.0;
+        double last_goal_y_ = 0.0;
+
 
         void detector_callback(const leo_exploration::msg::FrontierClusters::SharedPtr msg){
             latest_centroids_ = msg;
@@ -136,6 +141,20 @@ class FrontierExplorer : public rclcpp::Node{
                     return a.score < b.score;
                 });
 
+            // Check if new goal is significantly different from last goal
+            if (has_published_goal_) {
+                double dx = best->x - last_goal_x_;
+                double dy = best->y - last_goal_y_;
+                double distance_to_last_goal = std::sqrt(dx*dx + dy*dy);
+                
+                double threshold = 1.0;  // meters - adjust as needed
+                
+                if (distance_to_last_goal < threshold) {
+                    RCLCPP_DEBUG(this->get_logger(), "New goal too close to last goal (%.2f m), skipping", distance_to_last_goal);
+                    return;  // Skip publishing
+                }
+            }
+
             // Publish the best frontier
             publish_goal(*best);
         }
@@ -152,6 +171,7 @@ class FrontierExplorer : public rclcpp::Node{
             // If switching from auto to manual (true -> false)
             if (previous_mode && !auto_mode_enabled_) {
                 stop_robot();
+                has_published_goal_ = false;
             }
         }
 
@@ -197,6 +217,12 @@ class FrontierExplorer : public rclcpp::Node{
             goal.pose.orientation.w = 1.0;  // Neutral orientation
             
             explorer_pub_->publish(goal);
+            
+            // Store this goal for future comparison
+            last_goal_x_ = frontier.x;
+            last_goal_y_ = frontier.y;
+            has_published_goal_ = true;
+            
             RCLCPP_INFO(this->get_logger(), "Published goal: (%.2f, %.2f) with score %.2f", 
                         frontier.x, frontier.y, frontier.score);
         }
