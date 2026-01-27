@@ -1,12 +1,9 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
-from launch.conditions import IfCondition
 from launch_ros.actions import Node
-from launch.actions import TimerAction
 
 def generate_launch_description():
 
@@ -16,16 +13,16 @@ def generate_launch_description():
             get_package_share_directory('leo_description'), 'launch', 'real.launch.py')])
     )
 
-    # Include Teleop
-    teleop_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('leo_teleop'), 'launch', 'controller_teleop.launch.py')])
-    )
-
     # Include SLAM Launcher
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('leo_slam'), 'launch', 'slam_launch.py')])
+    )
+
+    # Include Nav2 Launcher
+    nav_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('leo_nav2'), 'launch', 'nav2_launch.py')])
     )
 
     # Include Odom2TF
@@ -36,12 +33,19 @@ def generate_launch_description():
         output='screen'
     )    
 
-    # Inclde scan_filter
+    # Include scan_filter
     ScanFilter = Node(
         package='leo_utils',
         executable='scan_filter.py',
         name='scan_filter',
         output='screen'
+    )
+
+    # Include the exploration launcher WITH the argument
+    exploration_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('leo_exploration'), "launch", "exploration.launch.py")]),
+        launch_arguments={'odom_topic': '/odometry_merged'}.items()
     )
 
     # Include Rviz2 with saved configuration
@@ -60,9 +64,9 @@ def generate_launch_description():
 
     return LaunchDescription([
         description_launch,
-        teleop_launch,
         odom2TF_node,
-        #ScanFilter,
-        #slam_launch,
-        rviz2
+        ScanFilter,
+        slam_launch,
+        nav_launch,
+        exploration_launch,
     ])
