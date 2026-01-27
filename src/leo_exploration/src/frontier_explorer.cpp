@@ -146,7 +146,45 @@ class FrontierExplorer : public rclcpp::Node{
         }
 
         void mode_callback (const std_msgs::msg::Bool::SharedPtr msg){
+            bool previous_mode = auto_mode_enabled_;
             auto_mode_enabled_ = msg->data;
+            
+            // If switching from auto to manual (true -> false)
+            if (previous_mode && !auto_mode_enabled_) {
+                stop_robot();
+            }
+        }
+
+        void stop_robot() {
+            if (!odom_recieved_) {
+                RCLCPP_WARN(this->get_logger(), "Cannot stop - no odometry data");
+                return;
+            }
+            
+            try {
+                // Get transform from odom to map
+                geometry_msgs::msg::TransformStamped transform_stamped = 
+                    tf_buffer_->lookupTransform("map", "odom", tf2::TimePointZero);
+
+                // Transform current robot pose to map frame
+                geometry_msgs::msg::PoseStamped pose_odom, pose_map;
+                pose_odom.header = latest_odom_->header;
+                pose_odom.pose = latest_odom_->pose.pose;
+
+                tf2::doTransform(pose_odom, pose_map, transform_stamped);
+
+                // Publish current position as goal
+                geometry_msgs::msg::PoseStamped stop_goal;
+                stop_goal.header.stamp = this->now();
+                stop_goal.header.frame_id = "map";
+                stop_goal.pose = pose_map.pose;
+                
+                explorer_pub_->publish(stop_goal);
+                RCLCPP_INFO(this->get_logger(), "Auto mode OFF - robot stopping at current position");
+                
+            } catch (tf2::TransformException &ex) {
+                RCLCPP_WARN(this->get_logger(), "Failed to stop robot: %s", ex.what());
+            }
         }
 
         void publish_goal(const Frontier& frontier) {
