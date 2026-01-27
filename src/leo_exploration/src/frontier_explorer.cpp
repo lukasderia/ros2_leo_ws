@@ -147,7 +147,7 @@ class FrontierExplorer : public rclcpp::Node{
                 double dy = best->y - last_goal_y_;
                 double distance_to_last_goal = std::sqrt(dx*dx + dy*dy);
                 
-                double threshold = 1.0;  // meters - adjust as needed
+                double threshold = 0.50;  // meters - adjust as needed
                 
                 if (distance_to_last_goal < threshold) {
                     RCLCPP_DEBUG(this->get_logger(), "New goal too close to last goal (%.2f m), skipping", distance_to_last_goal);
