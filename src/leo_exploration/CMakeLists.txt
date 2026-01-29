@@ -26,6 +26,7 @@ find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 
 # Declare messages
@@ -59,6 +60,15 @@ ament_target_dependencies(frontier_explorer
     tf2_geometry_msgs
     )
 
+add_executable(rss_node src/rss.cpp)
+ament_target_dependencies(rss_node 
+  rclcpp 
+  nav_msgs
+  sensor_msgs
+  tf2_ros
+  tf2_geometry_msgs
+)
+
 # Link the custom messages to the executable
 rosidl_target_interfaces(frontier_detector ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
@@ -69,6 +79,7 @@ rosidl_target_interfaces(frontier_explorer ${PROJECT_NAME} "rosidl_typesupport_c
 install(TARGETS
   frontier_detector
   frontier_explorer
+  rss_node
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
