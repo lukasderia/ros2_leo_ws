@@ -83,6 +83,9 @@ class RSSNode : public rclcpp::Node{
         }
 
         void publishRSS(double x, double y, double rss){
+
+            RCLCPP_INFO(this->get_logger(), "Publishing RSS: x=%.2f, y=%.2f, rss=%.2f", x, y, rss);
+            
             sensor_msgs::msg::PointCloud2 cloud;
 
             // Set header
