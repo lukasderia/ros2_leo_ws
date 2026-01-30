@@ -34,7 +34,7 @@ class RSSNode : public rclcpp::Node{
     
     double current_x_ = 0.0;
     double current_y_ = 0.0;
-
+    
         void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg){
             // Transform odom msg from odom frame to map frame
             try {
@@ -44,7 +44,7 @@ class RSSNode : public rclcpp::Node{
 
                 // Transform robot pose from odom to map
                 geometry_msgs::msg::PoseStamped pose_odom, pose_map;
-                pose_odom.header = msg->header;  // Use msg, not latest_odom_
+                pose_odom.header = msg->header;
                 pose_odom.pose = msg->pose.pose;
 
                 tf2::doTransform(pose_odom, pose_map, transform_stamped);
@@ -52,6 +52,8 @@ class RSSNode : public rclcpp::Node{
                 // Extract robot pose in map frame
                 current_x_ = pose_map.pose.position.x;
                 current_y_ = pose_map.pose.position.y;
+                
+                RCLCPP_INFO(this->get_logger(), "Odom callback: x=%.2f, y=%.2f", current_x_, current_y_);
 
             } catch (tf2::TransformException &ex) {
                 RCLCPP_WARN(this->get_logger(), "Could not transform odom to map: %s", ex.what());
@@ -85,7 +87,7 @@ class RSSNode : public rclcpp::Node{
         void publishRSS(double x, double y, double rss){
 
             RCLCPP_INFO(this->get_logger(), "Publishing RSS: x=%.2f, y=%.2f, rss=%.2f", x, y, rss);
-            
+
             sensor_msgs::msg::PointCloud2 cloud;
 
             // Set header
