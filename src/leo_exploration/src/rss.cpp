@@ -8,7 +8,7 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.h"
 
-const std::string command = "sudo iwlist wlan1 scan | grep -B 3 \"robotlab\" | grep \"Signal level\" | grep -o '\\-[0-9]*'";
+const std::string command = "iwconfig wlan1 | grep -oP 'Signal level=\\K-?\\d+'";
 
 class RSSNode : public rclcpp::Node{
     public:
@@ -21,7 +21,7 @@ class RSSNode : public rclcpp::Node{
         rss_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/rss", 10);
 
         // Timer for periodic scanning (every 3 seconds)
-        scan_timer_ = this->create_wall_timer(std::chrono::seconds(2),std::bind(&RSSNode::scanCallback, this));
+        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNode::scanCallback, this));
 
     }
 
