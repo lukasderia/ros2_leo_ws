@@ -56,8 +56,6 @@ class RSSNode : public rclcpp::Node{
                 // Extract robot pose in map frame
                 current_x_ = pose_map.pose.position.x;
                 current_y_ = pose_map.pose.position.y;
-                
-                RCLCPP_INFO(this->get_logger(), "Odom callback: x=%.2f, y=%.2f", current_x_, current_y_);
 
             } catch (tf2::TransformException &ex) {
                 RCLCPP_WARN(this->get_logger(), "Could not transform odom to map: %s", ex.what());
