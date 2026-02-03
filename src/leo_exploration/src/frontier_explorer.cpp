@@ -24,13 +24,16 @@ struct Frontier {
     double score;
 };
 
+struct RSSMeas {
+    double x, y, rss;
+}
+
 class FrontierExplorer : public rclcpp::Node{
     public:
     FrontierExplorer() : Node("frontier_explorer"){
         // Declare and get parameter
         this->declare_parameter<std::string>("odom_topic", "/odom");
         std::string odom_topic = this->get_parameter("odom_topic").as_string();
-
 
         tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
         tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
@@ -41,6 +44,8 @@ class FrontierExplorer : public rclcpp::Node{
         
         mode_sub_ = this->create_subscription<std_msgs::msg::Bool>("/auto_mode", rclcpp::QoS(10).transient_local(), std::bind(&FrontierExplorer::mode_callback, this, _1));
 
+        rss_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>("/rss", 10, std::bind(&FrontierExplorer::rss_callback, this, _1));
+
         explorer_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/goal_pose", 10);
     }
 
@@ -48,6 +53,7 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Subscription<leo_exploration::msg::FrontierClusters>::SharedPtr detector_sub_; // Subscriber for detector
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_; // Subscriber for robot pose
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr mode_sub_; //Subscriber for auto_mode
+        rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr rss_sub_; // Subscriber for rss node
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr explorer_pub_; // Publisher for nav2
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
@@ -60,6 +66,7 @@ class FrontierExplorer : public rclcpp::Node{
         bool odom_recieved_ = false;
 
         std::vector<Frontier> frontier_list_;
+        std::vector<RSSMeas> rss_buffer_;
 
         // In private section
         bool has_published_goal_ = false;
@@ -173,6 +180,11 @@ class FrontierExplorer : public rclcpp::Node{
                 stop_robot();
                 has_published_goal_ = false;
             }
+        }
+
+        void rss_callback (const sensor_msgs::msg::PointCloud2::SharedPtr msg){
+            
+
         }
 
         void stop_robot() {
