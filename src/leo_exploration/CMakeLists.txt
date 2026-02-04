@@ -6,9 +6,9 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 
-# Default to C++14
+
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -27,6 +27,7 @@ find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 
 # Declare messages
@@ -58,6 +59,8 @@ ament_target_dependencies(frontier_explorer
     tf2
     tf2_ros
     tf2_geometry_msgs
+    sensor_msgs
+    Eigen3
     )
 
 add_executable(rss_node src/rss.cpp)

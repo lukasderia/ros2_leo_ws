@@ -1,6 +1,7 @@
 #include <memory>
 #include <chrono>
 #include <vector>
+#include <Eigen/Dense>
 #include <algorithm>  // For std::min_element
 #include "nav_msgs/msg/odometry.hpp"  // For Odometry message
 #include "std_msgs/msg/bool.hpp"  // For Bool message
@@ -12,6 +13,7 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include <sensor_msgs/msg/point_cloud2.hpp>
 
 using std::placeholders::_1;
 
@@ -26,7 +28,7 @@ struct Frontier {
 
 struct RSSMeas {
     double x, y, rss;
-}
+};
 
 class FrontierExplorer : public rclcpp::Node{
     public:
@@ -182,9 +184,19 @@ class FrontierExplorer : public rclcpp::Node{
             }
         }
 
-        void rss_callback (const sensor_msgs::msg::PointCloud2::SharedPtr msg){
+        void rss_callback(const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
+            // Should only be 1 point per message
+            float x, y, z, rss;
+            memcpy(&x, &msg->data[0], sizeof(float));
+            memcpy(&y, &msg->data[4], sizeof(float));
+            memcpy(&z, &msg->data[8], sizeof(float));
+            memcpy(&rss, &msg->data[12], sizeof(float));
             
-
+            rss_buffer_.push_back({static_cast<double>(x), 
+                                static_cast<double>(y), 
+                                static_cast<double>(rss)});
+                                
+            RCLCPP_DEBUG(this->get_logger(), "RSS buffer size: %zu", rss_buffer_.size());
         }
 
         void stop_robot() {
@@ -250,6 +262,50 @@ class FrontierExplorer : public rclcpp::Node{
             return score;
         }
 
+        std::pair<double, double> calculateRSSGradient() {
+            const double RADIUS = 2.0;  // meters - adjust as needed
+            const int MIN_POINTS = 5;   // minimum for robust plane fit
+            const int FALLBACK_N = 10;  // closest N if not enough within radius
+
+            // Create lsit of all points their distance to robot
+            std::vector<std::pair<double, RSSMeas>> dist_meas_pairs;
+            for (const auto& meas : rss_buffer_){
+                double dx = meas.x - robot_x_;
+                double dy = meas.y - robot_y_;
+                double dist = std::sqrt(dx*dx + dy*dy);
+
+                dist_meas_pairs.push_back({dist, meas});
+            }
+
+            // Sort list based on lowest distance
+            std::sort(dist_meas_pairs.begin(), dist_meas_pairs.end(), [](const auto& a, const auto& b){
+                return a.first < b.first;
+            });
+
+            
+            // Find points within radius
+            std::vector<RSSMeas> nearby_points;
+            for (const auto& [dist, meas] : dist_meas_pairs) {                
+                if (dist <= RADIUS) {
+                    nearby_points.push_back(meas);
+                } else {
+                    break;
+                }
+            }
+
+            // If not enough, fill up with closest point
+            while (nearby_points.size() < MIN_POINTS && nearby_points.size() < dist_meas_pairs.size()) {
+                nearby_points.push_back(dist_meas_pairs[nearby_points.size()].second);
+            }
+            
+            // 3. Fit plane using least squares
+            // TODO: Build Eigen matrices and solve
+
+            // Start with A matrix, should ocntain x and y position and also 1
+            
+            // 4. Return gradient
+            return {0.0, 0.0};  // placeholder
+        }
 };
 
 int main(int argc, char** argv){
