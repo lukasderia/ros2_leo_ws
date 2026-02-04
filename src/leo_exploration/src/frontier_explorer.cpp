@@ -9,6 +9,7 @@
 #include "nav_msgs/msg/occupancy_grid.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include "visualization_msgs/msg/marker_array.hpp"
+#include <visualization_msgs/msg/marker.hpp>
 #include "leo_exploration/msg/frontier_clusters.hpp"
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
@@ -49,6 +50,9 @@ class FrontierExplorer : public rclcpp::Node{
         rss_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>("/rss", 10, std::bind(&FrontierExplorer::rss_callback, this, _1));
 
         explorer_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/goal_pose", 10);
+
+        gradient_viz_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
+
     }
 
     private:
@@ -57,6 +61,7 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr mode_sub_; //Subscriber for auto_mode
         rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr rss_sub_; // Subscriber for rss node
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr explorer_pub_; // Publisher for nav2
+        rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr gradient_viz_pub_;
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
         std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
@@ -114,6 +119,9 @@ class FrontierExplorer : public rclcpp::Node{
                 return;
             }
 
+            // Now we have valid robot pose, calculate gradient
+            auto [grad_x, grad_y] = calculateRSSGradient();
+            RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
 
             // loop throug and assign the data to the list and calcualte the metrics
             for (const auto& cluster : latest_centroids_->clusters){ 
@@ -263,11 +271,17 @@ class FrontierExplorer : public rclcpp::Node{
         }
 
         std::pair<double, double> calculateRSSGradient() {
-            const double RADIUS = 2.0;  // meters - adjust as needed
-            const int MIN_POINTS = 5;   // minimum for robust plane fit
-            const int FALLBACK_N = 10;  // closest N if not enough within radius
+            const double RADIUS = 2.0;
+            const int MIN_POINTS = 10;
+            
+            // Safety check: need minimum measurements
+            if (rss_buffer_.size() < MIN_POINTS) {
+                RCLCPP_WARN(this->get_logger(), "Not enough RSS measurements (%zu) for gradient calculation", 
+                            rss_buffer_.size());
+                return {0.0, 0.0};  // No gradient available
+            }
 
-            // Create lsit of all points their distance to robot
+            // 1. Create lsit of all points their distance to robot
             std::vector<std::pair<double, RSSMeas>> dist_meas_pairs;
             for (const auto& meas : rss_buffer_){
                 double dx = meas.x - robot_x_;
@@ -277,13 +291,13 @@ class FrontierExplorer : public rclcpp::Node{
                 dist_meas_pairs.push_back({dist, meas});
             }
 
-            // Sort list based on lowest distance
+            // 2. Sort list based on lowest distance
             std::sort(dist_meas_pairs.begin(), dist_meas_pairs.end(), [](const auto& a, const auto& b){
                 return a.first < b.first;
             });
 
             
-            // Find points within radius
+            // 3.1 Find points within radius
             std::vector<RSSMeas> nearby_points;
             for (const auto& [dist, meas] : dist_meas_pairs) {                
                 if (dist <= RADIUS) {
@@ -293,19 +307,67 @@ class FrontierExplorer : public rclcpp::Node{
                 }
             }
 
-            // If not enough, fill up with closest point
+            // 3.2 If not enough, fill up with closest point
             while (nearby_points.size() < MIN_POINTS && nearby_points.size() < dist_meas_pairs.size()) {
                 nearby_points.push_back(dist_meas_pairs[nearby_points.size()].second);
             }
             
-            // 3. Fit plane using least squares
-            // TODO: Build Eigen matrices and solve
+            // 4. Fit plane using least squares
+            size_t n = nearby_points.size();
 
-            // Start with A matrix, should ocntain x and y position and also 1
+            Eigen::MatrixXd A(n, 3);
+            Eigen::VectorXd z(n);
+            for (size_t i = 0; i < n; i++){
+                A(i, 0) = nearby_points[i].x;
+                A(i, 1) = nearby_points[i].y;
+                A(i, 2) = 1.0;
+                z(i) = nearby_points[i].rss;
+            }
+
+            // Solve equation Ax=z where x holds the a,b and c coefficients of the plane
+            Eigen::Vector3d x = A.colPivHouseholderQr().solve(z);
+            double a = x(0);
+            double b = x(1);
+
+            publishGradientVisualization(a, b);
             
             // 4. Return gradient
-            return {0.0, 0.0};  // placeholder
+            return {a, b};
+
         }
+
+        void publishGradientVisualization(double grad_x, double grad_y) {
+            visualization_msgs::msg::Marker arrow;
+            arrow.id = 0;
+            arrow.header.frame_id = "map";
+            arrow.header.stamp = this->now();
+            arrow.type = visualization_msgs::msg::Marker::ARROW;
+            arrow.action = visualization_msgs::msg::Marker::ADD;
+
+            // Arrow starts at robot position
+            geometry_msgs::msg::Point start, end;
+            start.x = robot_x_;
+            start.y = robot_y_;
+            start.z = 0.5;  // Raise it up so it's visible
+
+            // Arrow points in gradient direction (scale for visibility)
+            double scale = 2.0;  // Adjust arrow length
+            end.x = robot_x_ + grad_x * scale;
+            end.y = robot_y_ + grad_y * scale;
+            end.z = 0.5;
+
+            arrow.points.push_back(start);
+            arrow.points.push_back(end);
+
+            arrow.scale.x = 0.1;  // Shaft diameter
+            arrow.scale.y = 0.2;  // Head diameter
+            arrow.color.r = 1.0;
+            arrow.color.g = 0.0;
+            arrow.color.b = 0.0;
+            arrow.color.a = 1.0;
+
+            gradient_viz_pub_->publish(arrow);
+        }     
 };
 
 int main(int argc, char** argv){

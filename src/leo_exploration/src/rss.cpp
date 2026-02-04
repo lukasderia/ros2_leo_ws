@@ -68,6 +68,7 @@ class RSSNode : public rclcpp::Node{
             publishRSS(current_x_, current_y_, rss);
 
         }
+        
         double getRSSMeasurement(std::string command){
             FILE* pipe = popen(command.c_str(), "r");
             if (pipe == nullptr) {
