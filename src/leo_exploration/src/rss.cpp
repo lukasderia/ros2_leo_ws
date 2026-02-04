@@ -34,7 +34,6 @@ class RSSNode : public rclcpp::Node{
     std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
     std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
 
-    std::vector<std::tuple<float, float, float>> accumulated_points_; // x, y, rss
     
     double current_x_ = 0.0;
     double current_y_ = 0.0;
@@ -87,24 +86,14 @@ class RSSNode : public rclcpp::Node{
         }
 
         void publishRSS(double x, double y, double rss){
-            // Add new point to accumulated data
-            accumulated_points_.push_back(std::make_tuple(
-                static_cast<float>(x), 
-                static_cast<float>(y), 
-                static_cast<float>(rss)
-            ));
-
-            RCLCPP_INFO(this->get_logger(), "Publishing RSS: x=%.2f, y=%.2f, rss=%.2f (total points: %zu)", 
-                        x, y, rss, accumulated_points_.size());
 
             sensor_msgs::msg::PointCloud2 cloud;
             cloud.header.stamp = this->now();
             cloud.header.frame_id = "map";
 
-            // Set up for multiple points
-            size_t num_points = accumulated_points_.size();
+            // Publish only single new point
             cloud.height = 1;
-            cloud.width = num_points;
+            cloud.width = 1;
             cloud.is_bigendian = false;
             cloud.is_dense = true;
             
@@ -131,25 +120,22 @@ class RSSNode : public rclcpp::Node{
             cloud.fields[3].datatype = sensor_msgs::msg::PointField::FLOAT32;
             cloud.fields[3].count = 1;
             
-            cloud.point_step = 16;  // 4 fields * 4 bytes per point
-            cloud.row_step = 16 * num_points;  // point_step * num_points
+            cloud.point_step = 16;  // 4 fields * 4 bytes
+            cloud.row_step = 16;    // point_step * 1 point
             
-            // Allocate data for all points
-            cloud.data.resize(16 * num_points);
+            // Allocate data for single point
+            cloud.data.resize(16);
             
-            // Copy all accumulated points into data buffer
-            for (size_t i = 0; i < num_points; ++i) {
-                size_t offset = i * 16;
-                float x_val = std::get<0>(accumulated_points_[i]);
-                float y_val = std::get<1>(accumulated_points_[i]);
-                float z_val = 0.0f;
-                float rss_val = std::get<2>(accumulated_points_[i]);
-                
-                memcpy(&cloud.data[offset + 0], &x_val, sizeof(float));
-                memcpy(&cloud.data[offset + 4], &y_val, sizeof(float));
-                memcpy(&cloud.data[offset + 8], &z_val, sizeof(float));
-                memcpy(&cloud.data[offset + 12], &rss_val, sizeof(float));
-            }
+            // Copy new point into data buffer
+            float x_val = static_cast<float>(x);
+            float y_val = static_cast<float>(y);
+            float z_val = 0.0f;
+            float rss_val = static_cast<float>(rss);
+            
+            memcpy(&cloud.data[0], &x_val, sizeof(float));
+            memcpy(&cloud.data[4], &y_val, sizeof(float));
+            memcpy(&cloud.data[8], &z_val, sizeof(float));
+            memcpy(&cloud.data[12], &rss_val, sizeof(float));
 
             rss_pub_->publish(cloud);
         }
