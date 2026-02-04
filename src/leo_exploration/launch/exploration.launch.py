@@ -35,4 +35,10 @@ def generate_launch_description():
             output='screen',
             parameters=[{'odom_topic': odom_topic}]  # Pass to node
         ),
+        Node(
+            package='leo_exploration',
+            executable='rss_node',
+            name='rss_node',
+            output='screen',
+        ),
     ])
