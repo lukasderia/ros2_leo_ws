@@ -60,6 +60,7 @@ ament_target_dependencies(frontier_explorer
     tf2_ros
     tf2_geometry_msgs
     sensor_msgs
+    visualization_msgs
     Eigen3
     )
 
