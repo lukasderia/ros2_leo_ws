@@ -55,7 +55,11 @@ controller_server:
   ros__parameters:
     use_sim_time: False
     controller_frequency: 4.0
-    enable_stamped_cmd_vel: false  # Add this line - forces BEST_EFFORT QoS
+    qos_overrides:
+      /cmd_vel:
+        publisher:
+          reliability: best_effort
+          durability: volatile
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.001  # Changed from 0.5
     min_theta_velocity_threshold: 0.001
