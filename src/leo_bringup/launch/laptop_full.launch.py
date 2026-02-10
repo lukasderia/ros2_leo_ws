@@ -82,7 +82,7 @@ def generate_launch_description():
         
         # Delay exploration until Nav2 is ready
         TimerAction(
-            period=9.0,
+            period=8.0,
             actions=[exploration_launch]
         ),
     ])
