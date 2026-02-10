@@ -81,12 +81,12 @@ class RSSNode : public rclcpp::Node{
             // Add to buffer
             rss_buffer_.push_back({current_x_, current_y_, rss});
             
-            // Publish individual point
-            publishRSS(current_x_, current_y_, rss);
+            // Publish accumulated cloud
+            publishRSS();
             
             // Calculate and publish gradient (if enough points)
             auto [grad_x, grad_y] = calculateRSSGradient();
-            if (grad_x != 0.0 || grad_y != 0.0) {  // Only if valid gradient
+            if (grad_x != 0.0 || grad_y != 0.0) {
                 RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
             }
         }
@@ -173,21 +173,21 @@ class RSSNode : public rclcpp::Node{
             return {a, b};
         }
 
-        void publishRSS(double x, double y, double rss){
-
+        void publishRSS() {
+            if (rss_buffer_.empty()) return;
+            
             sensor_msgs::msg::PointCloud2 cloud;
             cloud.header.stamp = this->now();
             cloud.header.frame_id = "map";
-
-            // Publish only single new point
+            
+            // Publish ALL accumulated points
             cloud.height = 1;
-            cloud.width = 1;
+            cloud.width = rss_buffer_.size();
             cloud.is_bigendian = false;
             cloud.is_dense = true;
             
             // Define 4 fields: x, y, z, intensity
             cloud.fields.resize(4);
-            
             cloud.fields[0].name = "x";
             cloud.fields[0].offset = 0;
             cloud.fields[0].datatype = sensor_msgs::msg::PointField::FLOAT32;
@@ -209,22 +209,25 @@ class RSSNode : public rclcpp::Node{
             cloud.fields[3].count = 1;
             
             cloud.point_step = 16;  // 4 fields * 4 bytes
-            cloud.row_step = 16;    // point_step * 1 point
+            cloud.row_step = 16 * rss_buffer_.size();
             
-            // Allocate data for single point
-            cloud.data.resize(16);
+            // Allocate data for all points
+            cloud.data.resize(16 * rss_buffer_.size());
             
-            // Copy new point into data buffer
-            float x_val = static_cast<float>(x);
-            float y_val = static_cast<float>(y);
-            float z_val = 0.0f;
-            float rss_val = static_cast<float>(rss);
+            // Copy all points into data buffer
+            for (size_t i = 0; i < rss_buffer_.size(); i++) {
+                float x_val = static_cast<float>(rss_buffer_[i].x);
+                float y_val = static_cast<float>(rss_buffer_[i].y);
+                float z_val = 0.0f;
+                float rss_val = static_cast<float>(rss_buffer_[i].rss);
+                
+                size_t offset = i * 16;
+                memcpy(&cloud.data[offset + 0], &x_val, sizeof(float));
+                memcpy(&cloud.data[offset + 4], &y_val, sizeof(float));
+                memcpy(&cloud.data[offset + 8], &z_val, sizeof(float));
+                memcpy(&cloud.data[offset + 12], &rss_val, sizeof(float));
+            }
             
-            memcpy(&cloud.data[0], &x_val, sizeof(float));
-            memcpy(&cloud.data[4], &y_val, sizeof(float));
-            memcpy(&cloud.data[8], &z_val, sizeof(float));
-            memcpy(&cloud.data[12], &rss_val, sizeof(float));
-
             rss_pub_->publish(cloud);
         }
 
