@@ -1,14 +1,22 @@
 #include "rclcpp/rclcpp.hpp"
 #include <tuple>
 #include <vector>
+#include <Eigen/Dense>
+#include <algorithm>
 #include "nav_msgs/msg/odometry.hpp"
 #include "sensor_msgs/msg/point_cloud2.hpp"
 #include "sensor_msgs/point_cloud2_iterator.hpp"
 #include "tf2_ros/buffer.h"
 #include "tf2_ros/transform_listener.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+#include "visualization_msgs/msg/marker_array.hpp"
+#include <visualization_msgs/msg/marker.hpp>
 
 const std::string command = "iwconfig wlan1 | grep -oP 'Signal level=\\K-?\\d+'";
+
+struct RSSMeas {
+    double x, y, rss;
+};
 
 class RSSNode : public rclcpp::Node{
     public:
@@ -20,6 +28,8 @@ class RSSNode : public rclcpp::Node{
 
         rss_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/rss", 10);
 
+        gradient_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
+
         // Timer for periodic scanning (every 3 seconds)
         scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNode::scanCallback, this));
 
@@ -29,14 +39,17 @@ class RSSNode : public rclcpp::Node{
 
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr rss_pub_;
-    rclcpp::TimerBase::SharedPtr scan_timer_;
+    rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr gradient_pub_;
 
     std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
     std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
+    rclcpp::TimerBase::SharedPtr scan_timer_;  // Add this line
 
+    std::vector<RSSMeas> rss_buffer_;  // Add this
     
     double current_x_ = 0.0;
     double current_y_ = 0.0;
+
 
         void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg){
             // Transform odom msg from odom frame to map frame
@@ -64,9 +77,18 @@ class RSSNode : public rclcpp::Node{
 
         void scanCallback(){
             double rss = getRSSMeasurement(command);
-
+            
+            // Add to buffer
+            rss_buffer_.push_back({current_x_, current_y_, rss});
+            
+            // Publish individual point
             publishRSS(current_x_, current_y_, rss);
-
+            
+            // Calculate and publish gradient (if enough points)
+            auto [grad_x, grad_y] = calculateRSSGradient();
+            if (grad_x != 0.0 || grad_y != 0.0) {  // Only if valid gradient
+                RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+            }
         }
         
         double getRSSMeasurement(std::string command){
@@ -84,6 +106,71 @@ class RSSNode : public rclcpp::Node{
             }
             pclose(pipe);  // Also close if fgets failed
             return 0.0;  // Return default if no data
+        }
+
+        std::pair<double, double> calculateRSSGradient() {
+            const double RADIUS = 2.0;
+            const int MIN_POINTS = 10;
+            
+            // Safety check: need minimum measurements
+            if (rss_buffer_.size() < MIN_POINTS) {
+                RCLCPP_WARN(this->get_logger(), "Not enough RSS measurements (%zu) for gradient calculation", 
+                            rss_buffer_.size());
+                return {0.0, 0.0};  // No gradient available
+            }
+
+            // 1. Create lsit of all points their distance to robot
+            std::vector<std::pair<double, RSSMeas>> dist_meas_pairs;
+            for (const auto& meas : rss_buffer_){
+                double dx = meas.x - current_x_;
+                double dy = meas.y - current_y_;
+                double dist = std::sqrt(dx*dx + dy*dy);
+
+                dist_meas_pairs.push_back({dist, meas});
+            }
+
+            // 2. Sort list based on lowest distance
+            std::sort(dist_meas_pairs.begin(), dist_meas_pairs.end(), [](const auto& a, const auto& b){
+                return a.first < b.first;
+            });
+
+            
+            // 3.1 Find points within radius
+            std::vector<RSSMeas> nearby_points;
+            for (const auto& [dist, meas] : dist_meas_pairs) {                
+                if (dist <= RADIUS) {
+                    nearby_points.push_back(meas);
+                } else {
+                    break;
+                }
+            }
+
+            // 3.2 If not enough, fill up with closest point
+            while (nearby_points.size() < MIN_POINTS && nearby_points.size() < dist_meas_pairs.size()) {
+                nearby_points.push_back(dist_meas_pairs[nearby_points.size()].second);
+            }
+            
+            // 4. Fit plane using least squares
+            size_t n = nearby_points.size();
+
+            Eigen::MatrixXd A(n, 3);
+            Eigen::VectorXd z(n);
+            for (size_t i = 0; i < n; i++){
+                A(i, 0) = nearby_points[i].x;
+                A(i, 1) = nearby_points[i].y;
+                A(i, 2) = 1.0;
+                z(i) = nearby_points[i].rss;
+            }
+
+            // Solve equation Ax=z where x holds the a,b and c coefficients of the plane
+            Eigen::Vector3d x = A.colPivHouseholderQr().solve(z);
+            double a = x(0);
+            double b = x(1);
+
+            publishGradientVisualization(a, b);
+            
+            // 4. Return gradient
+            return {a, b};
         }
 
         void publishRSS(double x, double y, double rss){
@@ -140,7 +227,42 @@ class RSSNode : public rclcpp::Node{
 
             rss_pub_->publish(cloud);
         }
+
+        void publishGradientVisualization(double grad_x, double grad_y) {
+
+            visualization_msgs::msg::Marker arrow;
+            arrow.id = 0;
+            arrow.header.frame_id = "map";
+            arrow.header.stamp = this->now();
+            arrow.type = visualization_msgs::msg::Marker::ARROW;
+            arrow.action = visualization_msgs::msg::Marker::ADD;
+
+            // Arrow starts at robot position
+            geometry_msgs::msg::Point start, end;
+            start.x = current_x_;
+            start.y = current_y_;
+            start.z = 0.5;  // Raise it up so it's visible
+
+            // Arrow points in gradient direction (scale for visibility)
+            double scale = 1.0;  // Adjust arrow length
+            end.x = current_x_ + grad_x * scale;
+            end.y = current_y_ + grad_y * scale;
+            end.z = 0.5;
+
+            arrow.points.push_back(start);
+            arrow.points.push_back(end);
+
+            arrow.scale.x = 0.1;  // Shaft diameter
+            arrow.scale.y = 0.2;  // Head diameter
+            arrow.color.r = 1.0;
+            arrow.color.g = 0.0;
+            arrow.color.b = 0.0;
+            arrow.color.a = 1.0;
+
+            gradient_pub_->publish(arrow);
+        }     
 };
+
 
 
 int main(int argc, char** argv){
