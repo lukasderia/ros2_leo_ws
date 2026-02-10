@@ -64,7 +64,22 @@ def generate_launch_description():
         odom2TF_node,
         velodyne_launch,
         ScanFilter,
-        slam_launch,
-        nav_launch,
-        exploration_launch,
+        
+        # Delay SLAM to let sensors initialize
+        TimerAction(
+            period=2.0,
+            actions=[slam_launch]
+        ),
+        
+        # Delay Nav2 until SLAM is running
+        TimerAction(
+            period=5.0,
+            actions=[nav_launch]
+        ),
+        
+        # Delay exploration until Nav2 is ready
+        TimerAction(
+            period=9.0,
+            actions=[exploration_launch]
+        ),
     ])

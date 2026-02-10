@@ -4,6 +4,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from launch.actions import TimerAction
 
 def generate_launch_description():
 
@@ -66,7 +67,22 @@ def generate_launch_description():
         description_launch,
         odom2TF_node,
         ScanFilter,
-        slam_launch,
-        nav_launch,
-        exploration_launch,
+        
+        # Delay SLAM to let sensors initialize
+        TimerAction(
+            period=2.0,
+            actions=[slam_launch]
+        ),
+        
+        # Delay Nav2 until SLAM is running
+        TimerAction(
+            period=5.0,
+            actions=[nav_launch]
+        ),
+        
+        # Delay exploration until Nav2 is ready
+        TimerAction(
+            period=9.0,
+            actions=[exploration_launch]
+        ),
     ])
