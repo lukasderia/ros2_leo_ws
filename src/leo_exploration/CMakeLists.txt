@@ -71,6 +71,8 @@ ament_target_dependencies(rss_node
   sensor_msgs
   tf2_ros
   tf2_geometry_msgs
+  visualization_msgs
+  Eigen3
 )
 
 # Link the custom messages to the executable

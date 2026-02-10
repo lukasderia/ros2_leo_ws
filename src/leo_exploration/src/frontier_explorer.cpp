@@ -15,6 +15,7 @@
 #include "tf2_ros/buffer.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.h"
 #include <sensor_msgs/msg/point_cloud2.hpp>
+#include "geometry_msgs/msg/vector3_stamped.hpp"
 
 using std::placeholders::_1;
 
@@ -25,10 +26,6 @@ struct Frontier {
     double distance;
     double heading;
     double score;
-};
-
-struct RSSMeas {
-    double x, y, rss;
 };
 
 class FrontierExplorer : public rclcpp::Node{
@@ -47,11 +44,9 @@ class FrontierExplorer : public rclcpp::Node{
         
         mode_sub_ = this->create_subscription<std_msgs::msg::Bool>("/auto_mode", rclcpp::QoS(10).transient_local(), std::bind(&FrontierExplorer::mode_callback, this, _1));
 
-        rss_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>("/rss", 10, std::bind(&FrontierExplorer::rss_callback, this, _1));
-
         explorer_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/goal_pose", 10);
 
-        gradient_viz_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
+        gradient_sub_ = this->create_subscription<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10,std::bind(&FrontierExplorer::gradient_callback, this, _1));
 
     }
 
@@ -59,9 +54,9 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Subscription<leo_exploration::msg::FrontierClusters>::SharedPtr detector_sub_; // Subscriber for detector
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_; // Subscriber for robot pose
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr mode_sub_; //Subscriber for auto_mode
-        rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr rss_sub_; // Subscriber for rss node
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr explorer_pub_; // Publisher for nav2
-        rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr gradient_viz_pub_;
+        rclcpp::Subscription<geometry_msgs::msg::Vector3Stamped>::SharedPtr gradient_sub_;
+
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
         std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
@@ -73,20 +68,22 @@ class FrontierExplorer : public rclcpp::Node{
         bool odom_recieved_ = false;
 
         std::vector<Frontier> frontier_list_;
-        std::vector<RSSMeas> rss_buffer_;
 
         // In private section
         bool has_published_goal_ = false;
         double last_goal_x_ = 0.0;
         double last_goal_y_ = 0.0;
 
+        double latest_grad_x_ = 0.0;
+        double latest_grad_y_ = 0.0;
+        bool gradient_received_ = false;
 
         void detector_callback(const leo_exploration::msg::FrontierClusters::SharedPtr msg){
             latest_centroids_ = msg;
             frontier_list_.clear();
 
             // Check if we have odometry data
-            if (!odom_recieved_) {  // Check the flag instead
+            if (!odom_recieved_) {
                 RCLCPP_WARN(this->get_logger(), "No odometry data available");
                 return;
             }
@@ -111,7 +108,7 @@ class FrontierExplorer : public rclcpp::Node{
                 // extract robot pose 
                 robot_x_ = pose_map.pose.position.x;
                 robot_y_ = pose_map.pose.position.y;
-                auto q = pose_map.pose.orientation; // need to convert to find yaw
+                auto q = pose_map.pose.orientation;
                 robot_yaw_ = atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z);
 
             } catch (tf2::TransformException &ex) {
@@ -119,14 +116,15 @@ class FrontierExplorer : public rclcpp::Node{
                 return;
             }
 
-            // Now we have valid robot pose, calculate gradient
-            auto [grad_x, grad_y] = calculateRSSGradient();
-            RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+            // Use gradient from RSS node (if available)
+            if (gradient_received_) {
+                RCLCPP_INFO(this->get_logger(), "Using RSS Gradient: [%.3f, %.3f]", 
+                            latest_grad_x_, latest_grad_y_);
+            }
 
-            // loop throug and assign the data to the list and calcualte the metrics
+            // loop through and assign the data to the list and calculate the metrics
             for (const auto& cluster : latest_centroids_->clusters){ 
                 Frontier f;
-                // Default data
                 f.x = cluster.x;
                 f.y = cluster.y;
                 f.size = cluster.size;
@@ -139,7 +137,6 @@ class FrontierExplorer : public rclcpp::Node{
                 // Calculate heading 
                 double bearing = atan2(dy, dx);
                 f.heading = bearing - robot_yaw_;
-
 
                 f.score = calculate_score(f);
 
@@ -164,11 +161,11 @@ class FrontierExplorer : public rclcpp::Node{
                 double dy = best->y - last_goal_y_;
                 double distance_to_last_goal = std::sqrt(dx*dx + dy*dy);
                 
-                double threshold = 0.50;  // meters - adjust as needed
+                double threshold = 0.50;  // meters
                 
                 if (distance_to_last_goal < threshold) {
                     RCLCPP_DEBUG(this->get_logger(), "New goal too close to last goal (%.2f m), skipping", distance_to_last_goal);
-                    return;  // Skip publishing
+                    return;
                 }
             }
 
@@ -192,19 +189,12 @@ class FrontierExplorer : public rclcpp::Node{
             }
         }
 
-        void rss_callback(const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
-            // Should only be 1 point per message
-            float x, y, z, rss;
-            memcpy(&x, &msg->data[0], sizeof(float));
-            memcpy(&y, &msg->data[4], sizeof(float));
-            memcpy(&z, &msg->data[8], sizeof(float));
-            memcpy(&rss, &msg->data[12], sizeof(float));
-            
-            rss_buffer_.push_back({static_cast<double>(x), 
-                                static_cast<double>(y), 
-                                static_cast<double>(rss)});
-                                
-            RCLCPP_DEBUG(this->get_logger(), "RSS buffer size: %zu", rss_buffer_.size());
+        void gradient_callback(const geometry_msgs::msg::Vector3Stamped::SharedPtr msg) {
+            latest_grad_x_ = msg->vector.x;
+            latest_grad_y_ = msg->vector.y;
+            gradient_received_ = true;
+            RCLCPP_DEBUG(this->get_logger(), "Received gradient: [%.3f, %.3f]", 
+                        latest_grad_x_, latest_grad_y_);
         }
 
         void stop_robot() {
@@ -269,106 +259,7 @@ class FrontierExplorer : public rclcpp::Node{
 
             return score;
         }
-
-        std::pair<double, double> calculateRSSGradient() {
-            const double RADIUS = 2.0;
-            const int MIN_POINTS = 10;
-            
-            // Safety check: need minimum measurements
-            if (rss_buffer_.size() < MIN_POINTS) {
-                RCLCPP_WARN(this->get_logger(), "Not enough RSS measurements (%zu) for gradient calculation", 
-                            rss_buffer_.size());
-                return {0.0, 0.0};  // No gradient available
-            }
-
-            // 1. Create lsit of all points their distance to robot
-            std::vector<std::pair<double, RSSMeas>> dist_meas_pairs;
-            for (const auto& meas : rss_buffer_){
-                double dx = meas.x - robot_x_;
-                double dy = meas.y - robot_y_;
-                double dist = std::sqrt(dx*dx + dy*dy);
-
-                dist_meas_pairs.push_back({dist, meas});
-            }
-
-            // 2. Sort list based on lowest distance
-            std::sort(dist_meas_pairs.begin(), dist_meas_pairs.end(), [](const auto& a, const auto& b){
-                return a.first < b.first;
-            });
-
-            
-            // 3.1 Find points within radius
-            std::vector<RSSMeas> nearby_points;
-            for (const auto& [dist, meas] : dist_meas_pairs) {                
-                if (dist <= RADIUS) {
-                    nearby_points.push_back(meas);
-                } else {
-                    break;
-                }
-            }
-
-            // 3.2 If not enough, fill up with closest point
-            while (nearby_points.size() < MIN_POINTS && nearby_points.size() < dist_meas_pairs.size()) {
-                nearby_points.push_back(dist_meas_pairs[nearby_points.size()].second);
-            }
-            
-            // 4. Fit plane using least squares
-            size_t n = nearby_points.size();
-
-            Eigen::MatrixXd A(n, 3);
-            Eigen::VectorXd z(n);
-            for (size_t i = 0; i < n; i++){
-                A(i, 0) = nearby_points[i].x;
-                A(i, 1) = nearby_points[i].y;
-                A(i, 2) = 1.0;
-                z(i) = nearby_points[i].rss;
-            }
-
-            // Solve equation Ax=z where x holds the a,b and c coefficients of the plane
-            Eigen::Vector3d x = A.colPivHouseholderQr().solve(z);
-            double a = x(0);
-            double b = x(1);
-
-            publishGradientVisualization(a, b);
-            
-            // 4. Return gradient
-            return {a, b};
-
-        }
-
-        void publishGradientVisualization(double grad_x, double grad_y) {
-            visualization_msgs::msg::Marker arrow;
-            arrow.id = 0;
-            arrow.header.frame_id = "map";
-            arrow.header.stamp = this->now();
-            arrow.type = visualization_msgs::msg::Marker::ARROW;
-            arrow.action = visualization_msgs::msg::Marker::ADD;
-
-            // Arrow starts at robot position
-            geometry_msgs::msg::Point start, end;
-            start.x = robot_x_;
-            start.y = robot_y_;
-            start.z = 0.5;  // Raise it up so it's visible
-
-            // Arrow points in gradient direction (scale for visibility)
-            double scale = 2.0;  // Adjust arrow length
-            end.x = robot_x_ + grad_x * scale;
-            end.y = robot_y_ + grad_y * scale;
-            end.z = 0.5;
-
-            arrow.points.push_back(start);
-            arrow.points.push_back(end);
-
-            arrow.scale.x = 0.1;  // Shaft diameter
-            arrow.scale.y = 0.2;  // Head diameter
-            arrow.color.r = 1.0;
-            arrow.color.g = 0.0;
-            arrow.color.b = 0.0;
-            arrow.color.a = 1.0;
-
-            gradient_viz_pub_->publish(arrow);
-        }     
-};
+    };
 
 int main(int argc, char** argv){
     rclcpp::init(argc, argv);
