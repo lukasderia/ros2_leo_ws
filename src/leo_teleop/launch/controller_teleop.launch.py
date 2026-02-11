@@ -1,17 +1,28 @@
 import os
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
-    # Path to Xbox config file
-    config_filepath = os.path.join(
-        get_package_share_directory('leo_teleop'),
-        'config',
-        'xbox.config.yaml'
+    # Declare argument for config file
+    config_arg = DeclareLaunchArgument(
+        'config_file',
+        default_value='xbox.config.yaml',
+        description='Name of the teleop config file to use'
     )
+    
+    # Get the config file path using substitutions
+    config_filepath = PathJoinSubstitution([
+        FindPackageShare('leo_teleop'),
+        'config',
+        LaunchConfiguration('config_file')
+    ])
 
     return LaunchDescription([
+        config_arg,
+        
         # Joy node for controller
         Node(
             package='joy',
