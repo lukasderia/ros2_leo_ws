@@ -6,12 +6,28 @@ slam_toolbox:
     scan_topic: /scan_filter
     mode: mapping
     
-    resolution: 0.05
+    resolution: 0.1
     max_laser_range: 10.0
     minimum_travel_distance: 0.15
     minimum_travel_heading: 0.15
     
-    map_update_interval: 0.5  # Publish every 0.5s = 2 Hz
+    map_update_interval: 1.0  # Publish every 0.5s = 2 Hz
 
     # Scan processing
     throttle_scans: 2  # Process every 2nd scan (skip 50%)
+
+
+    # Add these QoS overrides
+    qos_overrides:
+      /map:
+        publisher:
+          reliability: best_effort  # Don't wait for RViz acknowledgment
+          durability: transient_local  # Keep last map for late joiners
+      /slam_toolbox/graph_visualization:
+        publisher:
+          reliability: best_effort
+          durability: volatile
+      /slam_toolbox/scan_visualization:
+        publisher:
+          reliability: best_effort
+          durability: volatile
