@@ -41,6 +41,16 @@ bt_navigator:
 
 planner_server:
   ros__parameters:
+    allow_parameter_qos_overrides: true
+    qos_overrides:
+      /global_costmap/costmap:
+        publisher:
+          reliability: best_effort
+          durability: volatile
+      /plan:
+        publisher:
+          reliability: best_effort
+          durability: volatile
     expected_planner_frequency: 0.0
     use_sim_time: False
     planner_plugins: ["GridBased"]
