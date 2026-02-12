@@ -42,13 +42,13 @@ private:
         // Extract button states
         bool button_0 = latest_joy_->buttons[0];
         bool button_1 = latest_joy_->buttons[1];
-        bool button_5 = latest_joy_->buttons[5];
+        bool button_7 = latest_joy_->buttons[7];
         
         auto mode_msg = std_msgs::msg::Bool();
         
         if (state_ == 0) {
             // Check if RB + A pressed
-            if (button_5 && button_0) {
+            if (button_7 && button_0) {
                 state_ = 1;
                 mode_msg.data = true;
                 mode_pub_->publish(mode_msg);
@@ -57,7 +57,7 @@ private:
         }
         else if (state_ == 1) {
             // Check if RB + B pressed
-            if (button_5 && button_1) {
+            if (button_7 && button_1) {
                 state_ = 0;
                 mode_msg.data = false;
                 mode_pub_->publish(mode_msg);
