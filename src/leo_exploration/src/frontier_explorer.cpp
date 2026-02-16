@@ -251,9 +251,9 @@ class FrontierExplorer : public rclcpp::Node{
 
         double calculate_score(const Frontier& f){
             // Weights
-            double w_distance = 1;
+            double w_distance = 0;
             double w_heading = 0;
-            double w_size = 0;
+            double w_size = 1;
 
             double score = w_distance*f.distance + w_heading*std::abs(f.heading) + w_size*f.size;
 
