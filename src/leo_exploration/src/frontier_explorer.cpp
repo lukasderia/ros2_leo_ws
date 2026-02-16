@@ -78,6 +78,11 @@ class FrontierExplorer : public rclcpp::Node{
         double latest_grad_y_ = 0.0;
         bool gradient_received_ = false;
 
+        double max_size_ = 0.0;
+        double min_size_ = 0.0;
+        double max_dist_ = 0.0;
+        double min_dist_ = 0.0;
+
         void detector_callback(const leo_exploration::msg::FrontierClusters::SharedPtr msg){
             latest_centroids_ = msg;
             frontier_list_.clear();
@@ -122,25 +127,38 @@ class FrontierExplorer : public rclcpp::Node{
                             latest_grad_x_, latest_grad_y_);
             }
 
-            // loop through and assign the data to the list and calculate the metrics
+            min_size_ = std::numeric_limits<double>::max();  // Start at huge value
+            max_size_ = std::numeric_limits<double>::lowest();  // Start at tiny value
+            min_dist_ = std::numeric_limits<double>::max();
+            max_dist_ = std::numeric_limits<double>::lowest();
+
+            // loop through and assign the data to the list and calculate the metrics as well as normalizing
             for (const auto& cluster : latest_centroids_->clusters){ 
                 Frontier f;
                 f.x = cluster.x;
                 f.y = cluster.y;
                 f.size = cluster.size;
 
+                min_size_ = std::min(min_size_, static_cast<double>(f.size));
+                max_size_ = std::max(max_size_, static_cast<double>(f.size));
+
                 // Calculate distance
                 double dx = f.x - robot_x_;
                 double dy = f.y - robot_y_;
                 f.distance = std::sqrt(dx*dx + dy*dy);
+                
+                min_dist_ = std::min(min_dist_, f.distance);
+                max_dist_ = std::max(max_dist_, f.distance);
 
                 // Calculate heading 
                 double bearing = atan2(dy, dx);
                 f.heading = bearing - robot_yaw_;
 
-                f.score = calculate_score(f);
-
                 frontier_list_.push_back(f);
+            }
+            
+            for (auto& f : frontier_list_) {
+                f.score = calculate_score(f, max_dist_, min_dist_, max_size_, min_size_);
             }
 
             // After populating frontier_list_
@@ -150,7 +168,7 @@ class FrontierExplorer : public rclcpp::Node{
             }
 
             // Find frontier with minimum score
-            auto best = std::min_element(frontier_list_.begin(), frontier_list_.end(),
+            auto best = std::max_element(frontier_list_.begin(), frontier_list_.end(),
                 [](const Frontier& a, const Frontier& b) {
                     return a.score < b.score;
                 });
@@ -249,14 +267,22 @@ class FrontierExplorer : public rclcpp::Node{
                         frontier.x, frontier.y, frontier.score);
         }
 
-        double calculate_score(const Frontier& f){
+        double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
             double w_distance = 0;
-            double w_heading = 0;
+            double w_heading = 1;
             double w_size = 1;
 
-            double score = w_distance*f.distance + w_heading*std::abs(f.heading) + w_size*f.size;
+            double norm_distance = (f.distance - min_dist) / (max_dist - min_dist);
+            double norm_size = (f.size - min_size) / (max_size - min_size);
+            double norm_heading = std::abs(f.heading) / M_PI;  // heading is 0 to π
 
+            // Invert distance and heading so 1.0 = best
+            double inv_norm_distance = 1.0 - norm_distance;  // Now: close = 1.0, far = 0.0
+            double inv_norm_heading = 1.0 - norm_heading;    // Now: aligned = 1.0, misaligned = 0.0
+
+            double score = w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading;  
+            
             return score;
         }
     };
