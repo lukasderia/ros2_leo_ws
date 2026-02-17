@@ -26,6 +26,8 @@ struct Frontier {
     double distance;
     double heading;
     double score;
+    double dx;
+    double dy;
 };
 
 class FrontierExplorer : public rclcpp::Node{
@@ -143,15 +145,16 @@ class FrontierExplorer : public rclcpp::Node{
                 max_size_ = std::max(max_size_, static_cast<double>(f.size));
 
                 // Calculate distance
-                double dx = f.x - robot_x_;
-                double dy = f.y - robot_y_;
-                f.distance = std::sqrt(dx*dx + dy*dy);
+                f.dx = f.x - robot_x_;
+                f.dy = f.y - robot_y_;
+
+                f.distance = std::sqrt(f.dx*f.dx + f.dy*f.dy);
                 
                 min_dist_ = std::min(min_dist_, f.distance);
                 max_dist_ = std::max(max_dist_, f.distance);
 
                 // Calculate heading 
-                double bearing = atan2(dy, dx);
+                double bearing = atan2(f.dy, f.dx);
                 f.heading = bearing - robot_yaw_;
 
                 frontier_list_.push_back(f);
@@ -270,20 +273,37 @@ class FrontierExplorer : public rclcpp::Node{
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
             double w_distance = 0;
-            double w_heading = 1;
-            double w_size = 1;
+            double w_heading = 0;
+            double w_size = 0;
+            double w_gradient = gradient_received_ ? 1 : 0;
+
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
             double norm_size = (max_size == min_size) ? 0.5 : (f.size - min_size) / (max_size - min_size);
             double norm_heading = std::abs(f.heading) / M_PI;  // heading is 0 to π
 
-            // Invert distance and heading so 1.0 = best
-            double inv_norm_distance = 1.0 - norm_distance;  // Now: close = 1.0, far = 0.0
-            double inv_norm_heading = 1.0 - norm_heading;    // Now: aligned = 1.0, misaligned = 0.0
+            // RSS gradient alignment
+            double norm_gradient = 0.5;
+            if (gradient_received_) {
+                double gradient_bearing = atan2(latest_grad_y_, latest_grad_x_);
+                double frontier_bearing = atan2(f.dy, f.dx);  // Use stored values
+                double angle_diff = std::abs(gradient_bearing - frontier_bearing);
+                
+                if (angle_diff > M_PI) angle_diff = 2*M_PI - angle_diff;
+                norm_gradient = angle_diff / M_PI;
+            }
 
-            double score = w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading;  
+            // Invert so 1.0 = best
+            double inv_norm_distance = 1.0 - norm_distance;
+            double inv_norm_heading = 1.0 - norm_heading;
+            double inv_norm_gradient = 1.0 - norm_gradient;
+
+            double score = w_distance * inv_norm_distance + 
+                        w_size * norm_size + 
+                        w_heading * inv_norm_heading +
+                        w_gradient * inv_norm_gradient;
             
             return score;
-        }
+            }
     };
 
 int main(int argc, char** argv){
