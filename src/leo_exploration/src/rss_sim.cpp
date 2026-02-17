@@ -13,30 +13,30 @@
 #include <visualization_msgs/msg/marker.hpp>
 #include "geometry_msgs/msg/vector3_stamped.hpp"
 
-const std::string command = "iwconfig wlan1 | grep -oP 'Signal level=\\K-?\\d+'";
-
 struct RSSMeas {
     double x, y, rss;
 };
 
-class RSSNode : public rclcpp::Node{
+class RSSNodeSim : public rclcpp::Node{
     public:
-    RSSNode() : Node("RSSNode"){
-        tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
-        tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+        RSSNodeSim() : Node("RSSNodeSim"){
 
-        odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>("/odometry_merged",10, std::bind(&RSSNode::odom_callback, this, std::placeholders::_1));
+            this->declare_parameter("router_x", -9.0);
+            this->declare_parameter("router_y", 9.0);
+            router_x_ = this->get_parameter("router_x").as_double();
+            router_y_ = this->get_parameter("router_y").as_double();
+            tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
+            tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
-        rss_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/rss", 10);
+            odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>("/odom",10, std::bind(&RSSNodeSim::odomCallback, this, std::placeholders::_1));
 
-        gradient_viz_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
+            rss_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/rss", 10);
 
-        gradient_pub_ = this->create_publisher<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10);
-
-        // Timer for periodic scanning 
-        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNode::scanCallback, this));
-
-    }
+            gradient_viz_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
+            gradient_pub_ = this->create_publisher<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10);
+            // Timer for periodic scanning 
+            scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(1500),std::bind(&RSSNodeSim::scanCallback, this));      
+        }
 
     private:
 
@@ -50,12 +50,14 @@ class RSSNode : public rclcpp::Node{
         rclcpp::TimerBase::SharedPtr scan_timer_;  // Add this line
 
         std::vector<RSSMeas> rss_buffer_;  // Add this
-        
+
         double current_x_ = 0.0;
         double current_y_ = 0.0;
+        
+        double router_x_;
+        double router_y_;
 
-
-        void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg){
+        void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg){
             // Transform odom msg from odom frame to map frame
             try {
                 // Get transform from odom to map
@@ -80,7 +82,7 @@ class RSSNode : public rclcpp::Node{
         }
 
         void scanCallback(){
-            double rss = getRSSMeasurement(command);
+            double rss = getRSSMeasurement();
             
             // Add to buffer
             rss_buffer_.push_back({current_x_, current_y_, rss});
@@ -94,25 +96,18 @@ class RSSNode : public rclcpp::Node{
                 RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
             }
         }
-        
-        double getRSSMeasurement(std::string command){
-            FILE* pipe = popen(command.c_str(), "r");
-            if (pipe == nullptr) {
-                // Log error
-                return 0.0;
-            }
 
-            char buffer[256];
-            if (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
-                double rss_value = std::stod(buffer);
-                pclose(pipe);  // Close before returning
-                return rss_value;
-            }
-            pclose(pipe);  // Also close if fgets failed
-            return 0.0;  // Return default if no data
+        double getRSSMeasurement(){
+            // Simple model for signal stregnth decay
+            double dx = current_x_- router_x_;
+            double dy = current_y_- router_y_;
+            
+            double distance = std::sqrt(dx*dx + dy*dy);
+
+            return -30.0 - 20.0*log10(distance);
         }
 
-        std::pair<double, double> calculateRSSGradient() {
+        std::pair<double, double> calculateRSSGradient(){
             const double RADIUS = 2.0;
             const int MIN_POINTS = 10;
             
@@ -178,7 +173,7 @@ class RSSNode : public rclcpp::Node{
             return {a, b};
         }
 
-        void publishRSS() {
+        void publishRSS(){
             if (rss_buffer_.empty()) return;
             
             sensor_msgs::msg::PointCloud2 cloud;
@@ -236,8 +231,7 @@ class RSSNode : public rclcpp::Node{
             rss_pub_->publish(cloud);
         }
 
-        void publishGradientVisualization(double grad_x, double grad_y) {
-
+        void publishGradientVisualization(double grad_x, double grad_y){
             visualization_msgs::msg::Marker arrow;
             arrow.id = 0;
             arrow.header.frame_id = "map";
@@ -268,7 +262,7 @@ class RSSNode : public rclcpp::Node{
             arrow.color.a = 1.0;
 
             gradient_viz_pub_->publish(arrow);
-        }     
+        }   
 
         void publishGradient(double grad_x, double grad_y){
             geometry_msgs::msg::Vector3Stamped gradient_msg;
@@ -280,11 +274,12 @@ class RSSNode : public rclcpp::Node{
             
             gradient_pub_->publish(gradient_msg);
         }
-    };
+
+};
 
 int main(int argc, char** argv){
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<RSSNode>());
+    rclcpp::spin(std::make_shared<RSSNodeSim>());
     rclcpp::shutdown();
     return 0;
 }
