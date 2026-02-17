@@ -297,10 +297,7 @@ class FrontierExplorer : public rclcpp::Node{
             double inv_norm_heading = 1.0 - norm_heading;
             double inv_norm_gradient = 1.0 - norm_gradient;
 
-            double score = w_distance * inv_norm_distance + 
-                        w_size * norm_size + 
-                        w_heading * inv_norm_heading +
-                        w_gradient * inv_norm_gradient;
+            double score = w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading + w_gradient * inv_norm_gradient;
             
             return score;
             }
