@@ -68,10 +68,23 @@ add_executable(rss_node src/rss.cpp)
 ament_target_dependencies(rss_node 
   rclcpp 
   nav_msgs
+  geometry_msgs
   sensor_msgs
   tf2_ros
   tf2_geometry_msgs
   visualization_msgs
+  Eigen3
+)
+
+add_executable(rss_node_sim src/rss_sim.cpp)
+ament_target_dependencies(rss_node_sim
+  rclcpp
+  nav_msgs
+  sensor_msgs
+  tf2_ros
+  tf2_geometry_msgs
+  visualization_msgs  
+  geometry_msgs       
   Eigen3
 )
 
@@ -86,6 +99,7 @@ install(TARGETS
   frontier_detector
   frontier_explorer
   rss_node
+  rss_node_sim
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files

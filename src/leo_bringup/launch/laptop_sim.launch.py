@@ -41,9 +41,9 @@ def generate_launch_description():
             )])
 
     # Include the exploration launcher
-    exploration_launch = IncludeLaunchDescription(
+    exploration_sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('leo_exploration'), "launch", "exploration.launch.py")])
+            get_package_share_directory('leo_exploration'), "launch", "exploration_sim.launch.py")])
     )
     
     # Pointcloud to laserscan converter (conditional)
@@ -69,5 +69,5 @@ def generate_launch_description():
         slam_launch,
         nav2_launch,
         converter_node,
-        exploration_launch,
+        exploration_sim_launch,
     ])

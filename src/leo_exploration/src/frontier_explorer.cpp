@@ -272,9 +272,8 @@ class FrontierExplorer : public rclcpp::Node{
             double w_distance = 0;
             double w_heading = 1;
             double w_size = 1;
-
-            double norm_distance = (f.distance - min_dist) / (max_dist - min_dist);
-            double norm_size = (f.size - min_size) / (max_size - min_size);
+            double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
+            double norm_size = (max_size == min_size) ? 0.5 : (f.size - min_size) / (max_size - min_size);
             double norm_heading = std::abs(f.heading) / M_PI;  // heading is 0 to π
 
             // Invert distance and heading so 1.0 = best
