@@ -1,4 +1,6 @@
 #include "rclcpp/rclcpp.hpp"
+#include <random>
+#include <chrono>
 #include <tuple>
 #include <vector>
 #include <Eigen/Dense>
@@ -19,7 +21,7 @@ struct RSSMeas {
 
 class RSSNodeSim : public rclcpp::Node{
     public:
-        RSSNodeSim() : Node("RSSNodeSim"){
+        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 5.0){
 
             this->declare_parameter("router_x", -9.0);
             this->declare_parameter("router_y", 9.0);
@@ -56,6 +58,9 @@ class RSSNodeSim : public rclcpp::Node{
         
         double router_x_;
         double router_y_;
+
+        std::mt19937 generator_;
+        std::normal_distribution<double> distribution_;
 
         void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg){
             // Transform odom msg from odom frame to map frame
@@ -104,7 +109,9 @@ class RSSNodeSim : public rclcpp::Node{
             
             double distance = std::sqrt(dx*dx + dy*dy);
 
-            return -30.0 - 20.0*log10(distance);
+            double noise = distribution_(generator_);
+
+            return -30.0 - 20.0*log10(distance) + noise;
         }
 
         std::pair<double, double> calculateRSSGradient(){
