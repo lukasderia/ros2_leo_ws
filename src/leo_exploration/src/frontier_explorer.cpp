@@ -274,7 +274,7 @@ class FrontierExplorer : public rclcpp::Node{
             // Weights
             double w_distance = 0;
             double w_heading = 0;
-            double w_size = 0;
+            double w_size = 1;
             double w_gradient = gradient_received_ ? 1 : 0;
 
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
