@@ -41,8 +41,8 @@ def generate_launch_description():
             name='rss_node_sim',
             output='screen',
             parameters=[{
-                'router_x': -9.0,
-                'router_y': 9.0
+                'router_x': 9.0,
+                'router_y': -9.0
             }]
         )
     ])
