@@ -37,7 +37,7 @@ class RSSNodeSim : public rclcpp::Node{
             gradient_viz_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("gradient_arrow", 10);
             gradient_pub_ = this->create_publisher<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10);
             // Timer for periodic scanning 
-            scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(1500),std::bind(&RSSNodeSim::scanCallback, this));      
+            scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNodeSim::scanCallback, this));      
         }
 
     private:
@@ -115,8 +115,8 @@ class RSSNodeSim : public rclcpp::Node{
         }
 
         std::pair<double, double> calculateRSSGradient(){
-            const double RADIUS = 2.0;
-            const int MIN_POINTS = 10;
+            const double RADIUS = 4.0;
+            const int MIN_POINTS = 100;
             
             // Safety check: need minimum measurements
             if (rss_buffer_.size() < MIN_POINTS) {
