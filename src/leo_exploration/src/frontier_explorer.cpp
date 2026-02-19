@@ -51,7 +51,7 @@ class FrontierExplorer : public rclcpp::Node{
         gradient_sub_ = this->create_subscription<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10,std::bind(&FrontierExplorer::gradient_callback, this, _1));
 
         // Timer for periodic scanning 
-        exploration_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000),std::bind(&FrontierExplorer::explroration_callback, this)); 
+        exploration_timer_ = this->create_wall_timer(std::chrono::milliseconds(2000),std::bind(&FrontierExplorer::exploration_callback, this)); 
 
     }
 
@@ -61,6 +61,7 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr mode_sub_; //Subscriber for auto_mode
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr explorer_pub_; // Publisher for nav2
         rclcpp::Subscription<geometry_msgs::msg::Vector3Stamped>::SharedPtr gradient_sub_;
+        rclcpp::TimerBase::SharedPtr exploration_timer_;  // Add this line
 
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
@@ -94,7 +95,7 @@ class FrontierExplorer : public rclcpp::Node{
             frontier_recieved_ = true;
         }
 
-        void explroration_callback(){
+        void exploration_callback(){
             frontier_list_.clear();
 
             // Check if we have odometry data
@@ -284,10 +285,10 @@ class FrontierExplorer : public rclcpp::Node{
 
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
-            double w_distance = 0.0;
-            double w_heading = 0.0;
-            double w_size = 10.0;
-            double w_gradient = 4.0;
+            double w_distance = 1.0;
+            double w_heading = 5.0;
+            double w_size = 1.0;
+            double w_gradient = 8.0;
 
             // Calculate normalized metrics
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
