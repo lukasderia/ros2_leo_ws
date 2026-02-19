@@ -273,9 +273,9 @@ class FrontierExplorer : public rclcpp::Node{
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
             double w_distance = 0;
-            double w_heading = 0.4;
-            double w_size = 0.5;
-            double w_gradient = gradient_received_ ? 1 : 0;
+            double w_heading = 1.0;
+            double w_size = 0.4;
+            double w_gradient = gradient_received_ ? 1.5 : 0;
 
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
             double norm_size = (max_size == min_size) ? 0.5 : (f.size - min_size) / (max_size - min_size);
@@ -300,7 +300,7 @@ class FrontierExplorer : public rclcpp::Node{
             double score = w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading + w_gradient * inv_norm_gradient;
             
             return score;
-            }
+        }
     };
 
 int main(int argc, char** argv){
