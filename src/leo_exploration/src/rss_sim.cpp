@@ -119,8 +119,8 @@ class RSSNodeSim : public rclcpp::Node{
             const int MIN_POINTS = 100;
             
             // Safety check: need minimum measurements
-            if (rss_buffer_.size() < MIN_POINTS) {
-                RCLCPP_WARN(this->get_logger(), "Not enough RSS measurements (%zu) for gradient calculation", 
+            if (rss_buffer_.size() < 10) {
+                RCLCPP_WARN(this->get_logger(), "Few points (%zu), waiting for more...", 
                             rss_buffer_.size());
                 return {0.0, 0.0};  // No gradient available
             }
