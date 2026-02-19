@@ -141,7 +141,7 @@ class FrontierDetector : public rclcpp::Node{
                 }
                 cluster_id++;
             }
-            const int min_cluster_size = 1;
+            const int min_cluster_size = 5;
             
             // Calculate centroid and size for each cluster
             for (int id = 0; id < cluster_id; id++) {
