@@ -285,7 +285,7 @@ class FrontierExplorer : public rclcpp::Node{
 
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
-            double w_distance = 1.0;
+            double w_distance = 2.0;
             double w_heading = 5.0;
             double w_size = 1.0;
             double w_gradient = 8.0;
