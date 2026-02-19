@@ -21,7 +21,7 @@ struct RSSMeas {
 
 class RSSNodeSim : public rclcpp::Node{
     public:
-        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 1.0){
+        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 3.0){
 
             this->declare_parameter("router_x", -9.0);
             this->declare_parameter("router_y", 9.0);
@@ -239,6 +239,15 @@ class RSSNodeSim : public rclcpp::Node{
         }
 
         void publishGradientVisualization(double grad_x, double grad_y){
+            // Normalize to unit length
+            double magnitude = std::sqrt(grad_x * grad_x + grad_y * grad_y);
+            if (magnitude > 0) {
+                grad_x /= magnitude;
+                grad_y /= magnitude;
+            } else {
+                return;  // No direction to visualize
+            }
+
             visualization_msgs::msg::Marker arrow;
             arrow.id = 0;
             arrow.header.frame_id = "map";
@@ -246,14 +255,12 @@ class RSSNodeSim : public rclcpp::Node{
             arrow.type = visualization_msgs::msg::Marker::ARROW;
             arrow.action = visualization_msgs::msg::Marker::ADD;
 
-            // Arrow starts at robot position
             geometry_msgs::msg::Point start, end;
             start.x = current_x_;
             start.y = current_y_;
-            start.z = 0.5;  // Raise it up so it's visible
+            start.z = 0.5;
 
-            // Arrow points in gradient direction (scale for visibility)
-            double scale = 1.0;  // Adjust arrow length
+            double scale = 1.0;
             end.x = current_x_ + grad_x * scale;
             end.y = current_y_ + grad_y * scale;
             end.z = 0.5;
@@ -261,15 +268,15 @@ class RSSNodeSim : public rclcpp::Node{
             arrow.points.push_back(start);
             arrow.points.push_back(end);
 
-            arrow.scale.x = 0.1;  // Shaft diameter
-            arrow.scale.y = 0.2;  // Head diameter
+            arrow.scale.x = 0.1;
+            arrow.scale.y = 0.2;
             arrow.color.r = 1.0;
             arrow.color.g = 0.0;
             arrow.color.b = 0.0;
             arrow.color.a = 1.0;
 
             gradient_viz_pub_->publish(arrow);
-        }   
+        }
 
         void publishGradient(double grad_x, double grad_y){
             geometry_msgs::msg::Vector3Stamped gradient_msg;

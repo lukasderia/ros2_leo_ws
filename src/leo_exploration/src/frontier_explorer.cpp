@@ -50,6 +50,9 @@ class FrontierExplorer : public rclcpp::Node{
 
         gradient_sub_ = this->create_subscription<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10,std::bind(&FrontierExplorer::gradient_callback, this, _1));
 
+        // Timer for periodic scanning 
+        exploration_timer_ = this->create_wall_timer(std::chrono::milliseconds(1000),std::bind(&FrontierExplorer::explroration_callback, this)); 
+
     }
 
     private:
@@ -68,6 +71,7 @@ class FrontierExplorer : public rclcpp::Node{
         bool auto_mode_enabled_ = false;
         double robot_yaw_, robot_y_, robot_x_;
         bool odom_recieved_ = false;
+        bool frontier_recieved_ = false;
 
         std::vector<Frontier> frontier_list_;
 
@@ -87,6 +91,10 @@ class FrontierExplorer : public rclcpp::Node{
 
         void detector_callback(const leo_exploration::msg::FrontierClusters::SharedPtr msg){
             latest_centroids_ = msg;
+            frontier_recieved_ = true;
+        }
+
+        void explroration_callback(){
             frontier_list_.clear();
 
             // Check if we have odometry data
@@ -94,7 +102,12 @@ class FrontierExplorer : public rclcpp::Node{
                 RCLCPP_WARN(this->get_logger(), "No odometry data available");
                 return;
             }
-            
+
+            if (!frontier_recieved_) {
+                RCLCPP_WARN(this->get_logger(), "No frontier data availible");
+                return;
+            }
+
             // Check if autonomous mode is enabled
             if (!auto_mode_enabled_) {
                 return;  // Not in autonomous mode, skip processing
@@ -125,8 +138,7 @@ class FrontierExplorer : public rclcpp::Node{
 
             // Use gradient from RSS node (if available)
             if (gradient_received_) {
-                RCLCPP_INFO(this->get_logger(), "Using RSS Gradient: [%.3f, %.3f]", 
-                            latest_grad_x_, latest_grad_y_);
+                RCLCPP_INFO(this->get_logger(), "Using RSS Gradient: [%.3f, %.3f]", latest_grad_x_, latest_grad_y_);
             }
 
             min_size_ = std::numeric_limits<double>::max();  // Start at huge value
@@ -170,7 +182,7 @@ class FrontierExplorer : public rclcpp::Node{
                 return;
             }
 
-            // Find frontier with minimum score
+            // Find frontier with max score
             auto best = std::max_element(frontier_list_.begin(), frontier_list_.end(),
                 [](const Frontier& a, const Frontier& b) {
                     return a.score < b.score;
@@ -272,34 +284,28 @@ class FrontierExplorer : public rclcpp::Node{
 
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
             // Weights
-            double w_distance = 0;
-            double w_heading = 1.0;
-            double w_size = 0.4;
-            double w_gradient = gradient_received_ ? 1.5 : 0;
+            double w_distance = 0.0;
+            double w_heading = 0.0;
+            double w_size = 10.0;
+            double w_gradient = 4.0;
 
+            // Calculate normalized metrics
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);
             double norm_size = (max_size == min_size) ? 0.5 : (f.size - min_size) / (max_size - min_size);
-            double norm_heading = std::abs(f.heading) / M_PI;  // heading is 0 to π
+            double norm_heading = std::abs(f.heading) / M_PI;
 
-            // RSS gradient alignment
-            double norm_gradient = 0.5;
-            if (gradient_received_) {
-                double gradient_bearing = atan2(latest_grad_y_, latest_grad_x_);
-                double frontier_bearing = atan2(f.dy, f.dx);  // Use stored values
-                double angle_diff = std::abs(gradient_bearing - frontier_bearing);
-                
-                if (angle_diff > M_PI) angle_diff = 2*M_PI - angle_diff;
-                norm_gradient = angle_diff / M_PI;
-            }
+            double gradient_bearing = atan2(latest_grad_y_, latest_grad_x_);
+            double frontier_bearing = atan2(f.dy, f.dx);
+            double angle_diff = std::abs(gradient_bearing - frontier_bearing);
+            if (angle_diff > M_PI) angle_diff = 2*M_PI - angle_diff;
+            double norm_gradient = angle_diff / M_PI;
 
             // Invert so 1.0 = best
             double inv_norm_distance = 1.0 - norm_distance;
             double inv_norm_heading = 1.0 - norm_heading;
             double inv_norm_gradient = 1.0 - norm_gradient;
 
-            double score = w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading + w_gradient * inv_norm_gradient;
-            
-            return score;
+            return w_distance * inv_norm_distance + w_size * norm_size + w_heading * inv_norm_heading + w_gradient * inv_norm_gradient;
         }
     };
 
