@@ -229,18 +229,34 @@
 
     <gazebo reference="wheel_fl">
         <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
+        <kp>1000000.0</kp>
+        <kd>1.0</kd>
     </gazebo>
 
     <gazebo reference="wheel_fr">
         <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
+        <kp>1000000.0</kp>
+        <kd>1.0</kd>
     </gazebo>
 
     <gazebo reference="wheel_rl">
         <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
+        <kp>1000000.0</kp>
+        <kd>1.0</kd>
     </gazebo>
 
     <gazebo reference="wheel_rr">
         <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
+        <kp>1000000.0</kp>
+        <kd>1.0</kd>
     </gazebo>
 
     <gazebo reference="velodyne">
