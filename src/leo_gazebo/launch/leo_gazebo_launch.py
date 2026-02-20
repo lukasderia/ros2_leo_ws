@@ -24,7 +24,7 @@ def generate_launch_description():
     
     world_path = PythonExpression([
         "'", empty_world_config, "' == 'true' and '' or '",
-        os.path.join(pkg_path, 'worlds', 'house_bigger_test.world'), "'"
+        os.path.join(pkg_path, 'worlds', 'house_extended_test.world'), "'"
     ])
     
     use_sim_time = LaunchConfiguration('use_sim_time')
