@@ -21,7 +21,7 @@ struct RSSMeas {
 
 class RSSNodeSim : public rclcpp::Node{
     public:
-        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 3.0){
+        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 4.0){
 
             this->declare_parameter("router_x", -9.0);
             this->declare_parameter("router_y", 9.0);
