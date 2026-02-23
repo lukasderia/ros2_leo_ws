@@ -34,7 +34,7 @@ class RSSNode : public rclcpp::Node{
         gradient_pub_ = this->create_publisher<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10);
 
         // Timer for periodic scanning 
-        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(250),std::bind(&RSSNode::scanCallback, this));
+        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNode::scanCallback, this));
 
     }
 
