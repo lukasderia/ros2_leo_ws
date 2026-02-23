@@ -52,6 +52,8 @@ class RSSNodeSim : public rclcpp::Node{
         rclcpp::TimerBase::SharedPtr scan_timer_;  // Add this line
 
         std::vector<RSSMeas> rss_buffer_;  // Add this
+        std::vector<double> rss_temp_buffer_;
+
 
         double current_x_ = 0.0;
         double current_y_ = 0.0;
@@ -87,18 +89,28 @@ class RSSNodeSim : public rclcpp::Node{
         }
 
         void scanCallback(){
-            double rss = getRSSMeasurement();
+            double rss_raw = getRSSMeasurement();
             
-            // Add to buffer
-            rss_buffer_.push_back({current_x_, current_y_, rss});
-            
-            // Publish accumulated cloud
-            publishRSS();
-            
-            // Calculate and publish gradient (if enough points)
-            auto [grad_x, grad_y] = calculateRSSGradient();
-            if (grad_x != 0.0 || grad_y != 0.0) {
-                RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+            if(rss_raw < -20.0){
+                // Add to buffer and then average
+                rss_temp_buffer_.push_back(rss_raw);
+                if (rss_temp_buffer_.size() > 10){
+                    rss_temp_buffer_.erase(rss_temp_buffer_.begin());
+                }
+                double rss = std::accumulate(rss_temp_buffer_.begin(), rss_temp_buffer_.end(),0.0)/rss_temp_buffer_.size();
+
+                rss_buffer_.push_back({current_x_, current_y_, rss});
+                
+                // Publish accumulated cloud
+                publishRSS();
+                
+                // Calculate and publish gradient (if enough points)
+                auto [grad_x, grad_y] = calculateRSSGradient();
+                if (grad_x != 0.0 || grad_y != 0.0) {
+                    RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+                }
+            } else{
+                RCLCPP_INFO(this->get_logger(), "RSS Value not accepted!");
             }
         }
 

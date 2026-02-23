@@ -34,7 +34,7 @@ class RSSNode : public rclcpp::Node{
         gradient_pub_ = this->create_publisher<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10);
 
         // Timer for periodic scanning 
-        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(500),std::bind(&RSSNode::scanCallback, this));
+        scan_timer_ = this->create_wall_timer(std::chrono::milliseconds(250),std::bind(&RSSNode::scanCallback, this));
 
     }
 
@@ -50,7 +50,7 @@ class RSSNode : public rclcpp::Node{
         rclcpp::TimerBase::SharedPtr scan_timer_;  // Add this line
 
         std::vector<RSSMeas> rss_buffer_;  // Add this
-        
+        std::vector<double> rss_temp_buffer_;
         double current_x_ = 0.0;
         double current_y_ = 0.0;
 
@@ -80,18 +80,28 @@ class RSSNode : public rclcpp::Node{
         }
 
         void scanCallback(){
-            double rss = getRSSMeasurement(command);
+            double rss_raw = getRSSMeasurement(command);
             
-            // Add to buffer
-            rss_buffer_.push_back({current_x_, current_y_, rss});
-            
-            // Publish accumulated cloud
-            publishRSS();
-            
-            // Calculate and publish gradient (if enough points)
-            auto [grad_x, grad_y] = calculateRSSGradient();
-            if (grad_x != 0.0 || grad_y != 0.0) {
-                RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+            if(rss_raw < -20.0){
+                // Add to buffer and then average
+                rss_temp_buffer_.push_back(rss_raw);
+                if (rss_temp_buffer_.size() > 10){
+                    rss_temp_buffer_.erase(rss_temp_buffer_.begin());
+                }
+                double rss = std::accumulate(rss_temp_buffer_.begin(), rss_temp_buffer_.end(),0.0)/rss_temp_buffer_.size();
+
+                rss_buffer_.push_back({current_x_, current_y_, rss});
+                
+                // Publish accumulated cloud
+                publishRSS();
+                
+                // Calculate and publish gradient (if enough points)
+                auto [grad_x, grad_y] = calculateRSSGradient();
+                if (grad_x != 0.0 || grad_y != 0.0) {
+                    RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+                }
+            } else{
+                RCLCPP_INFO(this->get_logger(), "RSS Value not accepted!");
             }
         }
         
@@ -236,7 +246,15 @@ class RSSNode : public rclcpp::Node{
             rss_pub_->publish(cloud);
         }
 
-        void publishGradientVisualization(double grad_x, double grad_y) {
+        void publishGradientVisualization(double grad_x, double grad_y){
+            // Normalize to unit length
+            double magnitude = std::sqrt(grad_x * grad_x + grad_y * grad_y);
+            if (magnitude > 0) {
+                grad_x /= magnitude;
+                grad_y /= magnitude;
+            } else {
+                return;  // No direction to visualize
+            }
 
             visualization_msgs::msg::Marker arrow;
             arrow.id = 0;
@@ -245,14 +263,12 @@ class RSSNode : public rclcpp::Node{
             arrow.type = visualization_msgs::msg::Marker::ARROW;
             arrow.action = visualization_msgs::msg::Marker::ADD;
 
-            // Arrow starts at robot position
             geometry_msgs::msg::Point start, end;
             start.x = current_x_;
             start.y = current_y_;
-            start.z = 0.5;  // Raise it up so it's visible
+            start.z = 0.5;
 
-            // Arrow points in gradient direction (scale for visibility)
-            double scale = 1.0;  // Adjust arrow length
+            double scale = 1.0;
             end.x = current_x_ + grad_x * scale;
             end.y = current_y_ + grad_y * scale;
             end.z = 0.5;
@@ -260,15 +276,15 @@ class RSSNode : public rclcpp::Node{
             arrow.points.push_back(start);
             arrow.points.push_back(end);
 
-            arrow.scale.x = 0.1;  // Shaft diameter
-            arrow.scale.y = 0.2;  // Head diameter
+            arrow.scale.x = 0.1;
+            arrow.scale.y = 0.2;
             arrow.color.r = 1.0;
             arrow.color.g = 0.0;
             arrow.color.b = 0.0;
             arrow.color.a = 1.0;
 
             gradient_viz_pub_->publish(arrow);
-        }     
+        }   
 
         void publishGradient(double grad_x, double grad_y){
             geometry_msgs::msg::Vector3Stamped gradient_msg;
