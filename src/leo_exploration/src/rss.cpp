@@ -123,8 +123,8 @@ class RSSNode : public rclcpp::Node{
         }
 
         std::pair<double, double> calculateRSSGradient() {
-            const double RADIUS = 2.0;
-            const int MIN_POINTS = 10;
+            const double RADIUS = 4.0;
+            const int MIN_POINTS = 100;
             
             // Safety check: need minimum measurements
             if (rss_buffer_.size() < MIN_POINTS) {
