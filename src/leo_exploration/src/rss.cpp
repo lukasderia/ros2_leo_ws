@@ -82,7 +82,7 @@ class RSSNode : public rclcpp::Node{
         void scanCallback(){
             double rss_raw = getRSSMeasurement(command);
             
-            if(rss_raw < -20.0){
+            if(rss_raw < 100 && rss_raw > 10){
                 // Add to buffer and then average
                 rss_temp_buffer_.push_back(rss_raw);
                 if (rss_temp_buffer_.size() > 10){
