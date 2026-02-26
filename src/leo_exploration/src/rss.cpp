@@ -13,7 +13,7 @@
 #include <visualization_msgs/msg/marker.hpp>
 #include "geometry_msgs/msg/vector3_stamped.hpp"
 
-const std::string command = "iwconfig wlan1 | grep -oP 'Signal level=\\K-?\\d+'";
+const std::string command = "iwconfig wlan0 | grep -oP 'Signal level=\\K-?\\d+'";
 
 struct RSSMeas {
     double x, y, rss;
