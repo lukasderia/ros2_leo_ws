@@ -177,6 +177,7 @@ class FrontierExplorer : public rclcpp::Node{
                 frontier_list_.push_back(f);
             }
             
+            RCLCPP_INFO(this->get_logger(), "Using %s weights", signal_state ? "search" : "exploit");
             for (auto& f : frontier_list_) {
                 f.score = calculate_score(f, max_dist_, min_dist_, max_size_, min_size_);
             }
