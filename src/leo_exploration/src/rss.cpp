@@ -92,7 +92,7 @@ class RSSNode : public rclcpp::Node{
             if(rss_raw < 100 && rss_raw > 10){
                 // Add to buffer and then average
                 rss_temp_buffer_.push_back(rss_raw);
-                if (rss_temp_buffer_.size() > 10){
+                if (rss_temp_buffer_.size() > 5){
                     rss_temp_buffer_.erase(rss_temp_buffer_.begin());
                 }
                 double rss = std::accumulate(rss_temp_buffer_.begin(), rss_temp_buffer_.end(),0.0)/rss_temp_buffer_.size();
@@ -105,9 +105,9 @@ class RSSNode : public rclcpp::Node{
                 
                 // Calculate and publish gradient (if enough points)
                 auto [grad_x, grad_y] = calculateRSSGradient();
-                if (grad_x != 0.0 || grad_y != 0.0) {
-                    RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
-                }
+                // if (grad_x != 0.0 || grad_y != 0.0) {
+                //     RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+                // }
             } else{
                 RCLCPP_INFO(this->get_logger(), "RSS Value not accepted!");
             }
@@ -135,7 +135,7 @@ class RSSNode : public rclcpp::Node{
             const int MIN_POINTS = 100;
             
             // Safety check: need minimum measurements
-            if (rss_buffer_.size() < MIN_POINTS) {
+            if (rss_buffer_.size() < 10) {
                 RCLCPP_WARN(this->get_logger(), "Not enough RSS measurements (%zu) for gradient calculation", 
                             rss_buffer_.size());
                 return {0.0, 0.0};  // No gradient available

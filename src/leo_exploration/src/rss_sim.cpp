@@ -102,7 +102,7 @@ class RSSNodeSim : public rclcpp::Node{
             if(rss_raw < -20.0){
                 // Add to buffer and then average
                 rss_temp_buffer_.push_back(rss_raw);
-                if (rss_temp_buffer_.size() > 10){
+                if (rss_temp_buffer_.size() > 5){
                     rss_temp_buffer_.erase(rss_temp_buffer_.begin());
                 }
                 double rss = std::accumulate(rss_temp_buffer_.begin(), rss_temp_buffer_.end(),0.0)/rss_temp_buffer_.size();
