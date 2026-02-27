@@ -102,12 +102,14 @@ class RSSNode : public rclcpp::Node{
                 // Publish accumulated cloud
                 publishRSS();
                 publishState();
+
+                calculateRSSGradient();
                 
-                // Calculate and publish gradient (if enough points)
-                auto [grad_x, grad_y] = calculateRSSGradient();
-                // if (grad_x != 0.0 || grad_y != 0.0) {
-                //     RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
-                // }
+                // // Calculate and publish gradient (if enough points)
+                // auto [grad_x, grad_y] = calculateRSSGradient();
+                // // if (grad_x != 0.0 || grad_y != 0.0) {
+                // //     RCLCPP_INFO(this->get_logger(), "RSS Gradient: [%.3f, %.3f]", grad_x, grad_y);
+                // // }
             } else{
                 RCLCPP_INFO(this->get_logger(), "RSS Value not accepted!");
             }
