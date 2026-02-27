@@ -50,6 +50,8 @@ class FrontierExplorer : public rclcpp::Node{
 
         gradient_sub_ = this->create_subscription<geometry_msgs::msg::Vector3Stamped>("/rss_gradient", 10,std::bind(&FrontierExplorer::gradient_callback, this, _1));
 
+        signal_state_sub_ = this->create_subscription<std_msgs::msg::Bool>("/weak_signal_state", 10, std::bind(&FrontierExplorer::signal_state_callback, this, _1));
+
         // Timer for periodic scanning 
         exploration_timer_ = this->create_wall_timer(std::chrono::milliseconds(2000),std::bind(&FrontierExplorer::exploration_callback, this)); 
 
@@ -62,6 +64,7 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr explorer_pub_; // Publisher for nav2
         rclcpp::Subscription<geometry_msgs::msg::Vector3Stamped>::SharedPtr gradient_sub_;
         rclcpp::TimerBase::SharedPtr exploration_timer_;  // Add this line
+        rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr signal_state_sub_;
 
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
@@ -73,6 +76,7 @@ class FrontierExplorer : public rclcpp::Node{
         double robot_yaw_, robot_y_, robot_x_;
         bool odom_recieved_ = false;
         bool frontier_recieved_ = false;
+        bool signal_state = false; 
 
         std::vector<Frontier> frontier_list_;
 
@@ -263,6 +267,11 @@ class FrontierExplorer : public rclcpp::Node{
             }
         }
 
+        void signal_state_callback(const std_msgs::msg::Bool::SharedPtr msg){
+            signal_state = msg->data;
+            
+        }
+
         void publish_goal(const Frontier& frontier) {
             geometry_msgs::msg::PoseStamped goal;
             goal.header.stamp = this->now();
@@ -284,11 +293,20 @@ class FrontierExplorer : public rclcpp::Node{
         }
 
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
-            // Weights
+            
+            // Weights if signal is good
             double w_distance = 2.0;
             double w_heading = 5.0;
             double w_size = 1.0;
             double w_gradient = 8.0;
+
+            if(signal_state){
+                // Weights if signal is bad
+                w_distance = 2.0;
+                w_heading = 5.0;
+                w_size = 8.0;
+                w_gradient = 0.0;
+            }
 
             // Calculate normalized metrics
             double norm_distance = (max_dist == min_dist) ? 0.5 : (f.distance - min_dist) / (max_dist - min_dist);

@@ -68,6 +68,7 @@ add_executable(rss_node src/rss.cpp)
 ament_target_dependencies(rss_node 
   rclcpp 
   nav_msgs
+  std_msgs
   geometry_msgs
   sensor_msgs
   tf2_ros
@@ -80,6 +81,7 @@ add_executable(rss_node_sim src/rss_sim.cpp)
 ament_target_dependencies(rss_node_sim
   rclcpp
   nav_msgs
+  std_msgs
   sensor_msgs
   tf2_ros
   tf2_geometry_msgs
