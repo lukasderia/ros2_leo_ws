@@ -301,7 +301,6 @@ class FrontierExplorer : public rclcpp::Node{
             double w_gradient = 8.0;
 
             if(signal_state){
-                RCLCPP_INFO(this->get_logger(), "RSS weak, changing weights!");
                 // Weights if signal is bad
                 w_distance = 2.0;
                 w_heading = 5.0;
