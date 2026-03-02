@@ -261,12 +261,19 @@ class RSSNode : public rclcpp::Node{
 
             if(rss_buffer_.size()>static_cast<size_t>(n)){
                 std::vector<RSSMeas> last_meas(rss_buffer_.end()-n, rss_buffer_.end());
-                weak_signals_ = std::all_of( last_meas.begin(), last_meas.end(), [&](const RSSMeas& m){
-                    return m.rss < cutOff_;
+                if(!weak_signals_){
+                    weak_signals_ = std::all_of( last_meas.begin(), last_meas.end(), [&](const RSSMeas& m){
+                        return m.rss < cutOff_;
+                    });
+                }else{
+                    weak_signals_ = std::all_of( last_meas.begin(), last_meas.end(), [&](const RSSMeas& m){
+                        return m.rss > cutOff_;
                 });
+                }
             }else{
                 weak_signals_ = false;
             }
+
             std_msgs::msg::Bool msg;
             msg.data = weak_signals_;
             state_pub_->publish(msg);
