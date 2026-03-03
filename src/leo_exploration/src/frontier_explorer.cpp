@@ -1,6 +1,7 @@
 #include <memory>
 #include <chrono>
 #include <vector>
+#include <thread>
 #include <Eigen/Dense>
 #include <algorithm>  // For std::min_element
 #include "nav_msgs/msg/odometry.hpp"  // For Odometry message
@@ -217,11 +218,14 @@ class FrontierExplorer : public rclcpp::Node{
             odom_recieved_ = true;
         }
 
-        void mode_callback (const std_msgs::msg::Bool::SharedPtr msg){
+        void mode_callback(const std_msgs::msg::Bool::SharedPtr msg){
             bool previous_mode = auto_mode_enabled_;
             auto_mode_enabled_ = msg->data;
             
-            // If switching from auto to manual (true -> false)
+            if (!previous_mode && auto_mode_enabled_) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            }
+            
             if (previous_mode && !auto_mode_enabled_) {
                 stop_robot();
                 has_published_goal_ = false;

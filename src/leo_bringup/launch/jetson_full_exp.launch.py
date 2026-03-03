@@ -53,6 +53,14 @@ def generate_launch_description():
         output='screen'
     )
 
+    # include Recorder node
+    Recorder = Node(
+        package='leo_utils',
+        executable='recorder.py',
+        name='recorder', 
+        output='screen'
+    )
+
     # Include the custom launcher
     velodyne_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -72,6 +80,7 @@ def generate_launch_description():
         odom2TF_node,
         velodyne_launch,
         ScanFilter,
+        Recorder,
         
         # Delay SLAM to let sensors initialize
         TimerAction(
