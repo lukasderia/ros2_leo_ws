@@ -308,8 +308,8 @@ class FrontierExplorer : public rclcpp::Node{
             if(signal_state){
                 // Weights if signal is bad
                 w_distance = 2.0;
-                w_heading = 5.0;
-                w_size = 8.0;
+                w_heading = 6.0;
+                w_size = 10.0;
                 w_gradient = 0.0;
             }
 

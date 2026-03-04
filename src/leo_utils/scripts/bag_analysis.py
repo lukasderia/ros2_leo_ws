@@ -318,13 +318,13 @@ def plot_trajectory_with_arrows(ax, trajectory, t_min, t_max, arrow_every=30):
     lc.set_array(arr[:-1, 0])
     ax.add_collection(lc)
 
-    for i in range(0, len(arr) - arrow_every, arrow_every):
-        x, y, yaw = arr[i, 1], arr[i, 2], arr[i, 3]
-        ax.annotate('', xy=(x + 0.4*np.cos(yaw), y + 0.4*np.sin(yaw)),
-                    xytext=(x, y),
-                    arrowprops=dict(arrowstyle='->', color='white',
-                                    lw=1.5, mutation_scale=12),
-                    zorder=5)
+    # for i in range(0, len(arr) - arrow_every, arrow_every):
+    #     x, y, yaw = arr[i, 1], arr[i, 2], arr[i, 3]
+    #     ax.annotate('', xy=(x + 0.4*np.cos(yaw), y + 0.4*np.sin(yaw)),
+    #                 xytext=(x, y),
+    #                 arrowprops=dict(arrowstyle='->', color='white',
+    #                                 lw=1.5, mutation_scale=12),
+    #                 zorder=5)
     return lc
 
 
@@ -441,10 +441,10 @@ def plot_all(bag_path, router_x, router_y):
         plt.colorbar(sm, ax=ax_traj, label='Time (s)', fraction=0.04, pad=0.02)
         ax_traj.plot(trajectory[0,1],  trajectory[0,2],  'go', ms=10, zorder=6, label='Start')
         ax_traj.plot(trajectory[-1,1], trajectory[-1,2], 'r^', ms=10, zorder=6, label='End')
-    if goals:
-        ax_traj.scatter([g[1] for g in goals], [g[2] for g in goals],
-                        c='cyan', s=40, marker='x', linewidths=2,
-                        zorder=5, label='Goals', alpha=0.9)
+    # if goals:
+    #     ax_traj.scatter([g[1] for g in goals], [g[2] for g in goals],
+    #                     c='cyan', s=40, marker='x', linewidths=2,
+    #                     zorder=5, label='Goals', alpha=0.9)
     ax_traj.plot(router_x, router_y, 'r*', ms=18, zorder=7,
                  label=f'Router ({router_x:.0f},{router_y:.0f})')
     ax_traj.set_xlabel('X (m)'); ax_traj.set_ylabel('Y (m)')
