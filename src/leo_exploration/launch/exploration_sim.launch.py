@@ -42,7 +42,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'router_x': -18.0,
-                'router_y': -18.0
+                'router_y': 18.0
             }]
         )
     ])
