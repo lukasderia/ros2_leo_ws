@@ -24,7 +24,7 @@ def generate_launch_description():
     
     world_path = PythonExpression([
         "'", empty_world_config, "' == 'true' and '' or '",
-        os.path.join(pkg_path, 'worlds', 'test_wordl_from_image.world'), "'"
+        os.path.join(pkg_path, 'worlds', 'World_for_testing.world'), "'"
     ])
     
     use_sim_time = LaunchConfiguration('use_sim_time')
