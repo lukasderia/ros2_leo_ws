@@ -59,7 +59,7 @@ class RSSNodeSim : public rclcpp::Node{
 
         std::vector<RSSMeas> rss_buffer_;  // Add this
         std::vector<double> rss_temp_buffer_;
-        int cutOff_ = -55;
+        int cutOff_ = -80;
         bool weak_signals_ = false;
 
 
