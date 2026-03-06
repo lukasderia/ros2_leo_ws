@@ -19,10 +19,6 @@ public:
             std::chrono::milliseconds(250),
             std::bind(&ModeNode::timer_callback, this));
         
-        // Publish initial state immediately
-        auto mode_msg = std_msgs::msg::Bool();
-        mode_msg.data = false;
-        mode_pub_->publish(mode_msg);
         
         RCLCPP_INFO(this->get_logger(), "Mode node started - initial state: DISABLED");
     }
