@@ -23,14 +23,14 @@ class Recorder(Node):
         self.declare_parameter('router_x', 18.0)
         self.declare_parameter('router_y', 18.0)
         self.declare_parameter('mode', 'rss')
-        self.declare_parameter('max_duration', 300.0)  # 5 minutes
+        self.declare_parameter('max_duration', 20.0)  # 5 minutes
 
-        self.robot_x_param_ = self.get_parameter('robot_x').as_double()
-        self.robot_y_param_ = self.get_parameter('robot_y').as_double()
-        self.router_x_ = self.get_parameter('router_x').as_double()
-        self.router_y_ = self.get_parameter('router_y').as_double()
-        self.mode_ = self.get_parameter('mode').as_string()
-        self.max_duration_ = self.get_parameter('max_duration').as_double()
+        self.robot_x_param_ = self.get_parameter('robot_x').get_parameter_value().double_value
+        self.robot_y_param_ = self.get_parameter('robot_y').get_parameter_value().double_value
+        self.router_x_ = self.get_parameter('router_x').get_parameter_value().double_value
+        self.router_y_ = self.get_parameter('router_y').get_parameter_value().double_value
+        self.mode_ = self.get_parameter('mode').get_parameter_value().string_value
+        self.max_duration_ = self.get_parameter('max_duration').get_parameter_value().double_value
 
         # QoS for auto_mode
         qos = QoSProfile(
@@ -54,7 +54,7 @@ class Recorder(Node):
         self.done_ = False
 
         # Wait 30s for system to initialize then start
-        self.init_timer_ = self.create_timer(30.0, self.start)
+        self.init_timer_ = self.create_timer(10.0, self.start)
         self.get_logger().info("Recorder waiting for system to initialize...")
 
     def start(self):
@@ -136,6 +136,10 @@ class Recorder(Node):
         self.bag_process = subprocess.Popen(cmd)
         self.get_logger().info(f"Started recording: {bag_name}")
 
+    def shutdown(self):
+        self.done_ = True
+        self.check_timer_.cancel()
+
     def stop_recording(self):
         if self.bag_process:
             self.bag_process.send_signal(signal.SIGINT)
@@ -143,25 +147,21 @@ class Recorder(Node):
             self.bag_process = None
             self.get_logger().info("Recording stopped")
 
-    def shutdown(self):
-        self.done_ = True
-        self.check_timer_.cancel()
-
-        # Disable auto mode
-        msg = Bool()
-        msg.data = False
-        self.auto_mode_pub_.publish(msg)
-
-        # Stop recording
-        self.stop_recording()
-
-        self.get_logger().info("Done - shutting down")
-        rclpy.shutdown()
-
 def main(args=None):
     rclpy.init(args=args)
     node = Recorder()
-    rclpy.spin(node)
+    
+    while rclpy.ok() and not node.done_:
+        rclpy.spin_once(node, timeout_sec=0.1)
+    
+    # Shutdown cleanly outside callback
+    msg = Bool()
+    msg.data = False
+    node.auto_mode_pub_.publish(msg)
+    node.stop_recording()
+    node.get_logger().info("Done - shutting down")
+    node.destroy_node()
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
