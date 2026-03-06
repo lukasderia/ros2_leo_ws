@@ -8,6 +8,7 @@ import signal
 import os
 import math
 import time
+import json
 from datetime import datetime
 from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy
 import tf2_ros
@@ -23,7 +24,7 @@ class Recorder(Node):
         self.declare_parameter('router_x', 18.0)
         self.declare_parameter('router_y', 18.0)
         self.declare_parameter('mode', 'rss')
-        self.declare_parameter('max_duration', 480.0)  # 5 minutes
+        self.declare_parameter('max_duration', 480.0)
 
         self.robot_x_param_ = self.get_parameter('robot_x').get_parameter_value().double_value
         self.robot_y_param_ = self.get_parameter('robot_y').get_parameter_value().double_value
@@ -52,8 +53,11 @@ class Recorder(Node):
         self.latest_map_ = None
         self.start_time_ = None
         self.done_ = False
+        self.termination_reason_ = 'unknown'
+        self.bag_path_ = None
+        self.bag_name_ = None
 
-        # Wait 30s for system to initialize then start
+        # Wait for system to initialize then start
         self.init_timer_ = self.create_timer(10.0, self.start)
         self.get_logger().info("Recorder waiting for system to initialize...")
 
@@ -61,15 +65,12 @@ class Recorder(Node):
         self.init_timer_.cancel()
         self.get_logger().info("Starting exploration...")
 
-        # Enable auto mode
         msg = Bool()
         msg.data = True
         self.auto_mode_pub_.publish(msg)
 
-        # Start recording
         self.start_recording()
 
-        # Start check timer
         self.start_time_ = time.time()
         self.check_timer_ = self.create_timer(1.0, self.check_termination)
 
@@ -80,14 +81,13 @@ class Recorder(Node):
         if self.done_:
             return
 
-        # Check timeout
         elapsed = time.time() - self.start_time_
         if elapsed > self.max_duration_:
             self.get_logger().info("Timeout reached - stopping")
+            self.termination_reason_ = 'timeout'
             self.shutdown()
             return
 
-        # Get robot position from TF
         try:
             transform = self.tf_buffer_.lookup_transform('map', 'base_link', rclpy.time.Time())
             robot_x = transform.transform.translation.x
@@ -95,13 +95,13 @@ class Recorder(Node):
         except Exception as e:
             return
 
-        # Check distance to router
         dx = robot_x - self.router_x_
         dy = robot_y - self.router_y_
         distance = math.sqrt(dx*dx + dy*dy)
 
         if distance < 3.0 and self.is_router_cell_free():
             self.get_logger().info(f"Router found! Distance: {distance:.2f}m")
+            self.termination_reason_ = 'router_found'
             self.shutdown()
 
     def is_router_cell_free(self):
@@ -120,24 +120,46 @@ class Recorder(Node):
         return 0 <= cell_value < 40
 
     def start_recording(self):
-            date_str = datetime.now().strftime("%d%b_%Hh%M")
-            bag_name = f"Recording_{self.mode_}_rx{self.router_x_}_ry{self.router_y_}_bx{self.robot_x_param_}_by{self.robot_y_param_}_{date_str}"
-            
-            mode_dir = os.path.expanduser(f"~/ros2_leo_ws/bags/session_{self.mode_}")
-            os.makedirs(mode_dir, exist_ok=True)
-            bag_path = os.path.join(mode_dir, bag_name)
+        date_str = datetime.now().strftime("%d%b_%Hh%M")
+        self.bag_name_ = f"Recording_{self.mode_}_rx{self.router_x_}_ry{self.router_y_}_bx{self.robot_x_param_}_by{self.robot_y_param_}_{date_str}"
 
-            topics = [
-                "/weak_signal_state", "/rss", "/rss_gradient",
-                "/firmware/battery_averaged", "/auto_mode", "/cmd_vel",
-                "/frontier_centroid_markers", "/frontier_centroids", "/frontier_markers",
-                "/global_costmap/costmap", "/goal_pose", "/local_costmap/costmap",
-                "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static"
-            ]
+        mode_dir = os.path.expanduser(f"~/ros2_leo_ws/bags/session_{self.mode_}")
+        os.makedirs(mode_dir, exist_ok=True)
+        self.bag_path_ = os.path.join(mode_dir, self.bag_name_)
 
-            cmd = ["ros2", "bag", "record", "-o", bag_path] + topics
-            self.bag_process = subprocess.Popen(cmd)
-            self.get_logger().info(f"Started recording: {bag_name}")
+        topics = [
+            "/weak_signal_state", "/rss", "/rss_gradient",
+            "/firmware/battery_averaged", "/auto_mode", "/cmd_vel",
+            "/frontier_centroid_markers", "/frontier_centroids", "/frontier_markers",
+            "/global_costmap/costmap", "/goal_pose", "/local_costmap/costmap",
+            "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static"
+        ]
+
+        cmd = ["ros2", "bag", "record", "-o", self.bag_path_] + topics
+        self.bag_process = subprocess.Popen(cmd)
+        self.get_logger().info(f"Started recording: {self.bag_name_}")
+
+    def write_result(self):
+        if self.bag_path_ is None:
+            return
+
+        duration = time.time() - self.start_time_ if self.start_time_ else 0.0
+
+        result = {
+            "bag_name": self.bag_name_,
+            "termination_reason": self.termination_reason_,
+            "duration_seconds": round(duration, 1),
+            "mode": self.mode_,
+            "robot_start": [self.robot_x_param_, self.robot_y_param_],
+            "router_position": [self.router_x_, self.router_y_],
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+        result_path = os.path.join(self.bag_path_, "result.json")
+        with open(result_path, 'w') as f:
+            json.dump(result, f, indent=2)
+
+        self.get_logger().info(f"Result written: {self.termination_reason_} in {duration:.1f}s")
 
     def shutdown(self):
         self.done_ = True
@@ -153,15 +175,15 @@ class Recorder(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = Recorder()
-    
+
     while rclpy.ok() and not node.done_:
         rclpy.spin_once(node, timeout_sec=0.1)
-    
-    # Shutdown cleanly outside callback
+
     msg = Bool()
     msg.data = False
     node.auto_mode_pub_.publish(msg)
     node.stop_recording()
+    node.write_result()
     node.get_logger().info("Done - shutting down")
     node.destroy_node()
     rclpy.shutdown()
