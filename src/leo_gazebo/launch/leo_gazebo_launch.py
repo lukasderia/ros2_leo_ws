@@ -14,13 +14,18 @@ def generate_launch_description():
     xacro_file = os.path.join(pkg_path,'description','leo_sim.xacro')
     robot_description_config = xacro.process_file(xacro_file)
 
-    # Declare argument
+    # Declare arguments
     empty_world_arg = DeclareLaunchArgument(
         'empty_world',
         default_value='false',
         description='Use empty world instead of willowgarage'
     )
+    robot_x_arg = DeclareLaunchArgument('robot_x', default_value='0.0', description='Robot spawn x position')
+    robot_y_arg = DeclareLaunchArgument('robot_y', default_value='0.0', description='Robot spawn y position')
+
     empty_world_config = LaunchConfiguration('empty_world')
+    robot_x = LaunchConfiguration('robot_x')
+    robot_y = LaunchConfiguration('robot_y')
     
     world_path = PythonExpression([
         "'", empty_world_config, "' == 'true' and '' or '",
@@ -45,8 +50,8 @@ def generate_launch_description():
         arguments=[
             '-topic', 'robot_description',
             '-entity', 'leo',
-            '-x', '0',
-            '-y', '0',
+            '-x', robot_x,
+            '-y', robot_y,
             '-z', '0.5'
         ],
         output='screen'
@@ -58,7 +63,7 @@ def generate_launch_description():
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
         launch_arguments={
             'world': world_path,
-            'gui': 'false'  # Add this
+            'gui': 'false'
         }.items()
     )
     
@@ -67,8 +72,9 @@ def generate_launch_description():
             'use_sim_time',
             default_value='true',
             description='Use sim time if true'),
-        
         empty_world_arg,
+        robot_x_arg,
+        robot_y_arg,
         gazebo,
         node_robot_state_publisher,
         spawn_entity,
