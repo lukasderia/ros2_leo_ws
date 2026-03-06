@@ -71,12 +71,15 @@ def generate_launch_description():
         }.items()
     )
 
-    # Include Teleop
-    teleop_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('leo_teleop'), 'launch', 'controller_teleop.launch.py')]),
-        launch_arguments={'config_file': 'xbox.config.yaml'}.items()
-    )
+    # Include termination
+    termination_node = Node(
+        package='leo_exploration', 
+        executable='termination_node', 
+        name='termination_node', 
+        parameters=[{
+            'router_x': router_x, 
+            'router_y': router_y
+        }])
     
     # Pointcloud to laserscan converter (conditional)
     converter_node = Node(
@@ -106,5 +109,6 @@ def generate_launch_description():
         slam_launch,
         nav2_launch,
         converter_node,
+        termination_node,
         exploration_sim_launch,
     ])
