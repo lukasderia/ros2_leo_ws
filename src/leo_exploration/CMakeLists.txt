@@ -90,6 +90,15 @@ ament_target_dependencies(rss_node_sim
   Eigen3
 )
 
+add_executable(termination_node src/exploration_termination.cpp)
+ament_target_dependencies(termination_node
+  rclcpp
+  nav_msgs
+  std_msgs
+  tf2_ros
+  tf2_geometry_msgs
+)
+
 # Link the custom messages to the executable
 rosidl_target_interfaces(frontier_detector ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
@@ -102,6 +111,7 @@ install(TARGETS
   frontier_explorer
   rss_node
   rss_node_sim
+  termination_node
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files
