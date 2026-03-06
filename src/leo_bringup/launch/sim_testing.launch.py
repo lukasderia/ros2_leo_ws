@@ -27,13 +27,13 @@ def generate_launch_description():
     router_x = LaunchConfiguration('router_x')
     router_y = LaunchConfiguration('router_y')
 
-    # Include Recorder node
-    Recorder = Node(
-        package='leo_utils',
-        executable='recorder.py',
-        name='recorder', 
-        output='screen'
-    )
+    # # Include Recorder node
+    # Recorder = Node(
+    #     package='leo_utils',
+    #     executable='recorder.py',
+    #     name='recorder', 
+    #     output='screen'
+    # )
     
     # Include Gazebo
     gazebo_launch = IncludeLaunchDescription(
@@ -71,15 +71,15 @@ def generate_launch_description():
         }.items()
     )
 
-    # Include termination
-    termination_node = Node(
-        package='leo_exploration', 
-        executable='termination_node', 
-        name='termination_node', 
-        parameters=[{
-            'router_x': router_x, 
-            'router_y': router_y
-        }])
+    # # Include termination
+    # termination_node = Node(
+    #     package='leo_exploration', 
+    #     executable='termination_node', 
+    #     name='termination_node', 
+    #     parameters=[{
+    #         'router_x': router_x, 
+    #         'router_y': router_y
+    #     }])
     
     # Pointcloud to laserscan converter (conditional)
     converter_node = Node(
@@ -104,11 +104,11 @@ def generate_launch_description():
         robot_y_arg,
         router_x_arg,
         router_y_arg,
-        Recorder,
+        #Recorder,
         gazebo_launch,
         slam_launch,
         nav2_launch,
         converter_node,
-        termination_node,
+        #termination_node,
         exploration_sim_launch,
     ])
