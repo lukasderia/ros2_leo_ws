@@ -23,7 +23,7 @@ class Recorder(Node):
         self.declare_parameter('router_x', 18.0)
         self.declare_parameter('router_y', 18.0)
         self.declare_parameter('mode', 'rss')
-        self.declare_parameter('max_duration', 20.0)  # 5 minutes
+        self.declare_parameter('max_duration', 480.0)  # 5 minutes
 
         self.robot_x_param_ = self.get_parameter('robot_x').get_parameter_value().double_value
         self.robot_y_param_ = self.get_parameter('robot_y').get_parameter_value().double_value
@@ -120,21 +120,24 @@ class Recorder(Node):
         return 0 <= cell_value < 40
 
     def start_recording(self):
-        date_str = datetime.now().strftime("%d%b_%Hh%M")
-        bag_name = f"Recording_{self.mode_}_rx{self.router_x_}_ry{self.router_y_}_bx{self.robot_x_param_}_by{self.robot_y_param_}_{date_str}"
-        bag_path = os.path.expanduser(f"~/ros2_leo_ws/bags/{bag_name}")
+            date_str = datetime.now().strftime("%d%b_%Hh%M")
+            bag_name = f"Recording_{self.mode_}_rx{self.router_x_}_ry{self.router_y_}_bx{self.robot_x_param_}_by{self.robot_y_param_}_{date_str}"
+            
+            mode_dir = os.path.expanduser(f"~/ros2_leo_ws/bags/session_{self.mode_}")
+            os.makedirs(mode_dir, exist_ok=True)
+            bag_path = os.path.join(mode_dir, bag_name)
 
-        topics = [
-            "/weak_signal_state", "/rss", "/rss_gradient",
-            "/firmware/battery_averaged", "/auto_mode", "/cmd_vel",
-            "/frontier_centroid_markers", "/frontier_centroids", "/frontier_markers",
-            "/global_costmap/costmap", "/goal_pose", "/local_costmap/costmap",
-            "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static"
-        ]
+            topics = [
+                "/weak_signal_state", "/rss", "/rss_gradient",
+                "/firmware/battery_averaged", "/auto_mode", "/cmd_vel",
+                "/frontier_centroid_markers", "/frontier_centroids", "/frontier_markers",
+                "/global_costmap/costmap", "/goal_pose", "/local_costmap/costmap",
+                "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static"
+            ]
 
-        cmd = ["ros2", "bag", "record", "-o", bag_path] + topics
-        self.bag_process = subprocess.Popen(cmd)
-        self.get_logger().info(f"Started recording: {bag_name}")
+            cmd = ["ros2", "bag", "record", "-o", bag_path] + topics
+            self.bag_process = subprocess.Popen(cmd)
+            self.get_logger().info(f"Started recording: {bag_name}")
 
     def shutdown(self):
         self.done_ = True
