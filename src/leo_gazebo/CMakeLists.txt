@@ -20,7 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(xacro REQUIRED)
 
-install(DIRECTORY description launch config worlds
+install(DIRECTORY description launch worlds
   DESTINATION share/${PROJECT_NAME})
 
 ament_package()
