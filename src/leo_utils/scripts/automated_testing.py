@@ -3,7 +3,7 @@ import time
 import os
 import signal
 
-MODE = 'rss_2'
+MODE = 'rss_3'
 
 COMBINATIONS = [
     # robot (-19, -19)
