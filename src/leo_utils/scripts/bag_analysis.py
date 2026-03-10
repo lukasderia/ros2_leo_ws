@@ -145,7 +145,7 @@ def extract_robot_trajectory(tf_messages):
 
     if not map_odom or not odom_base:
         print("  WARNING: Could not find map->odom or odom->base_link transforms")
-        return np.array([]).reshape(0, 4)
+        return np.array([]).reshape(0, 6)
 
     map_odom.sort(key=lambda x: x[0])
     odom_base.sort(key=lambda x: x[0])
@@ -163,7 +163,9 @@ def extract_robot_trajectory(tf_messages):
         )
         x, y, z, w = q_out
         yaw = np.arctan2(2*(w*z + x*y), 1 - 2*(y*y + z*z))
-        trajectory.append((ts / 1e9, t_out[0], t_out[1], yaw))
+        roll  = np.arctan2(2*(w*x + y*z), 1 - 2*(x*x + y*y))
+        pitch = np.arcsin(np.clip(2*(w*y - z*x), -1, 1))
+        trajectory.append((ts / 1e9, t_out[0], t_out[1], yaw, np.degrees(roll), np.degrees(pitch)))
 
     trajectory.sort(key=lambda x: x[0])
     # Downsample to every 5th point for plotting
@@ -521,15 +523,19 @@ def plot_all(bag_path, router_x, router_y):
     ax_dist.set_xlabel('Time (s)'); ax_dist.set_ylabel('Distance (m)')
     ax_dist.legend(fontsize=8); ax_dist.grid(True, alpha=0.3)
 
-    # Rows 4-5 right — Gradient magnitude
-    ax_mag = fig.add_subplot(gs[4:6, 1])
-    ax_mag.set_title('RSS Gradient Magnitude Over Time')
-    if gradients:
-        ga = np.array(gradients)
-        ax_mag.plot(ga[:,0], ga[:,3], 'g-', linewidth=1.5)
-        ax_mag.fill_between(ga[:,0], ga[:,3], alpha=0.2, color='g')
-    ax_mag.set_xlabel('Time (s)'); ax_mag.set_ylabel('Magnitude')
-    ax_mag.grid(True, alpha=0.3)
+    # Rows 4-5 right — 
+    ax_orient = fig.add_subplot(gs[4:6, 1])
+    ax_orient.set_title('Robot Orientation Over Time\n(flat = normal, >45° = tipping, >90° = flipped)')
+    if len(trajectory) > 0:
+        ax_orient.plot(trajectory[:, 0], trajectory[:, 4], 'b-', linewidth=1.5, label='Roll')
+        ax_orient.plot(trajectory[:, 0], trajectory[:, 5], 'r-', linewidth=1.5, label='Pitch')
+        ax_orient.axhline(y=45,  color='orange', linestyle='--', alpha=0.6, label='±45° threshold')
+        ax_orient.axhline(y=-45, color='orange', linestyle='--', alpha=0.6)
+        ax_orient.axhline(y=90,  color='red',    linestyle='--', alpha=0.6, label='±90° (flipped)')
+        ax_orient.axhline(y=-90, color='red',    linestyle='--', alpha=0.6)
+        ax_orient.set_ylim(-185, 185)
+    ax_orient.set_xlabel('Time (s)'); ax_orient.set_ylabel('Angle (deg)')
+    ax_orient.legend(fontsize=8); ax_orient.grid(True, alpha=0.3)
 
     # Rows 6-7 right — Gradient direction vs true bearing
     ax_bear = fig.add_subplot(gs[6:8, 1])
