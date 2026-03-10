@@ -3,7 +3,7 @@ import time
 import os
 import signal
 
-MODE = 'rss_3'
+MODE = 'rss_4'
 
 COMBINATIONS = [
     # robot (-19, -19)
@@ -63,14 +63,15 @@ def run_combination(robot_x, robot_y, router_x, router_y, mode):
         print(f"--- Run complete: robot=({robot_x},{robot_y}) router=({router_x},{router_y}) ---")
 
 def main():
-    total = len(COMBINATIONS)
-    for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
-        print(f"\nRun {i+1}/{total}")
-        run_combination(robot_x, robot_y, router_x, router_y, MODE)
-        
-        if i < total - 1:
-            print(f"Cooldown {COOLDOWN}s before next run...")
-            time.sleep(COOLDOWN)
+    for repeat in range(3):
+        total = len(COMBINATIONS)
+        for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
+            print(f"\nRepeat {repeat+1}/3 - Run {i+1}/{total}")
+            run_combination(robot_x, robot_y, router_x, router_y, MODE)
+            
+            if i < total - 1:
+                print(f"Cooldown {COOLDOWN}s before next run...")
+                time.sleep(COOLDOWN)
     
     print("\nAll runs complete!")
 
