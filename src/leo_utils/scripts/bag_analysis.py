@@ -13,6 +13,7 @@ Requirements:
 
 import sys
 import os
+import re
 import glob
 import sqlite3
 import struct
@@ -44,6 +45,13 @@ def find_db3(bag_path):
         print(f"ERROR: No .db3 file found in {bag_path}")
         sys.exit(1)
     return matches[0]
+
+def parse_router_from_name(bag_path):
+    name = os.path.basename(bag_path.rstrip('/'))
+    match = re.search(r'_rx([-\d.]+)_ry([-\d.]+)_bx', name)
+    if match:
+        return float(match.group(1)), float(match.group(2))
+    return None, None
 
 
 def read_topics(bag_path, topic_names):
@@ -560,11 +568,20 @@ if __name__ == '__main__':
         sys.exit(1)
 
     bag_path = sys.argv[1]
-    router_x = float(sys.argv[2]) if len(sys.argv) > 2 else -9.0
-    router_y = float(sys.argv[3]) if len(sys.argv) > 3 else 9.0
 
     if not os.path.exists(bag_path):
         print(f"ERROR: Path not found: {bag_path}")
         sys.exit(1)
+
+    router_x, router_y = parse_router_from_name(bag_path)
+
+    if router_x is None:
+        router_x = float(sys.argv[2]) if len(sys.argv) > 2 else -9.0
+        router_y = float(sys.argv[3]) if len(sys.argv) > 3 else 9.0
+    else:
+        print(f"Parsed router position from name: ({router_x}, {router_y})")
+        if len(sys.argv) > 2:
+            router_x = float(sys.argv[2])
+            router_y = float(sys.argv[3])
 
     plot_all(bag_path, router_x, router_y)
