@@ -24,7 +24,7 @@ class Recorder(Node):
         self.declare_parameter('router_x', 18.0)
         self.declare_parameter('router_y', 18.0)
         self.declare_parameter('mode', 'rss')
-        self.declare_parameter('max_duration', 480.0)
+        self.declare_parameter('max_duration', 600.0)
 
         self.robot_x_param_ = self.get_parameter('robot_x').get_parameter_value().double_value
         self.robot_y_param_ = self.get_parameter('robot_y').get_parameter_value().double_value
@@ -92,6 +92,27 @@ class Recorder(Node):
             transform = self.tf_buffer_.lookup_transform('map', 'base_link', rclpy.time.Time())
             robot_x = transform.transform.translation.x
             robot_y = transform.transform.translation.y
+
+            # Extract roll and pitch from quaternion
+            q = transform.transform.rotation
+            # Roll
+            sinr_cosp = 2.0 * (q.w * q.x + q.y * q.z)
+            cosr_cosp = 1.0 - 2.0 * (q.x * q.x + q.y * q.y)
+            roll = math.atan2(sinr_cosp, cosr_cosp)
+
+            # Pitch
+            sinp = 2.0 * (q.w * q.y - q.z * q.x)
+            pitch = math.asin(max(-1.0, min(1.0, sinp)))
+
+            roll_deg = math.degrees(abs(roll))
+            pitch_deg = math.degrees(abs(pitch))
+
+            if roll_deg > 25.0 or pitch_deg > 25.0:
+                self.get_logger().info(f"Flip detected! Roll: {roll_deg:.1f} Pitch: {pitch_deg:.1f}")
+                self.termination_reason_ = 'flip'
+                self.shutdown()
+                return
+
         except Exception as e:
             return
 
