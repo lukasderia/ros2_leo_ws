@@ -9,15 +9,18 @@ def generate_launch_description():
     odom_topic_arg = DeclareLaunchArgument('odom_topic', default_value='/odom', description='Odometry topic name')
     router_x_arg = DeclareLaunchArgument('router_x', default_value='18.0', description='Router x position')
     router_y_arg = DeclareLaunchArgument('router_y', default_value='18.0', description='Router y position')
+    stddev_arg = DeclareLaunchArgument('stddev', default_value='1.0', description='Standard deviation on wifi signal')
     
     odom_topic = LaunchConfiguration('odom_topic')
     router_x = ParameterValue(LaunchConfiguration('router_x'), value_type=float)
     router_y = ParameterValue(LaunchConfiguration('router_y'), value_type=float)
+    stddev = ParameterValue(LaunchConfiguration('stddev'), value_type=float)
     
     return LaunchDescription([
         odom_topic_arg,
         router_x_arg,
         router_y_arg,
+        stddev_arg,
         Node(
             package='leo_utils',
             executable='map_filter.py',
@@ -44,7 +47,8 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'router_x': router_x,
-                'router_y': router_y
+                'router_y': router_y,
+                'stddev': stddev
             }]
         )
     ])

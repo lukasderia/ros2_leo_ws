@@ -22,12 +22,15 @@ struct RSSMeas {
 
 class RSSNodeSim : public rclcpp::Node{
     public:
-        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 4.0){
+        RSSNodeSim() : Node("RSSNodeSim"), generator_(std::chrono::system_clock::now().time_since_epoch().count()), distribution_(0.0, 1.0){
 
             this->declare_parameter("router_x", -9.0);
             this->declare_parameter("router_y", 9.0);
+            this->declare_parameter("stddev", 1.0);
             router_x_ = this->get_parameter("router_x").as_double();
             router_y_ = this->get_parameter("router_y").as_double();
+            double stddev = this->get_parameter("stddev").as_double();
+            distribution_ = std::normal_distribution<double>(0.0, stddev);
             tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
             tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 

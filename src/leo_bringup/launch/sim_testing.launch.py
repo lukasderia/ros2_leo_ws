@@ -20,12 +20,14 @@ def generate_launch_description():
     robot_y_arg = DeclareLaunchArgument('robot_y', default_value='0.0', description='Robot spawn y position')
     router_x_arg = DeclareLaunchArgument('router_x', default_value='18.0', description='Router x position')
     router_y_arg = DeclareLaunchArgument('router_y', default_value='18.0', description='Router y position')
+    stddev_arg = DeclareLaunchArgument('stddev', default_value='1.0', description='Standard deviation on wifi signal')
 
     use_converter = LaunchConfiguration('use_pointcloud_converter')
     robot_x = LaunchConfiguration('robot_x')
     robot_y = LaunchConfiguration('robot_y')
     router_x = LaunchConfiguration('router_x')
     router_y = LaunchConfiguration('router_y')
+    stddev = LaunchConfiguration('stddev')
 
     # # Include Recorder node
     # Recorder = Node(
@@ -67,7 +69,8 @@ def generate_launch_description():
             get_package_share_directory('leo_exploration'), "launch", "exploration_sim.launch.py")]),
         launch_arguments={
             'router_x': router_x,
-            'router_y': router_y
+            'router_y': router_y,
+            'stddev': stddev,
         }.items()
     )
 
@@ -104,6 +107,7 @@ def generate_launch_description():
         robot_y_arg,
         router_x_arg,
         router_y_arg,
+        stddev_arg,
         #Recorder,
         gazebo_launch,
         slam_launch,

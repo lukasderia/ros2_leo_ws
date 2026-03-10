@@ -3,7 +3,7 @@ import time
 import os
 import signal
 
-MODE = 'rss_4'
+MODE = ['rss_1', 'rss_2', 'rss_3', 'rss_4']
 
 COMBINATIONS = [
     # robot (-19, -19)
@@ -44,10 +44,13 @@ COOLDOWN = 10  # seconds between runs
 def run_combination(robot_x, robot_y, router_x, router_y, mode):
     print(f"\n--- Starting run: robot=({robot_x},{robot_y}) router=({router_x},{router_y}) mode={mode} ---")
     
+    stddev = mode.split('_')[1]
+    
     process = subprocess.Popen(
         ['ros2', 'launch', 'leo_bringup', 'sim_testing.launch.py',
          f'robot_x:={robot_x}', f'robot_y:={robot_y}',
-         f'router_x:={router_x}', f'router_y:={router_y}'],
+         f'router_x:={router_x}', f'router_y:={router_y}',
+         f'stddev:={stddev}'],
         preexec_fn=os.setsid
     )
 
@@ -63,17 +66,22 @@ def run_combination(robot_x, robot_y, router_x, router_y, mode):
         print(f"--- Run complete: robot=({robot_x},{robot_y}) router=({router_x},{router_y}) ---")
 
 def main():
-    for repeat in range(3):
-        total = len(COMBINATIONS)
-        for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
-            print(f"\nRepeat {repeat+1}/3 - Run {i+1}/{total}")
-            run_combination(robot_x, robot_y, router_x, router_y, MODE)
-            
-            if i < total - 1:
-                print(f"Cooldown {COOLDOWN}s before next run...")
-                time.sleep(COOLDOWN)
+    for run in MODE:
+        stddev = run.split('_')[1]
+        for repeat in range(3):
+            total = len(COMBINATIONS)
+            for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
+                print(f"\n[Mode: {run} | StdDev: {stddev} | Repeat: {repeat+1}/3 | Combination: {i+1}/{total}]")
+                print(f"  Robot: ({robot_x}, {robot_y}) | Router: ({router_x}, {router_y})")
+                run_combination(robot_x, robot_y, router_x, router_y, run)
+                
+                if i < total - 1:
+                    print(f"  Cooldown {COOLDOWN}s before next run...")
+                    time.sleep(COOLDOWN)
+        
+        print(f"\n--- All runs complete for mode: {run} (stddev={stddev}) ---")
     
-    print("\nAll runs complete!")
+    print("\n=== All modes complete! ===")
 
 if __name__ == '__main__':
     main()
