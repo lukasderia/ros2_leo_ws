@@ -21,6 +21,8 @@ def generate_launch_description():
     router_x_arg = DeclareLaunchArgument('router_x', default_value='18.0', description='Router x position')
     router_y_arg = DeclareLaunchArgument('router_y', default_value='18.0', description='Router y position')
     stddev_arg = DeclareLaunchArgument('stddev', default_value='1.0', description='Standard deviation on wifi signal')
+    mode_arg = DeclareLaunchArgument('mode', default_value='2', 
+    description='Exploration mode: 0=yamauchi, 1=gao, 2=rss')
 
     use_converter = LaunchConfiguration('use_pointcloud_converter')
     robot_x = LaunchConfiguration('robot_x')
@@ -28,14 +30,7 @@ def generate_launch_description():
     router_x = LaunchConfiguration('router_x')
     router_y = LaunchConfiguration('router_y')
     stddev = LaunchConfiguration('stddev')
-
-    # # Include Recorder node
-    # Recorder = Node(
-    #     package='leo_utils',
-    #     executable='recorder.py',
-    #     name='recorder', 
-    #     output='screen'
-    # )
+    mode = LaunchConfiguration('mode')
     
     # Include Gazebo
     gazebo_launch = IncludeLaunchDescription(
@@ -71,18 +66,9 @@ def generate_launch_description():
             'router_x': router_x,
             'router_y': router_y,
             'stddev': stddev,
+            'mode': mode
         }.items()
     )
-
-    # # Include termination
-    # termination_node = Node(
-    #     package='leo_exploration', 
-    #     executable='termination_node', 
-    #     name='termination_node', 
-    #     parameters=[{
-    #         'router_x': router_x, 
-    #         'router_y': router_y
-    #     }])
     
     # Pointcloud to laserscan converter (conditional)
     converter_node = Node(
@@ -108,6 +94,7 @@ def generate_launch_description():
         router_x_arg,
         router_y_arg,
         stddev_arg,
+        mode_arg,
         #Recorder,
         gazebo_launch,
         slam_launch,

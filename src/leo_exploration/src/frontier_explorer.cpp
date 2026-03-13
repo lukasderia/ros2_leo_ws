@@ -37,6 +37,9 @@ class FrontierExplorer : public rclcpp::Node{
         // Declare and get parameter
         this->declare_parameter<std::string>("odom_topic", "/odom");
         std::string odom_topic = this->get_parameter("odom_topic").as_string();
+        this->declare_parameter<int>("mode", 2);
+        mode_ = this->get_parameter("mode").as_int();
+
 
         tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
         tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
@@ -78,6 +81,7 @@ class FrontierExplorer : public rclcpp::Node{
         bool odom_recieved_ = false;
         bool frontier_recieved_ = false;
         bool signal_state = false; 
+        int mode_;
 
         std::vector<Frontier> frontier_list_;
 
@@ -178,7 +182,12 @@ class FrontierExplorer : public rclcpp::Node{
                 frontier_list_.push_back(f);
             }
             
-            RCLCPP_INFO(this->get_logger(), "Using %s weights", signal_state ? "search" : "exploit");
+            if (mode_ == 2) {
+                RCLCPP_INFO(this->get_logger(), "Mode: %d | Signal: %s", mode_, signal_state ? "search" : "exploit");
+            } else {
+                RCLCPP_INFO(this->get_logger(), "Mode: %d", mode_);
+            }
+
             for (auto& f : frontier_list_) {
                 f.score = calculate_score(f, max_dist_, min_dist_, max_size_, min_size_);
             }
@@ -298,19 +307,36 @@ class FrontierExplorer : public rclcpp::Node{
         }
 
         double calculate_score(const Frontier& f, double max_dist, double min_dist, double max_size, double min_size){
-            
-            // Weights if signal is good
-            double w_distance = 2.0;
-            double w_heading = 5.0;
-            double w_size = 1.0;
-            double w_gradient = 8.0;
+            // Weights
+            double w_distance;
+            double w_heading;
+            double w_size;
+            double w_gradient;
 
-            if(signal_state){
-                // Weights if signal is bad
-                w_distance = 2.0;
-                w_heading = 6.0;
-                w_size = 10.0;
+            if (mode_ == 0){
+                w_distance = 1.0;
+                w_heading = 0.0;
+                w_size = 0.0;
                 w_gradient = 0.0;
+            } else if (mode_ == 1){
+                w_distance = 1.0;
+                w_heading = 1.0;
+                w_size = 0.0;
+                w_gradient = 0.0;
+            } else{
+                // Weights if signal is good
+                w_distance = 2.0;
+                w_heading = 5.0;
+                w_size = 1.0;
+                w_gradient = 8.0;
+
+                if(signal_state){
+                    // Weights if signal is bad
+                    w_distance = 2.0;
+                    w_heading = 6.0;
+                    w_size = 10.0;
+                    w_gradient = 0.0;
+                }
             }
 
             // Calculate normalized metrics

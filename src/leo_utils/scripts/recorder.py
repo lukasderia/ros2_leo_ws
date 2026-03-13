@@ -153,7 +153,9 @@ class Recorder(Node):
             "/firmware/battery_averaged", "/auto_mode", "/cmd_vel",
             "/frontier_centroid_markers", "/frontier_centroids", "/frontier_markers",
             "/global_costmap/costmap", "/goal_pose", "/local_costmap/costmap",
-            "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static"
+            "/map", "/map_filtered", "/odometry_merged", "/plan", "/tf", "/tf_static",
+            "/robot_description", "/odom", "/joint_states",
+            "/received_global_plan", "/gradient_arrow"
         ]
 
         cmd = ["ros2", "bag", "record", "-o", self.bag_path_] + topics

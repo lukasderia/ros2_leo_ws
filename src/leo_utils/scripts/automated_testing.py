@@ -3,7 +3,7 @@ import time
 import os
 import signal
 
-MODE = ['rss_1', 'rss_2', 'rss_3', 'rss_4']
+MODE = ['yamauchi', 'gao', 'rss_1', 'rss_2', 'rss_3', 'rss_4']
 
 COMBINATIONS = [
     # robot (-19, -19)
@@ -39,18 +39,34 @@ COMBINATIONS = [
     ( 19.0,  19.0,   8.0,   0.0),
 ]
 
-COOLDOWN = 10  # seconds between runs
+COOLDOWN = 10  # seconds between runs 
+
+def get_mode_num(mode):
+    if mode == 'yamauchi':
+        return 0
+    elif mode == 'gao':
+        return 1
+    else:
+        return 2
+
+def get_stddev(mode):
+    if 'rss' in mode:
+        return float(mode.split('_')[1])
+    else:
+        return 1.0 
 
 def run_combination(robot_x, robot_y, router_x, router_y, mode):
     print(f"\n--- Starting run: robot=({robot_x},{robot_y}) router=({router_x},{router_y}) mode={mode} ---")
     
-    stddev = mode.split('_')[1]
+    stddev = get_stddev(mode)
+    mode_num = get_mode_num(mode)
     
     process = subprocess.Popen(
         ['ros2', 'launch', 'leo_bringup', 'sim_testing.launch.py',
          f'robot_x:={robot_x}', f'robot_y:={robot_y}',
          f'router_x:={router_x}', f'router_y:={router_y}',
-         f'stddev:={stddev}'],
+         f'stddev:={stddev}',
+         f'mode:={mode_num}'],
         preexec_fn=os.setsid
     )
 
@@ -67,7 +83,7 @@ def run_combination(robot_x, robot_y, router_x, router_y, mode):
 
 def main():
     for run in MODE:
-        stddev = run.split('_')[1]
+        stddev = get_stddev(run)
         for repeat in range(3):
             total = len(COMBINATIONS)
             for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
