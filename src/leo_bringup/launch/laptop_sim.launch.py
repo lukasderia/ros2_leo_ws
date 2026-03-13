@@ -17,14 +17,6 @@ def generate_launch_description():
         description='Convert pointcloud to laserscan'
     )
     use_converter = LaunchConfiguration('use_pointcloud_converter')
-
-    # include Recorder node
-    Recorder = Node(
-        package='leo_utils',
-        executable='recorder.py',
-        name='recorder', 
-        output='screen'
-    )
     
     # Include Gazebo
     gazebo_launch = IncludeLaunchDescription(
@@ -72,7 +64,6 @@ def generate_launch_description():
     )
     
     return LaunchDescription([
-        Recorder,
         use_converter_arg,
         gazebo_launch,
         slam_launch,

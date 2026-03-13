@@ -10,7 +10,7 @@ def generate_launch_description():
     router_x_arg = DeclareLaunchArgument('router_x', default_value='18.0', description='Router x position')
     router_y_arg = DeclareLaunchArgument('router_y', default_value='18.0', description='Router y position')
     stddev_arg = DeclareLaunchArgument('stddev', default_value='1.0', description='Standard deviation on wifi signal')
-    mode_arg = DeclareLaunchArgument('mode', default_value='2', 
+    mode_arg = DeclareLaunchArgument('mode', default_value='1', 
     description='Exploration mode: 0=yamauchi, 1=gao, 2=rss')
 
     odom_topic = LaunchConfiguration('odom_topic')

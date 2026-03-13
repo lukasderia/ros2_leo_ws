@@ -37,7 +37,7 @@ class FrontierExplorer : public rclcpp::Node{
         // Declare and get parameter
         this->declare_parameter<std::string>("odom_topic", "/odom");
         std::string odom_topic = this->get_parameter("odom_topic").as_string();
-        this->declare_parameter<int>("mode", 2);
+        this->declare_parameter<int>("mode", 1);
         mode_ = this->get_parameter("mode").as_int();
 
 
@@ -178,10 +178,13 @@ class FrontierExplorer : public rclcpp::Node{
                 // Calculate heading 
                 double bearing = atan2(f.dy, f.dx);
                 f.heading = bearing - robot_yaw_;
+                // Normalize to [-π, π]
+                while (f.heading > M_PI) f.heading -= 2*M_PI;
+                while (f.heading < -M_PI) f.heading += 2*M_PI;
 
                 frontier_list_.push_back(f);
             }
-            
+
             if (mode_ == 2) {
                 RCLCPP_INFO(this->get_logger(), "Mode: %d | Signal: %s", mode_, signal_state ? "search" : "exploit");
             } else {
@@ -320,8 +323,8 @@ class FrontierExplorer : public rclcpp::Node{
                 w_gradient = 0.0;
             } else if (mode_ == 1){
                 w_distance = 1.0;
-                w_heading = 1.0;
-                w_size = 0.0;
+                w_heading = 8.0;
+                w_size = 2.0;
                 w_gradient = 0.0;
             } else{
                 // Weights if signal is good
