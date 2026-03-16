@@ -21,6 +21,7 @@ install(PROGRAMS
   scripts/scan_filter.py
   scripts/map_filter.py
   scripts/recorder.py
+  scripts/recorder_real.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

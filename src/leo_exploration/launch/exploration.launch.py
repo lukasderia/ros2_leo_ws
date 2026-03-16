@@ -2,8 +2,13 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
+from launch_ros.parameter_descriptions import ParameterValue
+from launch.substitutions import TextSubstitution
 
 def generate_launch_description():
+    mode_arg = DeclareLaunchArgument('mode', default_value='2', description='Exploration mode: 0=yamauchi, 1=gao, 2=rss')
+    mode = ParameterValue(LaunchConfiguration('mode'), value_type=int)
+
     # Declare the argument with default value
     odom_topic_arg = DeclareLaunchArgument(
         'odom_topic',
@@ -16,6 +21,7 @@ def generate_launch_description():
     
     return LaunchDescription([
         odom_topic_arg,
+        mode_arg,
         Node(
             package='leo_utils',
             executable='map_filter.py',
@@ -33,7 +39,10 @@ def generate_launch_description():
             executable='frontier_explorer',
             name='frontier_explorer',
             output='screen',
-            parameters=[{'odom_topic': odom_topic}]  # Pass to node
+            parameters=[{
+                'odom_topic': odom_topic,
+                'mode': mode
+            }]
         ),
         Node(
             package='leo_exploration',

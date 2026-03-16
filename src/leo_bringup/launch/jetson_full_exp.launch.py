@@ -7,10 +7,14 @@ from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch.actions import TimerAction
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 # Full launcher with explroation
 def generate_launch_description():
+
+    mode_arg = DeclareLaunchArgument('mode', default_value='2', description='Exploration mode: 0=yamauchi, 1=gao, 2=rss')
+    mode = ParameterValue(LaunchConfiguration('mode'), value_type=int)
 
     # Include Teleop
     teleop_launch = IncludeLaunchDescription(
@@ -53,12 +57,12 @@ def generate_launch_description():
         output='screen'
     )
 
-    # include Recorder node
     Recorder = Node(
         package='leo_utils',
-        executable='recorder.py',
-        name='recorder', 
-        output='screen'
+        executable='recorder_real.py',
+        name='recorder',
+        output='screen',
+        parameters=[{'mode': mode}]
     )
 
     # Include the custom launcher
@@ -67,14 +71,17 @@ def generate_launch_description():
             get_package_share_directory('leo_velodyne'), "launch", "velodyne.launch.py")])
     )
 
-    # Include the exploration launcher WITH the argument
     exploration_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('leo_exploration'), "launch", "exploration.launch.py")]),
-        launch_arguments={'odom_topic': '/odometry_merged'}.items()  # Pass the value here
+        launch_arguments={
+            'odom_topic': '/odometry_merged',
+            'mode': LaunchConfiguration('mode')
+        }.items()
     )
 
     return LaunchDescription([
+        mode_arg,
         teleop_launch,
         description_launch,
         odom2TF_node,
