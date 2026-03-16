@@ -112,7 +112,7 @@ class FrontierExplorer : public rclcpp::Node{
         std::vector<std::pair<double,double>> blacklisted_frontiers_;
 
         void safety_callback() {
-            if (!auto_mode_enabled_ || !nav_active_) {
+            if (auto_mode_enabled_ && !nav_active_) {
                 geometry_msgs::msg::Twist zero;
                 cmd_vel_pub_->publish(zero);
                 RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000, "Safety: publishing zero velocity");
