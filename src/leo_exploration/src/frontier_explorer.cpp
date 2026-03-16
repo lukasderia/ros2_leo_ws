@@ -3,6 +3,7 @@
 #include <vector>
 #include <thread>
 #include <Eigen/Dense>
+#include "geometry_msgs/msg/twist.hpp"
 #include <algorithm>  // For std::min_element
 #include "nav_msgs/msg/odometry.hpp"  // For Odometry message
 #include "std_msgs/msg/bool.hpp"  // For Bool message
@@ -59,6 +60,10 @@ class FrontierExplorer : public rclcpp::Node{
         // Timer for periodic scanning 
         exploration_timer_ = this->create_wall_timer(std::chrono::milliseconds(2000),std::bind(&FrontierExplorer::exploration_callback, this)); 
 
+        cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+
+        safety_timer_ = this->create_wall_timer(std::chrono::milliseconds(200), std::bind(&FrontierExplorer::safety_callback, this));
+
     }
 
     private:
@@ -69,7 +74,9 @@ class FrontierExplorer : public rclcpp::Node{
         rclcpp::Subscription<geometry_msgs::msg::Vector3Stamped>::SharedPtr gradient_sub_;
         rclcpp::TimerBase::SharedPtr exploration_timer_;  // Add this line
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr signal_state_sub_;
-
+        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
+        rclcpp::TimerBase::SharedPtr safety_timer_;
+        bool nav_active_ = false;
 
         std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
         std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
@@ -99,6 +106,19 @@ class FrontierExplorer : public rclcpp::Node{
         double max_dist_ = 0.0;
         double min_dist_ = 0.0;
 
+        rclcpp::Time goal_sent_time_{0, 0, RCL_ROS_TIME};
+        double last_progress_x_ = 0.0;
+        double last_progress_y_ = 0.0;
+        std::vector<std::pair<double,double>> blacklisted_frontiers_;
+
+        void safety_callback() {
+            if (!auto_mode_enabled_ || !nav_active_) {
+                geometry_msgs::msg::Twist zero;
+                cmd_vel_pub_->publish(zero);
+                RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 2000, "Safety: publishing zero velocity");
+            }
+        }
+
         void detector_callback(const leo_exploration::msg::FrontierClusters::SharedPtr msg){
             latest_centroids_ = msg;
             frontier_recieved_ = true;
@@ -107,7 +127,6 @@ class FrontierExplorer : public rclcpp::Node{
         void exploration_callback(){
             frontier_list_.clear();
 
-            // Check if we have odometry data
             if (!odom_recieved_) {
                 RCLCPP_WARN(this->get_logger(), "No odometry data available");
                 return;
@@ -118,72 +137,88 @@ class FrontierExplorer : public rclcpp::Node{
                 return;
             }
 
-            // Check if autonomous mode is enabled
             if (!auto_mode_enabled_) {
-                return;  // Not in autonomous mode, skip processing
+                return;
             }
-            
+
             // transform odom msg from odom frame to map frame
             try {
-                // Get transform from odom to map
                 geometry_msgs::msg::TransformStamped transform_stamped = tf_buffer_->lookupTransform("map", "odom", tf2::TimePointZero);
-
-                // Transform robot pose from odom to map
                 geometry_msgs::msg::PoseStamped pose_odom, pose_map;
                 pose_odom.header = latest_odom_->header;
                 pose_odom.pose = latest_odom_->pose.pose;
-
                 tf2::doTransform(pose_odom, pose_map, transform_stamped);
-
-                // extract robot pose 
                 robot_x_ = pose_map.pose.position.x;
                 robot_y_ = pose_map.pose.position.y;
                 auto q = pose_map.pose.orientation;
                 robot_yaw_ = atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z);
-
             } catch (tf2::TransformException &ex) {
                 RCLCPP_WARN(this->get_logger(), "Could not transform: %s", ex.what());
                 return;
             }
 
-            // Use gradient from RSS node (if available)
+            // ── BLACKLIST CHECK ──────────────────────────────────────────────
+            if (has_published_goal_) {
+                double progress = std::sqrt(
+                    std::pow(robot_x_ - last_progress_x_, 2) +
+                    std::pow(robot_y_ - last_progress_y_, 2));
+                double elapsed = (this->now() - goal_sent_time_).seconds();
+
+                if (elapsed > 10.0 && progress < 0.5) {
+                    RCLCPP_WARN(this->get_logger(), 
+                        "Blacklisting frontier (%.2f, %.2f) - no progress after %.1fs",
+                        last_goal_x_, last_goal_y_, elapsed);
+                    blacklisted_frontiers_.push_back({last_goal_x_, last_goal_y_});
+                    if (blacklisted_frontiers_.size() > 3) {
+                        blacklisted_frontiers_.erase(blacklisted_frontiers_.begin());
+                    }
+                    has_published_goal_ = false;
+                    nav_active_ = false;
+                } else {
+                    last_progress_x_ = robot_x_;
+                    last_progress_y_ = robot_y_;
+                }
+            }
+
             if (gradient_received_) {
                 RCLCPP_INFO(this->get_logger(), "Using RSS Gradient: [%.3f, %.3f]", latest_grad_x_, latest_grad_y_);
             }
 
-            min_size_ = std::numeric_limits<double>::max();  // Start at huge value
-            max_size_ = std::numeric_limits<double>::lowest();  // Start at tiny value
+            min_size_ = std::numeric_limits<double>::max();
+            max_size_ = std::numeric_limits<double>::lowest();
             min_dist_ = std::numeric_limits<double>::max();
             max_dist_ = std::numeric_limits<double>::lowest();
 
-            // loop through and assign the data to the list and calculate the metrics as well as normalizing
             for (const auto& cluster : latest_centroids_->clusters){ 
                 Frontier f;
                 f.x = cluster.x;
                 f.y = cluster.y;
                 f.size = cluster.size;
-
                 min_size_ = std::min(min_size_, static_cast<double>(f.size));
                 max_size_ = std::max(max_size_, static_cast<double>(f.size));
-
-                // Calculate distance
                 f.dx = f.x - robot_x_;
                 f.dy = f.y - robot_y_;
-
                 f.distance = std::sqrt(f.dx*f.dx + f.dy*f.dy);
-                
                 min_dist_ = std::min(min_dist_, f.distance);
                 max_dist_ = std::max(max_dist_, f.distance);
-
-                // Calculate heading 
                 double bearing = atan2(f.dy, f.dx);
                 f.heading = bearing - robot_yaw_;
-                // Normalize to [-π, π]
                 while (f.heading > M_PI) f.heading -= 2*M_PI;
                 while (f.heading < -M_PI) f.heading += 2*M_PI;
-
                 frontier_list_.push_back(f);
             }
+
+            // ── BLACKLIST FILTER ─────────────────────────────────────────────
+            auto is_blacklisted = [&](const Frontier& f) {
+                for (const auto& [bx, by] : blacklisted_frontiers_) {
+                    double d = std::sqrt(std::pow(f.x-bx,2) + std::pow(f.y-by,2));
+                    if (d < 1.5) return true;
+                }
+                return false;
+            };
+            frontier_list_.erase(
+                std::remove_if(frontier_list_.begin(), frontier_list_.end(), is_blacklisted),
+                frontier_list_.end());
 
             if (mode_ == 2) {
                 RCLCPP_INFO(this->get_logger(), "Mode: %d | Signal: %s", mode_, signal_state ? "search" : "exploit");
@@ -195,33 +230,27 @@ class FrontierExplorer : public rclcpp::Node{
                 f.score = calculate_score(f, max_dist_, min_dist_, max_size_, min_size_);
             }
 
-            // After populating frontier_list_
             if (frontier_list_.empty()) {
                 RCLCPP_WARN(this->get_logger(), "No frontiers to explore");
                 return;
             }
 
-            // Find frontier with max score
             auto best = std::max_element(frontier_list_.begin(), frontier_list_.end(),
                 [](const Frontier& a, const Frontier& b) {
                     return a.score < b.score;
                 });
 
-            // Check if new goal is significantly different from last goal
+            // ── SIMILARITY CHECK ─────────────────────────────────────────────
             if (has_published_goal_) {
                 double dx = best->x - last_goal_x_;
                 double dy = best->y - last_goal_y_;
                 double distance_to_last_goal = std::sqrt(dx*dx + dy*dy);
-                
-                double threshold = 0.50;  // meters
-                
-                if (distance_to_last_goal < threshold) {
+                if (distance_to_last_goal < 1.50) {
                     RCLCPP_DEBUG(this->get_logger(), "New goal too close to last goal (%.2f m), skipping", distance_to_last_goal);
-                    return;
+                    return;  // nav_active_ stays true - Nav2 is still executing
                 }
             }
 
-            // Publish the best frontier
             publish_goal(*best);
         }
 
@@ -241,6 +270,7 @@ class FrontierExplorer : public rclcpp::Node{
             if (previous_mode && !auto_mode_enabled_) {
                 stop_robot();
                 has_published_goal_ = false;
+                nav_active_ = false;
             }
         }
 
@@ -299,11 +329,16 @@ class FrontierExplorer : public rclcpp::Node{
             goal.pose.orientation.w = 1.0;  // Neutral orientation
             
             explorer_pub_->publish(goal);
+
+            goal_sent_time_ = this->now();
+            last_progress_x_ = robot_x_;
+            last_progress_y_ = robot_y_;
             
             // Store this goal for future comparison
             last_goal_x_ = frontier.x;
             last_goal_y_ = frontier.y;
             has_published_goal_ = true;
+            nav_active_ = true;
             
             RCLCPP_INFO(this->get_logger(), "Published goal: (%.2f, %.2f) with score %.2f", 
                         frontier.x, frontier.y, frontier.score);
