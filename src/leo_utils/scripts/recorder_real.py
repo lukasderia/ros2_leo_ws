@@ -32,7 +32,7 @@ class RealRecorder(Node):
             self.stop_recording()
 
     def start_recording(self):
-        timestamp = datetime.now().strftime('%d%b_%Hh%M').lower()
+        timestamp = datetime.now().strftime('%d%b_%Hh%Mm%Ss').lower()
         session_dir = os.path.expanduser(f'~/ros2_leo_ws/bags/session_{self.mode_name_}')
         os.makedirs(session_dir, exist_ok=True)
 
