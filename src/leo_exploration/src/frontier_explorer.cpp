@@ -164,7 +164,7 @@ class FrontierExplorer : public rclcpp::Node{
                     std::pow(robot_y_ - last_progress_y_, 2));
                 double elapsed = (this->now() - goal_sent_time_).seconds();
 
-                if (elapsed > 10.0 && progress < 0.5) {
+                if (elapsed > 15.0 && progress < 0.5) {
                     RCLCPP_WARN(this->get_logger(), 
                         "Blacklisting frontier (%.2f, %.2f) - no progress after %.1fs",
                         last_goal_x_, last_goal_y_, elapsed);
