@@ -55,7 +55,7 @@ class RSSNode : public rclcpp::Node{
 
         std::vector<RSSMeas> rss_buffer_;  // Add this
         std::vector<double> rss_temp_buffer_;
-        int cutOff_ = 50;
+        int cutOff_ = 35;
         bool weak_signals_ = false;
 
         double current_x_ = 0.0;
