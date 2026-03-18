@@ -123,7 +123,7 @@ controller_server:
       use_cost_regulated_linear_velocity_scaling: true
       cost_scaling_dist: 0.4  # Distance at which to start slowing
       cost_scaling_gain: 1.0  # Lower = less aggressive slowing
-      inflation_cost_scaling_factor: 2.0  # Should match costmap
+      inflation_cost_scaling_factor: 5.0  # Should match costmap
       regulated_linear_scaling_min_radius: 0.5
       regulated_linear_scaling_min_speed: 0.15
       
