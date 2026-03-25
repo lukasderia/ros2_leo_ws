@@ -182,18 +182,9 @@ def extract_metrics(bag_path, mode, router_x, router_y, termination_reason):
     t0 = trajectory[0, 0]
     trajectory[:, 0] -= t0
 
-    # Robot start in original map coordinates (before shift)
+    # Robot start in absolute map coordinates
     robot_start_x = float(trajectory[0, 1])
     robot_start_y = float(trajectory[0, 2])
-
-    # Shift trajectory so robot starts at (0, 0)
-    trajectory[:, 1] -= robot_start_x
-    trajectory[:, 2] -= robot_start_y
-
-    # Shift router position by the same amount so it stays correct
-    # relative to the shifted trajectory
-    router_x -= robot_start_x
-    router_y -= robot_start_y
 
     # Duration
     duration = float(trajectory[-1, 0])
@@ -208,8 +199,8 @@ def extract_metrics(bag_path, mode, router_x, router_y, termination_reason):
     # Goals
     goals_published = len(extract_goals(data['/goal_pose']))
 
-    # Initial distance (router position is relative to robot start)
-    initial_distance = float(np.sqrt(router_x**2 + router_y**2))
+    # Initial distance from robot start to router (both in absolute map frame)
+    initial_distance = float(np.sqrt((robot_start_x - router_x)**2 + (robot_start_y - router_y)**2))
 
     # Distance to router time series
     dist_times, dist_arr = distance_to_router(trajectory, router_x, router_y)
