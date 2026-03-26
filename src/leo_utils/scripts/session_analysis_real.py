@@ -54,9 +54,8 @@ CSV_COLUMNS = [
     # Identity
     "bag_name",
     "mode",
-    "stddev",           # always 0 for real runs
-    "blacklist",        # always None for real runs
-    "combination_number",  # always -1 for real runs
+    "nav2_config",        
+    "combination_number",  
     "robot_start_x",
     "robot_start_y",
     "router_x",
@@ -161,7 +160,7 @@ def compute_gradient_error(grad_messages, trajectory, router_x, router_y):
 
 # ── Per-bag extraction ────────────────────────────────────────────────────────
 
-def extract_metrics(bag_path, mode, router_x, router_y, termination_reason):
+def extract_metrics(bag_path, mode, router_x, router_y, termination_reason, nav2_config, combination):
     bag_name = os.path.basename(bag_path.rstrip('/'))
     print(f"    {bag_name}")
 
@@ -224,9 +223,8 @@ def extract_metrics(bag_path, mode, router_x, router_y, termination_reason):
     return {
         "bag_name":                  bag_name,
         "mode":                      mode,
-        "stddev":                    0,
-        "blacklist":                 None,
-        "combination_number":        -1,
+        "nav2_config":               nav2_config,
+        "combination_number":        combination,
         "robot_start_x":             round(robot_start_x, 3),
         "robot_start_y":             round(robot_start_y, 3),
         "router_x":                  router_x,
@@ -316,11 +314,13 @@ def main():
                 continue
 
             mode               = info.get('mode', 'unknown')
+            nav2_config        = info.get('nav2', 'unknown')
+            combination        = info.get('combination', 'unknown')
             router_x           = float(info.get('router_x', 0.0))
             router_y           = float(info.get('router_y', 0.0))
             termination_reason = info.get('termination_reason', 'unknown')
 
-            row = extract_metrics(bag_path, mode, router_x, router_y, termination_reason)
+            row = extract_metrics(bag_path, mode, router_x, router_y, termination_reason, nav2_config, combination)
             if row is None:
                 failed += 1
                 continue
