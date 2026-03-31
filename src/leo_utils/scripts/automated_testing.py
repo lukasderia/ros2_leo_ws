@@ -11,7 +11,7 @@ COMBINATIONS = [
     (-19.0, -19.0,  -8.0, -18.0),
     (-19.0, -19.0, -19.0,  19.0),
     (-19.0, -19.0,  18.0,  18.0),
-    (-19.0, -19.0,   8.0,   0.0),
+    #(-19.0, -19.0,   8.0,   0.0),
     # robot (19, -19)
     ( 19.0, -19.0, -19.0, -19.0),
     ( 19.0, -19.0,  -8.0, -18.0),
@@ -24,7 +24,7 @@ COMBINATIONS = [
     (  0.0,   0.0,  -8.0, -18.0),
     (  0.0,   0.0, -19.0,  19.0),
     (  0.0,   0.0,  18.0,  18.0),
-    (  0.0,   0.0,   8.0,   0.0),
+    #(  0.0,   0.0,   8.0,   0.0),
     # robot (-19, 19)
     (-19.0,  19.0, -19.0, -19.0),
     (-19.0,  19.0,  19.0, -19.0),
@@ -84,7 +84,7 @@ def run_combination(robot_x, robot_y, router_x, router_y, mode):
 def main():
     for run in MODE:
         stddev = get_stddev(run)
-        for repeat in range(3):
+        for repeat in range(4):
             total = len(COMBINATIONS)
             for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
                 print(f"\n[Mode: {run} | StdDev: {stddev} | Repeat: {repeat+1}/3 | Combination: {i+1}/{total}]")
