@@ -1,0 +1,1552 @@
+[
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_03h42",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 155.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_03h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_06h53",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 256.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_06h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_09h41",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 318.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_14Mar_09h41"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_02h48",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_02h48"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_06h04",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 225.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_06h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_09h04",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_14Mar_09h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_01h56",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_01h56"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_05h21",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 95.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_05h21"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_08h12",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_14Mar_08h12"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_04h06",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 233.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_04h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_07h16",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_07h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_10h17",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 316.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_14Mar_10h17"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_01h40",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 196.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_01h40"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_05h05",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 99.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_05h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_07h58",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 92.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_14Mar_07h58"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_03h11",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_03h11"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_06h22",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_06h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_09h21",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 187.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_14Mar_09h21"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_02h17",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_02h17"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_05h33",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_05h33"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_08h33",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_14Mar_08h33"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_04h24",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_04h24"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_07h33",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 191.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_07h33"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_10h36",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_14Mar_10h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_01h30",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_01h30"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_04h55",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_04h55"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_07h49",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 526.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_14Mar_07h49"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_03h50",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_03h50"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_07h01",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 152.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_07h01"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_09h55",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_14Mar_09h55"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_03h01",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_03h01"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_06h11",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_06h11"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_09h18",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 201.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_14Mar_09h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_02h06",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_02h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_05h23",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_05h23"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_08h22",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_14Mar_08h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_04h14",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_04h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_07h29",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 176.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_07h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_10h26",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_14Mar_10h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_14Mar_05h07",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 151.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_14Mar_05h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_14Mar_08h00",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 78.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_14Mar_08h00"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_04h01",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 206.3,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_04h01"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_07h04",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 118.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_07h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_10h05",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_14Mar_10h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_03h22",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_03h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_06h32",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_06h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_09h25",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 296.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_14Mar_09h25"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_02h27",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_02h27"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_05h43",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_05h43"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_08h43",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_14Mar_08h43"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_01h28",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 112.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_01h28"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_04h45",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.6,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_04h45"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_07h47",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 117.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_14Mar_07h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_03h45",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 264.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_03h45"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_06h57",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 171.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_06h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_09h46",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 480.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_14Mar_09h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_02h58",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 138.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_02h58"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_06h08",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 161.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_06h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_09h14",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 182.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_14Mar_09h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_04h11",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 167.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_04h11"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_07h27",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 143.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_07h27"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_10h23",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 153.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_14Mar_10h23"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_01h54",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 83.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_01h54"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_05h10",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_05h10"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_08h02",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_14Mar_08h02"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_04h04",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 89.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_04h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_07h06",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_07h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_10h15",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 103.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_14Mar_10h15"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_03h32",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_03h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_06h42",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_06h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_09h30",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_14Mar_09h30"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_02h38",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_02h38"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_05h54",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_05h54"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_08h53",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.6,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_14Mar_08h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_04h34",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_04h34"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_07h36",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_07h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_10h47",
+    "session": "Session_no_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 173.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_14Mar_10h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_04h05",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 506.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_04h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_07h42",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_07h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_10h53",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_17Mar_10h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_03h28",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_03h28"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_06h57",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 439.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_06h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_10h01",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_17Mar_10h01"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_02h36",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_02h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_06h15",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_06h15"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_09h16",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_17Mar_09h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_04h46",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_04h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_08h14",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_08h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_11h33",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_17Mar_11h33"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_02h13",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_02h13"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_05h45",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_05h45"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_08h53",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_17Mar_08h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_03h51",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 330.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_03h51"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_07h18",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_07h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_10h22",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_17Mar_10h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_02h57",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_02h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_06h36",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_06h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_09h37",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_17Mar_09h37"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_05h04",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_05h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_08h32",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 270.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_08h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_11h58",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_17Mar_11h58"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_02h03",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_02h03"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_05h34",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 586.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_05h34"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_08h51",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 113.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_17Mar_08h51"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_04h19",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_04h19"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_07h59",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 109.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_07h59"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_11h08",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 232.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_17Mar_11h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_03h41",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_03h41"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_07h08",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 586.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_07h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_10h14",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 435.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_17Mar_10h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_02h46",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_02h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_06h26",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_06h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_09h27",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_17Mar_09h27"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_05h00",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 177.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_05h00"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_08h28",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 214.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_08h28"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_11h48",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_17Mar_11h48"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_02h24",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 104.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_02h24"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_05h55",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_05h55"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_09h04",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 120.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_17Mar_09h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_04h30",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 328.7,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_04h30"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_08h02",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 95.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_08h02"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_11h12",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_17Mar_11h12"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_03h57",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 307.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_03h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_07h29",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_07h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_10h32",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_17Mar_10h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_03h07",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_03h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_06h46",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 243.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_06h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_09h47",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 201.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_17Mar_09h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_01h55",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 451.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_01h55"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_05h24",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_05h24"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_08h42",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 515.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_17Mar_08h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_04h14",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 288.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_04h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_07h52",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 401.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_07h52"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_11h03",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 240.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_17Mar_11h03"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_03h38",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 147.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_03h38"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_07h05",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 175.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_07h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_10h12",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 126.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_17Mar_10h12"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_04h56",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 208.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_04h56"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_08h24",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 190.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_08h24"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_11h43",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 249.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_17Mar_11h43"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_02h26",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_02h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_06h05",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 566.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_06h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_09h06",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by-19.0_17Mar_09h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_04h36",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_04h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_08h04",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_08h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_11h22",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_17Mar_11h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_04h03",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 129.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_04h03"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_07h39",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 170.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_07h39"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_10h43",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx0.0_by0.0_17Mar_10h43"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_03h18",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_03h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_06h51",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 354.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_06h51"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_09h51",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_17Mar_09h51"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_05h14",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_05h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_08h37",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "flip",
+    "duration_s": 298.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_08h37"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_12h08",
+    "session": "Session_blacklist",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_17Mar_12h08"
+  }
+]
