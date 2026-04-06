@@ -3,7 +3,7 @@ import time
 import os
 import signal
 
-MODE = ['yamauchi', 'gao', 'rss_1', 'rss_2', 'rss_3', 'rss_4']
+MODE = ['yamauchi', 'gao']#, 'rss_1', 'rss_2', 'rss_3', 'rss_4']
 
 COMBINATIONS = [
     # robot (-19, -19)
@@ -84,7 +84,7 @@ def run_combination(robot_x, robot_y, router_x, router_y, mode):
 def main():
     for run in MODE:
         stddev = get_stddev(run)
-        for repeat in range(4):
+        for repeat in range(5):
             total = len(COMBINATIONS)
             for i, (robot_x, robot_y, router_x, router_y) in enumerate(COMBINATIONS):
                 print(f"\n[Mode: {run} | StdDev: {stddev} | Repeat: {repeat+1}/3 | Combination: {i+1}/{total}]")
