@@ -222,6 +222,7 @@ def process_bag(bag_path, router_x, router_y):
         # Fill the rest with NaN
         row = np.full(RESOLUTION, np.nan)
         row[:n_cols] = d_interp
+        row[n_cols:] = d_interp[-1]
 
         return row, duration
 
