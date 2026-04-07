@@ -29,6 +29,7 @@ def analyze_combinations(root_path):
     # Get unique combinations and assign numbers
     combinations = sorted(set((r["robot_start"], r["router_position"]) for r in runs))
     combo_index = {combo: i+1 for i, combo in enumerate(combinations)}
+    combo_lookup = {i+1: combo for i, combo in enumerate(combinations)}
 
     # Count non-flip runs per combination per mode
     counts = {}
@@ -41,15 +42,16 @@ def analyze_combinations(root_path):
         counts[combo_num][mode] = counts[combo_num].get(mode, 0) + 1
 
     # Print summary
-    print(f"\n{'Combo':<8} {'yamauchi':<12} {'gao':<8} {'rss':<8}")
-    print("-" * 36)
+    print(f"\n{'Combo':<8} {'yamauchi':<12} {'gao':<8} {'rss':<8} {'robot_start':<20} {'router':<20}")
+    print("-" * 72)
     for combo_num in sorted(counts.keys()):
         c = counts[combo_num]
         y = c.get("yamauchi", 0)
         g = c.get("gao", 0)
         r = c.get("rss", 0)
+        robot, router = combo_lookup[combo_num]
         flag = " <-- NEEDS RUNS" if y < 3 or g < 3 else ""
-        print(f"{combo_num:<8} {y:<12} {g:<8} {r:<8}{flag}")
+        print(f"{combo_num:<8} {y:<12} {g:<8} {r:<8} {str(robot):<20} {str(router):<20}{flag}")
 
     print(f"\nTotal combinations: {len(combinations)}")
     print(f"Yamauchi missing (<3): {sum(1 for c in counts.values() if c.get('yamauchi',0) < 3)}")
