@@ -43,9 +43,11 @@ from bag_analysis import (
 
 SET_BLACKLIST    = "/media/lukas/VERBATIM HD/Lukas Master/Session_blacklist"
 SET_NO_BLACKLIST = "/media/lukas/VERBATIM HD/Lukas Master/Session_no_blacklist"
+SET_FINAL = "/media/lukas/VERBATIM HD/Lukas Master/Session_final"
 
 CSV_BLACKLIST    = "/media/lukas/VERBATIM HD/Lukas Master/metrics_blacklist.csv"
 CSV_NO_BLACKLIST = "/media/lukas/VERBATIM HD/Lukas Master/metrics_no_blacklist.csv"
+CSV_FINAL = "/media/lukas/VERBATIM HD/Lukas Master/metrics_final.csv"
 
 # All 6 session subfolders expected inside each set
 SESSION_SUBFOLDERS = [
@@ -441,29 +443,33 @@ def process_set(set_folder, csv_path, blacklist):
     return len(new_rows), failed
 
 # ── Main ──────────────────────────────────────────────────────────────────────
-
 def main():
     parser = argparse.ArgumentParser(description="Extract metrics from both simulation sets.")
     parser.add_argument("--blacklist-only",    action="store_true", help="Only process blacklist set")
     parser.add_argument("--no-blacklist-only", action="store_true", help="Only process no-blacklist set")
+    parser.add_argument("--final-only",        action="store_true", help="Only process final set")
     args = parser.parse_args()
 
     total_added  = 0
     total_failed = 0
 
-    if not args.no_blacklist_only:
+    if not args.no_blacklist_only and not args.final_only:
         added, failed = process_set(SET_BLACKLIST, CSV_BLACKLIST, blacklist=True)
         total_added  += added
         total_failed += failed
 
-    if not args.blacklist_only:
+    if not args.blacklist_only and not args.final_only:
         added, failed = process_set(SET_NO_BLACKLIST, CSV_NO_BLACKLIST, blacklist=False)
+        total_added  += added
+        total_failed += failed
+
+    if not args.blacklist_only and not args.no_blacklist_only:
+        added, failed = process_set(SET_FINAL, CSV_FINAL, blacklist=True)
         total_added  += added
         total_failed += failed
 
     print(f"\n{'='*60}")
     print(f"DONE. Total added: {total_added} | Total failed: {total_failed}")
-
 
 if __name__ == '__main__':
     main()

@@ -45,7 +45,7 @@ except ImportError:
 # ── Configuration ──────────────────────────────────────────────────────────────
 
 BASE_PATH    = "/media/lukas/VERBATIM HD/Lukas Master"
-SESSIONS     = ["Session_no_blacklist", "Session_blacklist"]
+SESSIONS     = ["Session_final"] # ["Session_no_blacklist", "Session_blacklist"]
 RESOLUTION   = 1000       # number of columns in the output matrix
 MAX_DURATION = 600.0      # seconds — hardcoded timeout value
 SUCCESS_KEY  = "router_found"
