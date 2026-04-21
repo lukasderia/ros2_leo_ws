@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 """
-extract_progression.py  –  Build normalized distance-progression matrices
-from ROS2 bags for a given session folder.
+simulation_results.py  –  Extract and plot progression matrices for all modes.
 
 Usage:
-    python3 extract_progression.py <session_folder_path>
+    python3 simulation_results.py <session_root_path>
 
 Example:
-    python3 extract_progression.py "/Volumes/KINGSTON/Lukas Master/Session_final/session_yamauchi"
+    python3 simulation_results.py "/Volumes/KINGSTON/Lukas Master/Session_final"
 
-Output (saved next to this script):
-    <folder_name>_progression.npy       – (N, RESOLUTION) float array
-                                          rows    = runs (flips excluded)
-                                          columns = time steps (0 to MAX_DURATION)
-                                          values  = normalized distance (d / d_initial)
-    <folder_name>_progression_meta.json – list of dicts, one per row
+For each mode the script will:
+    1. Check if a cached .npy already exists — if so, skip extraction.
+    2. Otherwise walk the session folder(s), skip flips, and build the matrix.
+    3. Save <mode>_progression.npy and <mode>_progression_meta.json next to the script.
+
+After all modes are processed it produces one plot per mode showing all runs,
+saved to a progression_plots/ folder next to the script.
 
 Requirements:
-    pip install rosbags numpy
+    pip install rosbags numpy matplotlib
 """
 
 import sys
@@ -25,42 +25,53 @@ import os
 import json
 import glob
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')  # non-interactive backend, saves to file
+import matplotlib.pyplot as plt
 
 try:
     from rosbags.rosbag2 import Reader
     from rosbags.typesys import Stores, get_typestore
 except ImportError:
-    print("ERROR: rosbags not found. Install it with:")
-    print("  pip install rosbags")
+    print("ERROR: rosbags not found.  pip install rosbags")
     sys.exit(1)
 
 # ── Configuration ──────────────────────────────────────────────────────────────
 
-RESOLUTION   = 300        # number of time steps in output matrix
-MAX_DURATION = 600.0      # seconds
-SKIP_REASONS = {"flip"}   # termination reasons to skip
+RESOLUTION   = 600
+MAX_DURATION = 600.0
+SKIP_REASONS = {"flip"}
+
+MODES = {
+    "yamauchi": {"folders": ["session_yamauchi"], "cache_prefix": "yamauchi"},
+    "gao":      {"folders": ["session_gao"],      "cache_prefix": "gao"},
+    "rss":      {"folders": ["session_rss_1", "session_rss_2", "session_rss_3", "session_rss_4"],
+                 "cache_prefix": "rss"},
+}
+
+MODE_COLORS = {
+    "yamauchi": "steelblue",
+    "gao":      "darkorange",
+    "rss":      "seagreen",
+}
 
 # ── Bag reading ────────────────────────────────────────────────────────────────
 
 def read_tf(bag_path):
-    """Read all /tf messages from a bag. Returns list of (timestamp_ns, msg)."""
     typestore = get_typestore(Stores.ROS2_FOXY)
-    results = []
-
+    results   = []
     try:
         with Reader(bag_path) as reader:
             connections = [c for c in reader.connections if c.topic == '/tf']
             if not connections:
                 print(f"    WARNING: /tf not found in bag")
                 return []
-
             for connection, timestamp, rawdata in reader.messages(connections=connections):
                 msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
                 results.append((timestamp, msg))
     except Exception as e:
         print(f"    WARNING: failed to read bag ({e})")
         return []
-
     return results
 
 
@@ -71,7 +82,7 @@ def quat_to_mat(q):
     return np.array([
         [1-2*(y*y+z*z),   2*(x*y-w*z),   2*(x*z+w*y)],
         [  2*(x*y+w*z), 1-2*(x*x+z*z),   2*(y*z-w*x)],
-        [  2*(x*z-w*y),   2*(y*z+w*x), 1-2*(x*x+y*y)]
+        [  2*(x*z-w*y),   2*(y*z+w*x), 1-2*(x*x+y*y)],
     ])
 
 
@@ -93,7 +104,6 @@ def compose_transforms(t1_xyz, q1, t2_xyz, q2):
 
 
 def extract_robot_trajectory(tf_messages):
-    """Returns (N, 3) array of [t_sec, x, y] in map frame."""
     map_odom  = []
     odom_base = []
 
@@ -121,7 +131,7 @@ def extract_robot_trajectory(tf_messages):
         mo  = map_odom[idx]
         t_out, _ = compose_transforms(
             [mo[1], mo[2], mo[3]], [mo[4], mo[5], mo[6], mo[7]],
-            [ob[1], ob[2], ob[3]], [ob[4], ob[5], ob[6], ob[7]]
+            [ob[1], ob[2], ob[3]], [ob[4], ob[5], ob[6], ob[7]],
         )
         trajectory.append((ts / 1e9, t_out[0], t_out[1]))
 
@@ -132,13 +142,6 @@ def extract_robot_trajectory(tf_messages):
 # ── Core: process one bag ──────────────────────────────────────────────────────
 
 def process_bag(bag_path, router_x, router_y):
-    """
-    Returns (row, duration) where row is a 1D numpy array of length RESOLUTION.
-
-    X-axis: real time 0 → MAX_DURATION, divided into RESOLUTION steps.
-    Y-axis: normalized distance d(t) / d_initial.
-    After run termination: held constant at final value.
-    """
     tf_messages = read_tf(bag_path)
     if not tf_messages:
         return None
@@ -148,81 +151,86 @@ def process_bag(bag_path, router_x, router_y):
         print(f"    WARNING: too few trajectory points ({len(trajectory)})")
         return None
 
-    # Shift time to start at 0
     t_raw = trajectory[:, 0] - trajectory[0, 0]
     d_raw = np.sqrt(
         (trajectory[:, 1] - router_x)**2 +
         (trajectory[:, 2] - router_y)**2
     )
-
-    # Normalize by initial distance
     d_norm = d_raw / d_raw[0]
-
     duration = t_raw[-1]
 
-    # How many columns this run occupies
-    n_cols = int((duration / MAX_DURATION) * RESOLUTION)
-    n_cols = min(n_cols, RESOLUTION)
+    n_cols = min(int((duration / MAX_DURATION) * RESOLUTION), RESOLUTION)
 
     full_grid = np.linspace(0.0, MAX_DURATION, RESOLUTION)
-    run_grid  = full_grid[:n_cols]
-    d_interp  = np.interp(run_grid, t_raw, d_norm)
+    d_interp  = np.interp(full_grid[:n_cols], t_raw, d_norm)
 
-    # Hold final value constant for remainder
-    row = np.full(RESOLUTION, np.nan)
+    row          = np.full(RESOLUTION, np.nan)
     row[:n_cols] = d_interp
-    row[n_cols:] = d_interp[-1]
+    row[n_cols:] = d_interp[-1]   # hold final value for remainder
 
     return row, duration
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Extraction: one mode ───────────────────────────────────────────────────────
 
-def main():
-    if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+def extract_mode(session_root, mode, folders, out_dir):
+    """
+    Extract or load the progression matrix for one mode.
+    Returns (matrix, meta) where matrix is (N, RESOLUTION).
+    """
+    npy_path  = os.path.join(out_dir, f"{mode}_progression.npy")
+    meta_path = os.path.join(out_dir, f"{mode}_progression_meta.json")
 
-    session_path = sys.argv[1].rstrip('/')
-    folder_name  = os.path.basename(session_path)
+    # For modes with multiple folders (e.g. rss), check for per-folder cache files
+    per_folder_npys  = [os.path.join(out_dir, f"{folder.replace('session_', '')}_progression.npy") for folder in folders]
+    per_folder_metas = [os.path.join(out_dir, f"{folder.replace('session_', '')}_progression_meta.json") for folder in folders]
 
-    if not os.path.isdir(session_path):
-        print(f"ERROR: folder not found: {session_path}")
-        sys.exit(1)
+    if all(os.path.exists(p) for p in per_folder_npys + per_folder_metas):
+        print(f"  [{mode}] Per-folder cache found, loading and combining.")
+        matrix = np.vstack([np.load(p) for p in per_folder_npys])
+        meta   = []
+        for mp in per_folder_metas:
+            with open(mp) as f:
+                meta.extend(json.load(f))
+        print(f"           Loaded {matrix.shape[0]} runs.")
+        return matrix, meta
 
-    out_dir   = os.path.dirname(os.path.abspath(__file__))
-    npy_path  = os.path.join(out_dir, f"{folder_name}_progression.npy")
-    meta_path = os.path.join(out_dir, f"{folder_name}_progression_meta.json")
-
-    # ── Check if already extracted ─────────────────────────────────────────────
-    if os.path.exists(npy_path) and os.path.exists(meta_path):
-        print(f"Cache found for {folder_name}, loading from disk.")
-        print(f"  (Delete {npy_path} to force re-extraction.)")
+    elif os.path.exists(npy_path) and os.path.exists(meta_path):
+        print(f"  [{mode}] Cache found, loading from disk.")
+        print(f"           (Delete {npy_path} to force re-extraction.)")
         matrix = np.load(npy_path)
         with open(meta_path) as f:
-            all_meta = json.load(f)
+            meta = json.load(f)
+        print(f"           Loaded {matrix.shape[0]} runs.")
+        return matrix, meta
 
-    else:
-        # ── Extract from bags ──────────────────────────────────────────────────
+    print(f"  [{mode}] Extracting from bags ...")
+
+    all_rows = []
+    all_meta = []
+    skipped  = 0
+
+    for folder_name in folders:
+        folder_path = os.path.join(session_root, folder_name)
+        if not os.path.isdir(folder_path):
+            print(f"    WARNING: folder not found: {folder_path}")
+            continue
+
         bag_dirs = sorted([
-            os.path.join(session_path, d)
-            for d in os.listdir(session_path)
-            if os.path.isdir(os.path.join(session_path, d))
-            and glob.glob(os.path.join(session_path, d, '*.db3'))
+            os.path.join(folder_path, d)
+            for d in os.listdir(folder_path)
+            if os.path.isdir(os.path.join(folder_path, d))
+            and glob.glob(os.path.join(folder_path, d, '*.db3'))
         ])
 
-        print(f"Found {len(bag_dirs)} bag(s) in {folder_name}")
-
-        all_rows = []
-        all_meta = []
-        skipped  = 0
+        print(f"    {folder_name}: {len(bag_dirs)} bag(s) found")
 
         for bag_dir in bag_dirs:
             bag_name  = os.path.basename(bag_dir)
             json_path = os.path.join(bag_dir, 'result.json')
 
             if not os.path.exists(json_path):
-                print(f"  SKIP {bag_name}: no result.json")
+                print(f"      SKIP {bag_name}: no result.json")
                 skipped += 1
                 continue
 
@@ -232,23 +240,20 @@ def main():
             termination = result.get("termination_reason", "unknown")
 
             if termination in SKIP_REASONS:
-                print(f"  SKIP {bag_name}: {termination}")
                 skipped += 1
                 continue
 
             router_pos = result.get("router_position")
             if router_pos is None:
-                print(f"  SKIP {bag_name}: no router_position in result.json")
+                print(f"      SKIP {bag_name}: no router_position")
                 skipped += 1
                 continue
 
             router_x, router_y = float(router_pos[0]), float(router_pos[1])
 
-            print(f"  Processing {bag_name}  [{termination}]")
-
             outcome = process_bag(bag_dir, router_x, router_y)
             if outcome is None:
-                print(f"    SKIP: processing failed  <-- {bag_name}")
+                print(f"      SKIP {bag_name}: processing failed")
                 skipped += 1
                 continue
 
@@ -256,38 +261,90 @@ def main():
             all_rows.append(row)
             all_meta.append({
                 "bag_name":    bag_name,
+                "folder":      folder_name,
                 "termination": termination,
                 "duration_s":  round(duration, 1),
                 "router_x":    router_x,
                 "router_y":    router_y,
-                "path":        bag_dir,
             })
-            print(f"    OK  duration={duration:.1f}s  d_final={row[~np.isnan(row)][-1]:.3f}")
 
-        if not all_rows:
-            print("\nERROR: no valid runs found.")
-            sys.exit(1)
+    if not all_rows:
+        print(f"  [{mode}] ERROR: no valid runs found.")
+        return None, None
 
-        matrix = np.stack(all_rows)
+    matrix = np.stack(all_rows)
+    np.save(npy_path, matrix)
+    with open(meta_path, 'w') as f:
+        json.dump(all_meta, f, indent=2)
 
-        np.save(npy_path, matrix)
-        with open(meta_path, 'w') as f:
-            json.dump(all_meta, f, indent=2)
+    terminations = [m["termination"] for m in all_meta]
+    print(f"  [{mode}] Done: {len(all_rows)} runs saved  "
+          f"(skipped {skipped},  "
+          + "  ".join(f"{t}: {terminations.count(t)}" for t in sorted(set(terminations))) + ")")
 
-        print(f"\n── Extraction summary ────────────────────")
-        terminations = [m["termination"] for m in all_meta]
-        for t in sorted(set(terminations)):
-            print(f"  {t}: {terminations.count(t)}")
-        print(f"  skipped: {skipped}")
-        print(f"\nTotal runs saved: {len(all_rows)}")
-        print(f"Matrix shape: {matrix.shape}  (runs x time_steps)")
-        print(f"Saved: {npy_path}")
-        print(f"Saved: {meta_path}")
+    return matrix, all_meta
 
-    # ── Placeholder for future processing steps ────────────────────────────────
-    # matrix and all_meta are available here regardless of whether
-    # they were freshly extracted or loaded from cache.
-    print(f"\nReady: {matrix.shape[0]} runs, {matrix.shape[1]} time steps")
+
+# ── Plotting ───────────────────────────────────────────────────────────────────
+
+def plot_mode(mode, matrix, meta, plot_dir):
+    x     = np.linspace(0, MAX_DURATION, RESOLUTION)
+    color = MODE_COLORS.get(mode, "grey")
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    for row in matrix:
+        ax.plot(x, row, color=color, alpha=0.2, linewidth=0.7)
+
+    ax.set_xlabel('Time (s)')
+    ax.set_ylabel('Normalized distance to router  (d / d₀)')
+    ax.set_title(f'{mode}  —  all runs  ({matrix.shape[0]} total)')
+    ax.set_xlim(0, MAX_DURATION)
+    ax.set_ylim(0, 1.2)
+    ax.set_xticks([0, 120, 240, 360, 480, 600])
+    ax.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    out_path = os.path.join(plot_dir, f"{mode}_all_runs.png")
+    plt.savefig(out_path, dpi=150)
+    plt.close()
+    print(f"  Saved: {out_path}")
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+def main():
+    if len(sys.argv) < 2:
+        print(__doc__)
+        sys.exit(1)
+
+    session_root = sys.argv[1].rstrip('/')
+
+    if not os.path.isdir(session_root):
+        print(f"ERROR: folder not found: {session_root}")
+        sys.exit(1)
+
+    out_dir  = os.path.dirname(os.path.abspath(__file__))
+    plot_dir = os.path.join(out_dir, "progression_plots")
+
+    if not os.path.exists(plot_dir):
+        os.makedirs(plot_dir)
+        print(f"Created plot folder: {plot_dir}")
+
+    # ── Extract all modes ──────────────────────────────────────────────────────
+    print("\n── Extraction ────────────────────────────────────────────────────────")
+    mode_data = {}
+    for mode, config in MODES.items():
+        matrix, meta = extract_mode(session_root, mode, config["folders"], out_dir)
+        if matrix is not None:
+            mode_data[mode] = (matrix, meta)
+
+    # ── Plot all modes ─────────────────────────────────────────────────────────
+    print("\n── Plotting ──────────────────────────────────────────────────────────")
+    for mode, (matrix, meta) in mode_data.items():
+        plot_mode(mode, matrix, meta, plot_dir)
+
+    print("\nDone.")
 
 
 if __name__ == '__main__':

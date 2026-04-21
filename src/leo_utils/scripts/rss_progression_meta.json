@@ -1,0 +1,2458 @@
+[
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_21h23",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_23h49",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx-19.0_by19.0_02Apr_02h04",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 419.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_20h51",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_18h11",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_22h40",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_01h11",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by19.0_01Apr_19h35",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by19.0_01Apr_21h48",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_00h12",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_17h55",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_20h11",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 209.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_00h57",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 195.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_19h04",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 156.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_23h36",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 132.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_01h58",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 191.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_18h31",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 245.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_20h39",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 278.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_01h29",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 242.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_19h59",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 75.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_22h11",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 225.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_00h35",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 220.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_02h45",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 158.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_17h44",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_22h30",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 144.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_00h55",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 121.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_19h19",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_00h04",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 133.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_02h16",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 173.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_18h59",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 296.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_01h50",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 400.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_18h21",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_20h29",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_19h48",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_22h01",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_00h25",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_02h34",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_18h05",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 308.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_20h14",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_01h01",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_19h29",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 85.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_21h41",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 107.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_00h06",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 89.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_02h19",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 234.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx0.0_by0.0_01Apr_19h07",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 156.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx0.0_by0.0_01Apr_21h13",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx0.0_by0.0_01Apr_23h39",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx0.0_by0.0_02Apr_02h01",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 140.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_18h36",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 124.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_20h44",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 147.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_23h03",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_01h34",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 149.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_17h34",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_20h03",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 200.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_22h19",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_19h14",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 272.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_02h11",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 271.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_18h55",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 194.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_21h01",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 172.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_23h24",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 202.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_01h48",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 104.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_21h58",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 131.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_00h22",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 139.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_02h32",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 116.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_19h31",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 239.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_21h43",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 296.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_18h38",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_20h47",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 192.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_23h13",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 152.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_01h36",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 206.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by19.0_01Apr_20h00",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 162.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by19.0_01Apr_22h15",
+    "folder": "session_rss_1",
+    "termination": "router_found",
+    "duration_s": 212.3,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by19.0_02Apr_00h39",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_1_rx8.0_ry0.0_bx19.0_by19.0_02Apr_02h48",
+    "folder": "session_rss_1",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx-19.0_by19.0_02Apr_06h33",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 523.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx-19.0_by19.0_02Apr_09h58",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_03h53",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_06h01",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_09h07",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_12h10",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 181.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_03h19",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_08h15",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_10h50",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_03h04",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 263.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_05h15",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 311.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_08h00",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_11h29",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 243.3,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_04h14",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 342.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_06h25",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 242.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_09h38",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_12h21",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 187.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_03h37",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_05h42",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_08h36",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_11h52",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_05h03",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 176.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_07h18",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_11h14",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 179.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_13h24",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_03h01",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 134.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_05h13",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 113.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_07h49",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_11h25",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 177.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_04h28",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 259.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_10h19",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_12h49",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 187.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_04h07",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 412.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_06h15",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_09h27",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx19.0_by-19.0_02Apr_05h32",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx19.0_by-19.0_02Apr_08h25",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_04h53",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_11h04",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_03h09",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_05h21",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 270.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_11h33",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 344.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_04h33",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 130.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_06h51",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 94.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_10h29",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_12h52",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 335.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx0.0_by0.0_02Apr_04h20",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 123.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx0.0_by0.0_02Apr_06h30",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 166.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx0.0_by0.0_02Apr_09h48",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx0.0_by0.0_02Apr_12h25",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_03h48",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 110.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_05h53",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 254.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_08h46",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_12h03",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 203.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_02h58",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 201.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_07h39",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_11h20",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 277.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_04h23",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 270.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_10h09",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_12h45",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 206.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_04h04",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 181.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_06h12",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 156.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_09h17",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_12h13",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 122.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_04h49",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 205.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_06h59",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_11h00",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 182.3,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_13h11",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 163.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx-19.0_by19.0_02Apr_04h35",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 220.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx-19.0_by19.0_02Apr_10h40",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_03h50",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 180.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_05h57",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 222.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_08h56",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_12h07",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 161.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by19.0_02Apr_05h07",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 212.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by19.0_02Apr_07h29",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by19.0_02Apr_11h18",
+    "folder": "session_rss_2",
+    "termination": "router_found",
+    "duration_s": 158.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_2_rx8.0_ry0.0_bx19.0_by19.0_02Apr_13h34",
+    "folder": "session_rss_2",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx-19.0_by19.0_02Apr_15h00",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx-19.0_by19.0_02Apr_17h38",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_17h12",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_19h58",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx0.0_by0.0_02Apr_22h09",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_14h01",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_16h32",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 212.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by-19.0_02Apr_19h20",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_15h33",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_18h14",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_20h51",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry-19.0_bx19.0_by19.0_02Apr_22h57",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_16h20",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 375.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx-19.0_by-19.0_02Apr_21h35",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 272.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_14h50",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 395.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_17h32",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 217.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_20h15",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 156.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx0.0_by0.0_02Apr_22h25",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 100.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_14h18",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_16h47",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_19h41",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_21h59",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 198.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_15h52",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_18h40",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_21h16",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 133.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-19.0_ry19.0_bx19.0_by19.0_02Apr_23h20",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 343.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_13h48",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 197.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_16h16",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 161.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_19h04",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 177.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_21h32",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 184.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx-19.0_by19.0_02Apr_15h21",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 178.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_14h48",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 117.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_20h12",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 162.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx0.0_by0.0_02Apr_22h23",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 100.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by-19.0_02Apr_16h36",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by-19.0_02Apr_19h31",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by-19.0_02Apr_21h49",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_18h29",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_21h05",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx-8.0_ry-18.0_bx19.0_by19.0_02Apr_23h09",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_13h57",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 219.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_16h26",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 348.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_19h11",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 532.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_21h40",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 232.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_15h24",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 261.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_18h06",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 169.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_20h39",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 108.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx-19.0_by19.0_02Apr_22h49",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 186.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx0.0_by0.0_02Apr_14h57",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 136.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx0.0_by0.0_02Apr_17h36",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 107.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx0.0_by0.0_02Apr_20h18",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 156.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx0.0_by0.0_02Apr_22h27",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 185.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_14h28",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 213.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_16h57",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 228.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_19h51",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 183.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx18.0_ry18.0_bx19.0_by-19.0_02Apr_22h03",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 133.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_13h44",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 210.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_16h06",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_18h54",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_21h21",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_15h10",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_17h49",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_20h26",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 361.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx-19.0_by19.0_02Apr_22h35",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 227.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_14h44",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 192.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_17h22",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 107.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_20h09",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 151.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx0.0_by0.0_02Apr_22h19",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 213.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_15h44",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 197.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_18h24",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 305.3,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_21h02",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 183.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx19.0_ry-19.0_bx19.0_by19.0_02Apr_23h07",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 126.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx-19.0_by19.0_02Apr_15h29",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 246.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx-19.0_by19.0_02Apr_18h09",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 226.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx-19.0_by19.0_02Apr_20h41",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_14h32",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 386.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_17h01",
+    "folder": "session_rss_3",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_19h55",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 201.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by-19.0_02Apr_22h06",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 186.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by19.0_02Apr_16h03",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 191.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by19.0_02Apr_18h50",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 199.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by19.0_02Apr_21h18",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 187.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_3_rx8.0_ry0.0_bx19.0_by19.0_02Apr_23h26",
+    "folder": "session_rss_3",
+    "termination": "router_found",
+    "duration_s": 224.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx-19.0_by19.0_03Apr_03h14",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx-19.0_by19.0_03Apr_08h15",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx0.0_by0.0_03Apr_00h11",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx0.0_by0.0_03Apr_05h13",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx0.0_by0.0_03Apr_07h40",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx19.0_by-19.0_03Apr_02h06",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx19.0_by-19.0_03Apr_04h40",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 184.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx19.0_by19.0_03Apr_01h09",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx19.0_by19.0_03Apr_03h51",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry-19.0_bx19.0_by19.0_03Apr_08h47",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx-19.0_by-19.0_03Apr_01h53",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx-19.0_by-19.0_03Apr_06h54",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 347.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx0.0_by0.0_03Apr_00h37",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx0.0_by0.0_03Apr_03h07",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 262.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx0.0_by0.0_03Apr_05h30",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 467.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx0.0_by0.0_03Apr_08h05",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 435.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by-19.0_02Apr_23h55",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by-19.0_03Apr_02h27",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by-19.0_03Apr_04h54",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by-19.0_03Apr_07h21",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by19.0_03Apr_01h29",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by19.0_03Apr_04h16",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by19.0_03Apr_06h36",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 136.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-19.0_ry19.0_bx19.0_by19.0_03Apr_09h12",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 582.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx-19.0_by-19.0_02Apr_23h35",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 161.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx-19.0_by-19.0_03Apr_01h50",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 150.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx-19.0_by-19.0_03Apr_06h52",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 122.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx-19.0_by19.0_03Apr_05h56",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 347.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx-19.0_by19.0_03Apr_08h30",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 422.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx0.0_by0.0_03Apr_03h05",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 123.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx0.0_by0.0_03Apr_07h55",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by-19.0_03Apr_02h16",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by-19.0_03Apr_04h43",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by-19.0_03Apr_07h11",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by19.0_03Apr_04h06",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by19.0_03Apr_06h25",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx-8.0_ry-18.0_bx19.0_by19.0_03Apr_09h02",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx-19.0_by-19.0_02Apr_23h40",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 276.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx-19.0_by19.0_03Apr_00h59",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 288.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx-19.0_by19.0_03Apr_06h02",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 80.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx-19.0_by19.0_03Apr_08h37",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 215.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx0.0_by0.0_03Apr_03h12",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 128.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx0.0_by0.0_03Apr_05h39",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 140.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx0.0_by0.0_03Apr_08h13",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 102.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx19.0_by-19.0_03Apr_00h05",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 114.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx19.0_by-19.0_03Apr_02h37",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 264.8,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx19.0_by-19.0_03Apr_05h04",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 264.4,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx18.0_ry18.0_bx19.0_by-19.0_03Apr_07h31",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 315.7,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by-19.0_02Apr_23h30",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 288.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by-19.0_03Apr_01h44",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 311.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by-19.0_03Apr_04h29",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 173.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by-19.0_03Apr_06h46",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 334.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by19.0_03Apr_03h25",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by19.0_03Apr_05h46",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx-19.0_by19.0_03Apr_08h25",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 255.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx0.0_by0.0_03Apr_00h22",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx0.0_by0.0_03Apr_02h54",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx0.0_by0.0_03Apr_05h23",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 160.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx19.0_by19.0_03Apr_01h19",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 172.5,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx19.0_by19.0_03Apr_04h01",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 264.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx19.0_ry-19.0_bx19.0_by19.0_03Apr_06h22",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 211.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx-19.0_by19.0_03Apr_01h04",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 268.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx-19.0_by19.0_03Apr_06h04",
+    "folder": "session_rss_4",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx-19.0_by19.0_03Apr_08h41",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 326.3,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by-19.0_03Apr_00h07",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 204.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by-19.0_03Apr_02h42",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 371.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by-19.0_03Apr_05h09",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 203.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by-19.0_03Apr_07h37",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 154.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by19.0_03Apr_01h39",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 297.8,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by19.0_03Apr_04h27",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 114.4,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by19.0_03Apr_06h38",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 433.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_rss_4_rx8.0_ry0.0_bx19.0_by19.0_03Apr_09h22",
+    "folder": "session_rss_4",
+    "termination": "router_found",
+    "duration_s": 102.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  }
+]
