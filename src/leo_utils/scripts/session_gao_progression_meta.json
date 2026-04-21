@@ -1,0 +1,834 @@
+[
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_10h00",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_10h00"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_13h21",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_01Apr_13h21"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_07Apr_09h16",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_07Apr_09h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_06h18",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_06h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_15h57",
+    "termination": "timeout",
+    "duration_s": 597.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_15h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_07Apr_08h31",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_07Apr_08h31"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_08h35",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_08h35"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_11h57",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_11h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_15h16",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_01Apr_15h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_07Apr_04h36",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_07Apr_04h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_07Apr_07h43",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by-19.0_07Apr_07h43"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_12h50",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_12h50"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h10",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h10"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h31",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h31"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h47",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_07Apr_13h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_08h19",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_08h19"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_11h40",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_11h40"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_07Apr_04h16",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_07Apr_04h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_07Apr_07h22",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_07Apr_07h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_06h42",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_06h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_09h40",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_09h40"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_13h07",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_01Apr_13h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_07Apr_08h55",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx0.0_by0.0_07Apr_08h55"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_05h53",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_05h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_08h56",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_08h56"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_12h15",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_01Apr_12h15"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_07Apr_04h57",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_07Apr_04h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_07Apr_08h03",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_07Apr_08h03"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_11h04",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_11h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_14h19",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_14h19"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_17h13",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_17h13"
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_07Apr_10h26",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_07Apr_10h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_08h08",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_08h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_14h49",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_14h49"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_07Apr_07h12",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_07Apr_07h12"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_07h07",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_07h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_13h36",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_13h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_07Apr_09h30",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_07Apr_09h30"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_06h32",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_06h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_12h57",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_12h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_16h11",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_01Apr_16h11"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_07Apr_05h37",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_07Apr_05h37"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_07Apr_08h45",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_07Apr_08h45"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_08h46",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_08h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_15h26",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_01Apr_15h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_07Apr_04h47",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by-19.0_07Apr_04h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_10h53",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_10h53"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_14h08",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_01Apr_14h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_07Apr_06h42",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_07Apr_06h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_07Apr_10h16",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_07Apr_10h16"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_05h34",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_05h34"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_08h29",
+    "termination": "router_found",
+    "duration_s": 360.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_08h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_11h51",
+    "termination": "router_found",
+    "duration_s": 374.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_11h51"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_07Apr_04h26",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_07Apr_04h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_07Apr_07h32",
+    "termination": "router_found",
+    "duration_s": 587.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_07Apr_07h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_07h17",
+    "termination": "router_found",
+    "duration_s": 106.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_07h17"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_10h28",
+    "termination": "router_found",
+    "duration_s": 104.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_10h28"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_13h46",
+    "termination": "router_found",
+    "duration_s": 128.8,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_13h46"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_16h54",
+    "termination": "router_found",
+    "duration_s": 116.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_16h54"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_07Apr_06h18",
+    "termination": "router_found",
+    "duration_s": 93.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_07Apr_06h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_01Apr_09h50",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_01Apr_09h50"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_01Apr_13h18",
+    "termination": "router_found",
+    "duration_s": 199.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_01Apr_13h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_07Apr_05h54",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_07Apr_05h54"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_07Apr_09h05",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx0.0_by0.0_07Apr_09h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_09h06",
+    "termination": "router_found",
+    "duration_s": 198.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_09h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_15h44",
+    "termination": "router_found",
+    "duration_s": 159.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_01Apr_15h44"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_07Apr_05h07",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_07Apr_05h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_07Apr_08h14",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_07Apr_08h14"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_05h19",
+    "termination": "router_found",
+    "duration_s": 259.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_05h19"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_07h58",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_07h58"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_11h22",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_11h22"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_14h39",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_14h39"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_07Apr_03h57",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_07Apr_03h57"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_07Apr_07h08",
+    "termination": "router_found",
+    "duration_s": 216.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_07Apr_07h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_07h01",
+    "termination": "router_found",
+    "duration_s": 322.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_07h01"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_10h11",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_10h11"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_13h32",
+    "termination": "router_found",
+    "duration_s": 227.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_13h32"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_16h37",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_01Apr_16h37"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_07Apr_06h05",
+    "termination": "router_found",
+    "duration_s": 224.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_07Apr_06h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_07Apr_09h26",
+    "termination": "router_found",
+    "duration_s": 222.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_07Apr_09h26"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_09h29",
+    "termination": "router_found",
+    "duration_s": 209.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_09h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_12h47",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_12h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_16h07",
+    "termination": "router_found",
+    "duration_s": 191.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_16h07"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_07Apr_05h34",
+    "termination": "router_found",
+    "duration_s": 175.4,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_07Apr_05h34"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_07Apr_08h42",
+    "termination": "router_found",
+    "duration_s": 161.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_07Apr_08h42"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_07h34",
+    "termination": "router_found",
+    "duration_s": 183.8,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_07h34"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_10h48",
+    "termination": "router_found",
+    "duration_s": 314.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_10h48"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_14h05",
+    "termination": "router_found",
+    "duration_s": 183.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_14h05"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_17h04",
+    "termination": "router_found",
+    "duration_s": 182.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_01Apr_17h04"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_07Apr_06h36",
+    "termination": "router_found",
+    "duration_s": 290.5,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_07Apr_06h36"
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_07Apr_10h06",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 19.0,
+    "router_y": -19.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_07Apr_10h06"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_07h19",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_07h19"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_13h49",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_13h49"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_07Apr_06h20",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_07Apr_06h20"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_07Apr_09h49",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_07Apr_09h49"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_06h08",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_06h08"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_09h10",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_09h10"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_12h29",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_12h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_15h47",
+    "termination": "timeout",
+    "duration_s": 599.3,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_01Apr_15h47"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_07Apr_05h18",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_07Apr_05h18"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_01Apr_14h29",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_01Apr_14h29"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_01Apr_17h24",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_01Apr_17h24"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_07Apr_13h00",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_07Apr_13h00"
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_07Apr_13h21",
+    "termination": "timeout",
+    "duration_s": 599.6,
+    "router_x": 8.0,
+    "router_y": 0.0,
+    "path": "/Volumes/KINGSTON/Lukas Master/Session_final/session_gao/Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_07Apr_13h21"
+  }
+]
