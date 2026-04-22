@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import json
 import sys
 from pathlib import Path
@@ -16,9 +17,8 @@ def analyze_combinations(root_path):
             data = json.load(f)
         
         mode = data.get("mode", "unknown")
-        if mode.startswith("rss"):
-            mode = "rss"
-        
+        # Keep rss modes separate (rss_1, rss_2, rss_3, rss_4)
+
         runs.append({
             "mode": mode,
             "termination_reason": data.get("termination_reason", "unknown"),
@@ -28,8 +28,12 @@ def analyze_combinations(root_path):
 
     # Get unique combinations and assign numbers
     combinations = sorted(set((r["robot_start"], r["router_position"]) for r in runs))
-    combo_index = {combo: i+1 for i, combo in enumerate(combinations)}
+    combo_index  = {combo: i+1 for i, combo in enumerate(combinations)}
     combo_lookup = {i+1: combo for i, combo in enumerate(combinations)}
+
+    # All modes present
+    rss_modes = sorted(set(r["mode"] for r in runs if r["mode"].startswith("rss")))
+    all_modes = ["yamauchi", "gao"] + rss_modes
 
     # Count non-flip runs per combination per mode
     counts = {}
@@ -38,24 +42,36 @@ def analyze_combinations(root_path):
             continue
         combo_num = combo_index[(r["robot_start"], r["router_position"])]
         mode = r["mode"]
-        counts.setdefault(combo_num, {"yamauchi": 0, "gao": 0, "rss": 0})
+        if combo_num not in counts:
+            counts[combo_num] = {m: 0 for m in all_modes}
         counts[combo_num][mode] = counts[combo_num].get(mode, 0) + 1
 
-    # Print summary
-    print(f"\n{'Combo':<8} {'yamauchi':<12} {'gao':<8} {'rss':<8} {'robot_start':<20} {'router':<20}")
-    print("-" * 72)
+    # Column widths
+    col_w = 8
+
+    # Header
+    header = f"{'Combo':<8}"
+    for m in all_modes:
+        header += f"{m:<{col_w}}"
+    header += f"  {'robot_start':<22} {'router'}"
+    print(f"\n{header}")
+    print("-" * (8 + col_w * len(all_modes) + 46))
+
     for combo_num in sorted(counts.keys()):
         c = counts[combo_num]
-        y = c.get("yamauchi", 0)
-        g = c.get("gao", 0)
-        r = c.get("rss", 0)
         robot, router = combo_lookup[combo_num]
-        flag = " <-- NEEDS RUNS" if y < 3 or g < 3 else ""
-        print(f"{combo_num:<8} {y:<12} {g:<8} {r:<8} {str(robot):<20} {str(router):<20}{flag}")
+        row = f"{combo_num:<8}"
+        for m in all_modes:
+            row += f"{c.get(m, 0):<{col_w}}"
+        row += f"  {str(robot):<22} {str(router)}"
+        print(row)
 
     print(f"\nTotal combinations: {len(combinations)}")
-    print(f"Yamauchi missing (<3): {sum(1 for c in counts.values() if c.get('yamauchi',0) < 3)}")
-    print(f"Gao missing (<3):      {sum(1 for c in counts.values() if c.get('gao',0) < 3)}")
+    print(f"Yamauchi missing (<3): {sum(1 for c in counts.values() if c.get('yamauchi', 0) < 3)}")
+    print(f"Gao missing (<3):      {sum(1 for c in counts.values() if c.get('gao', 0) < 3)}")
+    for rm in rss_modes:
+        print(f"{rm} missing (<3):   {sum(1 for c in counts.values() if c.get(rm, 0) < 3)}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
