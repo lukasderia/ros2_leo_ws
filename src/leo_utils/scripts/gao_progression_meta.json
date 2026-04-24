@@ -24,6 +24,14 @@
     "router_y": -19.0
   },
   {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx-19.0_by19.0_24Apr_01h32",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
     "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_01Apr_06h18",
     "folder": "session_gao",
     "termination": "timeout",
@@ -41,6 +49,14 @@
   },
   {
     "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_07Apr_08h31",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx0.0_by0.0_23Apr_21h47",
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.7,
@@ -120,6 +136,22 @@
     "router_y": -19.0
   },
   {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_23Apr_23h01",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry-19.0_bx19.0_by19.0_24Apr_02h03",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": -19.0,
+    "router_y": -19.0
+  },
+  {
     "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_01Apr_08h19",
     "folder": "session_gao",
     "termination": "timeout",
@@ -148,6 +180,22 @@
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_23Apr_20h53",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx-19.0_by-19.0_24Apr_00h07",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
     "router_x": -19.0,
     "router_y": 19.0
   },
@@ -224,6 +272,22 @@
     "router_y": 19.0
   },
   {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_23Apr_21h16",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by-19.0_24Apr_00h39",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
     "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_01Apr_11h04",
     "folder": "session_gao",
     "termination": "timeout",
@@ -256,6 +320,14 @@
     "router_y": 19.0
   },
   {
+    "bag_name": "Recording_gao_rx-19.0_ry19.0_bx19.0_by19.0_23Apr_23h26",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -19.0,
+    "router_y": 19.0
+  },
+  {
     "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_01Apr_08h08",
     "folder": "session_gao",
     "termination": "timeout",
@@ -280,6 +352,22 @@
     "router_y": -18.0
   },
   {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_23Apr_20h43",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by-19.0_23Apr_23h57",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
     "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_01Apr_07h07",
     "folder": "session_gao",
     "termination": "timeout",
@@ -300,6 +388,14 @@
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx-19.0_by19.0_23Apr_22h41",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
     "router_x": -8.0,
     "router_y": -18.0
   },
@@ -340,6 +436,22 @@
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_23Apr_22h02",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx0.0_by0.0_24Apr_01h15",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
     "router_x": -8.0,
     "router_y": -18.0
   },
@@ -400,6 +512,22 @@
     "router_y": -18.0
   },
   {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_23Apr_23h15",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.8,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx-8.0_ry-18.0_bx19.0_by19.0_24Apr_02h17",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": -8.0,
+    "router_y": -18.0
+  },
+  {
     "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_01Apr_05h34",
     "folder": "session_gao",
     "termination": "timeout",
@@ -440,6 +568,14 @@
     "router_y": 18.0
   },
   {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by-19.0_23Apr_21h03",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 412.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
     "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_01Apr_07h17",
     "folder": "session_gao",
     "termination": "router_found",
@@ -476,6 +612,14 @@
     "folder": "session_gao",
     "termination": "router_found",
     "duration_s": 93.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx-19.0_by19.0_24Apr_01h51",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 101.4,
     "router_x": 18.0,
     "router_y": 18.0
   },
@@ -544,6 +688,22 @@
     "router_y": 18.0
   },
   {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_23Apr_21h26",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
+    "bag_name": "Recording_gao_rx18.0_ry18.0_bx19.0_by-19.0_24Apr_00h50",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 174.5,
+    "router_x": 18.0,
+    "router_y": 18.0
+  },
+  {
     "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_01Apr_05h19",
     "folder": "session_gao",
     "termination": "router_found",
@@ -588,6 +748,22 @@
     "folder": "session_gao",
     "termination": "router_found",
     "duration_s": 216.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_23Apr_20h32",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by-19.0_23Apr_23h46",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
     "router_x": 19.0,
     "router_y": -19.0
   },
@@ -640,6 +816,14 @@
     "router_y": -19.0
   },
   {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx-19.0_by19.0_23Apr_22h34",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 395.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
     "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_01Apr_09h29",
     "folder": "session_gao",
     "termination": "router_found",
@@ -676,6 +860,14 @@
     "folder": "session_gao",
     "termination": "router_found",
     "duration_s": 161.8,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx0.0_by0.0_24Apr_01h11",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 212.7,
     "router_x": 19.0,
     "router_y": -19.0
   },
@@ -728,6 +920,22 @@
     "router_y": -19.0
   },
   {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_23Apr_23h11",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 236.7,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
+    "bag_name": "Recording_gao_rx19.0_ry-19.0_bx19.0_by19.0_24Apr_02h14",
+    "folder": "session_gao",
+    "termination": "router_found",
+    "duration_s": 160.4,
+    "router_x": 19.0,
+    "router_y": -19.0
+  },
+  {
     "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_01Apr_07h19",
     "folder": "session_gao",
     "termination": "timeout",
@@ -756,6 +964,14 @@
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx-19.0_by19.0_24Apr_01h53",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.4,
     "router_x": 8.0,
     "router_y": 0.0
   },
@@ -800,6 +1016,22 @@
     "router_y": 0.0
   },
   {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_23Apr_21h36",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by-19.0_24Apr_00h53",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.7,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
     "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_01Apr_14h29",
     "folder": "session_gao",
     "termination": "timeout",
@@ -828,6 +1060,22 @@
     "folder": "session_gao",
     "termination": "timeout",
     "duration_s": 599.6,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_23Apr_23h36",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
+    "router_x": 8.0,
+    "router_y": 0.0
+  },
+  {
+    "bag_name": "Recording_gao_rx8.0_ry0.0_bx19.0_by19.0_24Apr_02h36",
+    "folder": "session_gao",
+    "termination": "timeout",
+    "duration_s": 599.5,
     "router_x": 8.0,
     "router_y": 0.0
   }

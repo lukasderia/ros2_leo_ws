@@ -8,3 +8,5 @@ __pycache__/
 COLCON_IGNORE
 bags/
 bags_real/
+src/leo_utils/scripts/plots/
+src/leo_utils/scripts/progression_plots/

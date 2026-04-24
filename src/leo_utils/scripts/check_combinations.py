@@ -3,6 +3,8 @@ import json
 import sys
 from pathlib import Path
 
+num = 4
+
 def analyze_combinations(root_path):
     root = Path(root_path)
     
@@ -67,10 +69,10 @@ def analyze_combinations(root_path):
         print(row)
 
     print(f"\nTotal combinations: {len(combinations)}")
-    print(f"Yamauchi missing (<3): {sum(1 for c in counts.values() if c.get('yamauchi', 0) < 3)}")
-    print(f"Gao missing (<3):      {sum(1 for c in counts.values() if c.get('gao', 0) < 3)}")
+    print(f"Yamauchi missing (< {num}): {sum(1 for c in counts.values() if c.get('yamauchi', 0) < num)}")
+    print(f"Gao missing (< {num}):      {sum(1 for c in counts.values() if c.get('gao', 0) < 3)}")
     for rm in rss_modes:
-        print(f"{rm} missing (<3):   {sum(1 for c in counts.values() if c.get(rm, 0) < 3)}")
+        print(f"{rm} missing (< {num}):   {sum(1 for c in counts.values() if c.get(rm, 0) < num)}")
 
 
 if __name__ == "__main__":
