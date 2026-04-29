@@ -44,7 +44,7 @@ except ImportError:
 RESOLUTION   = 600
 MAX_DURATION = 600.0
 MAX_RUNS     = 3
-SEEDS        = [42, 7, 123, 999, 256, 512, 1337, 2024, 888, 314]
+SEEDS        = [42]#, 7, 123, 999, 256, 512, 1337, 2024, 888, 314]
 SKIP_REASONS = {"flip"}
 
 # Extraction mode config: name -> list of session subfolders
@@ -61,10 +61,10 @@ EXTRACT_MODES = {
 PLOT_MODES = ["yamauchi", "gao", "rss"]
 
 # ── Plot flags ────────────────────────────────────────────────────────────────
-SHOW_INDIVIDUAL_RUNS = True   # faint lines for each individual run
+SHOW_INDIVIDUAL_RUNS = False   # faint lines for each individual run
 SHOW_MEAN            = True   # thick mean curve
 SHOW_STD_BAND        = True   # shaded std band around mean
-STD_MULTIPLIER       = 0.2    # width of std band (e.g. 0.5, 1.0, 2.0)
+STD_MULTIPLIER       = 1.0    # width of std band (e.g. 0.5, 1.0, 2.0)
 
 # ── Output flags ──────────────────────────────────────────────────────────────
 OUTPUT_ALL_RUNS     = True   # one plot per mode with all runs
@@ -283,16 +283,16 @@ def extract_mode(session_root, mode, folders, out_dir):
 def load_mode(out_dir, mode):
     """Load matrix and meta. For combined 'rss', merges rss_1..4 caches."""
     if mode == "rss":
-        per_npys  = [os.path.join(out_dir, f"rss_{i}_progression.npy")  for i in range(1, 5)]
-        per_metas = [os.path.join(out_dir, f"rss_{i}_progression_meta.json") for i in range(1, 5)]
-        if all(os.path.exists(p) for p in per_npys + per_metas):
-            matrix = np.vstack([np.load(p) for p in per_npys])
-            meta   = []
-            for mp in per_metas:
-                with open(mp) as f:
-                    meta.extend(json.load(f))
-            print(f"  [rss] Loaded {matrix.shape[0]} runs from per-variant cache.")
+        npy_path  = os.path.join(out_dir, "rss_4_progression.npy")
+        meta_path = os.path.join(out_dir, "rss_4_progression_meta.json")
+        if os.path.exists(npy_path) and os.path.exists(meta_path):
+            matrix = np.load(npy_path)
+            with open(meta_path) as f:
+                meta = json.load(f)
+            print(f"  [rss] Loaded {matrix.shape[0]} runs from rss_4 cache.")
             return matrix, meta
+        print(f"  [rss] Cache not found.")
+        return None, None
 
     npy_path  = os.path.join(out_dir, f"{mode}_progression.npy")
     meta_path = os.path.join(out_dir, f"{mode}_progression_meta.json")
@@ -338,6 +338,20 @@ def sample_indices(meta, seed):
         else:
             chosen = rng.choice(indices, size=MAX_RUNS, replace=False)
             selected.extend(chosen.tolist())
+    return selected
+
+def first_indices(meta):
+    combos = {}
+    for i, m in enumerate(meta):
+        key = parse_combo_key(m["bag_name"])
+        if key == (None, None, None, None):
+            key = (m["router_x"], m["router_y"])
+        combos.setdefault(key, []).append(i)
+
+    print(f"      Combinations found: {len(combos)}")
+    selected = []
+    for key, indices in sorted(combos.items()):
+        selected.extend(indices[:MAX_RUNS])
     return selected
 
 
@@ -415,16 +429,13 @@ def plot_runs(mode, matrix, indices, title, out_path):
                         mean_curve + STD_MULTIPLIER * std_curve,
                         color=color, alpha=0.2, linewidth=0)
     if SHOW_MEAN:
-        label = f'mean ± {STD_MULTIPLIER} std  (n={n})' if SHOW_STD_BAND else f'mean  (n={n})'
-        ax.plot(x, mean_curve, color=color, alpha=1.0, linewidth=2.5, label=label)
-    if SHOW_MEAN or SHOW_STD_BAND:
-        ax.legend(loc='upper right', frameon=False, fontsize=9)
+        ax.plot(x, mean_curve, color=color, alpha=1.0, linewidth=2.5)
 
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Normalised distance to router  (d / d₀)')
-    ax.set_title(f'{mode}  —  {title}  ({n} runs)')
+
     ax.set_xlim(0, MAX_DURATION)
-    ax.set_ylim(0, 1.5)
+    ax.set_ylim(0, 1.6)
     ax.set_xticks([0, 120, 240, 360, 480, 600])
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
@@ -457,16 +468,13 @@ def plot_summary(mode, matrix, meta, plot_dir):
                         mean_curve + STD_MULTIPLIER * std_curve,
                         color=color, alpha=0.2, linewidth=0)
     if SHOW_MEAN:
-        label = f'grand mean ± {STD_MULTIPLIER} std  (n={n}, {len(SEEDS)} seeds)'
-        ax.plot(x, mean_curve, color=color, alpha=1.0, linewidth=2.5, label=label)
-    if SHOW_MEAN or SHOW_STD_BAND:
-        ax.legend(loc='upper right', frameon=False, fontsize=9)
+        ax.plot(x, mean_curve, color=color, alpha=1.0, linewidth=2.5)
+
 
     ax.set_xlabel('Time (s)')
     ax.set_ylabel('Normalised distance to router  (d / d₀)')
-    ax.set_title(f'{mode}  —  grand mean across all seeds  ({len(SEEDS)} seeds × max {MAX_RUNS}/combination)')
     ax.set_xlim(0, MAX_DURATION)
-    ax.set_ylim(0, 1.5)
+    ax.set_ylim(0, 1.6)
     ax.set_xticks([0, 120, 240, 360, 480, 600])
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
@@ -517,16 +525,59 @@ def main():
                 plot_runs(mode, matrix, indices,
                           title=f"sampled max {MAX_RUNS}/combination  (seed={seed})",
                           out_path=os.path.join(plot_dir, f"{mode}_sampled_seed{seed}.pdf"))
+        if OUTPUT_SEEDED:
+            indices = first_indices(meta)
+            plot_runs(mode, matrix, indices,
+                    title=f"first {MAX_RUNS}/combination (deterministic)",
+                    out_path=os.path.join(plot_dir, f"{mode}_first{MAX_RUNS}.pdf"))
+    
         if OUTPUT_SUMMARY:
             plot_summary(mode, matrix, meta, plot_dir)
+        
+    # ── 3x1 combined progression subplot ─────────────────────────────────────
+    fig, axes = plt.subplots(3, 1, figsize=(10, 12), sharex=True, sharey=True)
+    x = np.linspace(0, MAX_DURATION, RESOLUTION)
+
+    for ax, mode in zip(axes, PLOT_MODES):
+        mat, met = load_mode(out_dir, mode)
+        if mat is None:
+            continue
+        color = MODE_COLORS[mode]
+        indices = first_indices(met)
+        subset = mat[indices]
+        mean_curve = np.nanmean(subset, axis=0)
+        std_curve  = np.nanstd(subset, axis=0)
+
+        if SHOW_INDIVIDUAL_RUNS:
+            for i in indices:
+                ax.plot(x, mat[i], color=color, alpha=0.15, linewidth=0.7)
+        if SHOW_STD_BAND:
+            ax.fill_between(x, mean_curve - STD_MULTIPLIER * std_curve,
+                            mean_curve + STD_MULTIPLIER * std_curve,
+                            color=color, alpha=0.2, linewidth=0)
+        if SHOW_MEAN:
+            ax.plot(x, mean_curve, color=color, linewidth=2.5)
+
+        ax.set_xlim(0, MAX_DURATION)
+        ax.set_ylim(0, 1.6)
+        ax.set_xticks([0, 120, 240, 360, 480, 600])
+        ax.set_ylabel('Normalised distance  (d / d₀)')
+        ax.grid(True, alpha=0.3)
+
+    axes[-1].set_xlabel('Time (s)')
+    plt.tight_layout()
+    out_path = os.path.join(plot_dir, 'combined_3x1.pdf')
+    plt.savefig(out_path, format='pdf')
+    plt.close()
+    print(f"    Saved: {out_path}")
 
     # ── Stats table: combined modes ──────────────────────────────────────────
-    print("\n── Progression statistics (all usable runs) ──────────────────────────────")
+    print("\n── Progression statistics (first 3/combination) ──────────────────────────")
     combined_stats = []
     for mode in PLOT_MODES:
         mat, met = load_mode(out_dir, mode)
         if mat is not None:
-            s = compute_stats(mat, list(range(len(met))))
+            s = compute_stats(mat, first_indices(met))
             combined_stats.append((mode, s))
     print_stats_table(combined_stats)
 
@@ -552,6 +603,12 @@ def main():
                     plot_runs(v, mat, indices,
                               title=f"sampled max {MAX_RUNS}/combination  (seed={seed})",
                               out_path=os.path.join(plot_dir, f"{v}_sampled_seed{seed}.pdf"))
+                    
+            if OUTPUT_SEEDED:
+                indices = first_indices(met)
+                plot_runs(v, mat, indices,
+                        title=f"first {MAX_RUNS}/combination (deterministic)",
+                        out_path=os.path.join(plot_dir, f"{v}_first{MAX_RUNS}.pdf"))
             if OUTPUT_SUMMARY:
                 plot_summary(v, mat, met, plot_dir)
 

@@ -3,7 +3,7 @@ import json
 import sys
 from pathlib import Path
 
-num = 4
+num = 3
 
 def analyze_combinations(root_path):
     root = Path(root_path)

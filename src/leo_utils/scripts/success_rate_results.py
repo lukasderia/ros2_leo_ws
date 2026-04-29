@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -45,10 +46,7 @@ FIG_H = 3.5
 
 GEO_COLORS         = ['#C0392B', '#E67E22']
 RSS_COLORS         = ['#1B4F8A', '#3266AD', '#6AA3D9', '#9DC0E8']
-RSS_COMBINED_COLOR = '#3266AD'
-SUCCESS_C          = '#1D9E75'
-TIMEOUT_C          = '#B4B2A9'
-FLIP_C             = '#C0392B'
+RSS_COMBINED_COLOR = '#3266AD'  # rss_4 color
 
 # ── Load & label ──────────────────────────────────────────────────────────────
 df = pd.read_csv(CSV_PATH)
@@ -90,17 +88,16 @@ def make_row(dataframe, label, filter_col='label', filter_val=None):
 def build_summary(dataframe, order):
     return pd.DataFrame([make_row(dataframe, lbl) for lbl in order])
 
+# RSS entry uses RSS-4 only
 summary_combined = pd.DataFrame([
     make_row(df, 'Yamauchi'),
     make_row(df, 'Gao'),
-    make_row(df, 'RSS', filter_col='mode', filter_val='rss'),
+    make_row(df, 'RSS', filter_col='label', filter_val='RSS-4'),
 ])
 summary_rss = build_summary(df, ORDER_RSS)
 
-print("=== Combined view (flips excluded) ===")
+print("=== Combined view (flips excluded, RSS = RSS-4) ===")
 print(summary_combined[['mode','total_nf','success','timeout','success_pct_nf']].to_string(index=False))
-print("\n=== Combined view (flips included) ===")
-print(summary_combined[['mode','total_all','success','flips','success_pct_all','flip_pct']].to_string(index=False))
 print("\n=== RSS variants (flips excluded) ===")
 print(summary_rss[['mode','total_nf','success','timeout','success_pct_nf']].to_string(index=False))
 
@@ -118,217 +115,51 @@ PALETTE = {
 def bar_colors(labels):
     return [PALETTE[l] for l in labels]
 
-def lighten(hex_color, factor=0.5):
-    """Return a lighter version of a hex color by blending toward white."""
-    hex_color = hex_color.lstrip('#')
-    r, g, b = [int(hex_color[i:i+2], 16) for i in (0, 2, 4)]
-    r = int(r + (255 - r) * factor)
-    g = int(g + (255 - g) * factor)
-    b = int(b + (255 - b) * factor)
-    return f'#{r:02x}{g:02x}{b:02x}'
-
-def horizontal_legend(fig, ax, items):
-    """Horizontal coloured-square legend placed below the x-axis."""
-    handles = [plt.Rectangle((0,0), 1, 1, color=c, label=l) for l, c in items]
-    ax.legend(
-        handles=handles,
-        loc='upper center',
-        bbox_to_anchor=(0.5, -0.15),
-        ncol=len(items),
-        frameon=False,
-        handlelength=0.8,
-        handleheight=0.8,
-        fontsize=9,
-    )
-    fig.subplots_adjust(bottom=0.2)
-
 def save(fig, path):
     fig.savefig(path, format='pdf')
     plt.close(fig)
     print(f"Saved: {path}")
 
-# ── Plot 1: Yamauchi / Gao / RSS combined, grouped bar (excl vs incl flips) ──
+# ── Plot 1: Yamauchi / Gao / RSS-4 combined, flips excluded only ─────────────
 def plot1(summary, order):
-    from matplotlib.patches import Patch
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
-    x        = np.arange(len(order))
-    vals_nf  = summary['success_pct_nf'].values
-    vals_all = summary['success_pct_all'].values
-    colors   = bar_colors(order)
-    w = 0.5
-    offset = w / 3
+    x      = np.arange(len(order))
+    vals   = summary['success_pct_nf'].values
+    colors = bar_colors(order)
 
-    # Flips-included bars drawn first (behind), starting at same x, offset right
-    for xi, c, v in zip(x, colors, vals_all):
-        lc = lighten(c, 0.45)
-        ax.bar(xi + offset/2, v, color=lc, width=w, zorder=2,
-               edgecolor=c, linewidth=0.0, hatch='////')
-        ax.text(xi + offset/2 + w/2 + 0.01, v, f'{v:.1f}%',
-                ha='left', va='center', fontsize=7, color='#888888')
+    for xi, c, v in zip(x, colors, vals):
+        ax.bar(xi, v, color=c, width=0.5, zorder=3, edgecolor=c, linewidth=0.5)
+        ax.text(xi, v + 1.2, f'{v:.1f}%', ha='center', va='bottom', fontsize=7)
 
-    # Flips-excluded bars drawn on top (in front)
-    for xi, c, v in zip(x, colors, vals_nf):
-        ax.bar(xi - offset/2, v, color=c, width=w, zorder=3,
-               edgecolor=c, linewidth=0.5)
-        ax.text(xi - offset/2, v + 1.2, f'{v:.1f}%',
-                ha='center', va='bottom', fontsize=7)
-
-    ax.set(xticks=x, xticklabels=order, ylabel='Success rate (%)',
-           ylim=(0, 100), yticks=range(0, 101, 20))
-    ax.set_title('Success rate by exploration strategy')
-
-    handles = [
-        Patch(facecolor='#555555', edgecolor='#555555', label='Flips excluded'),
-        Patch(facecolor='#cccccc', edgecolor='#555555', hatch='////', label='Flips included'),
-    ]
-    ax.legend(handles=handles, loc='upper left', frameon=False, fontsize=8)
+    ax.set_xticks(x)
+    ax.set_xticklabels(order)
+    ax.set_ylabel('Success rate (%)')
+    ax.set_ylim(0, 100)
+    ax.set_yticks(range(0, 101, 20))
     fig.tight_layout()
     save(fig, os.path.join(PLOT_DIR, 'plot1_combined_no_flip.pdf'))
 
-# ── Plot 2: Yamauchi / Gao / RSS combined, donut chart with flip ─────────────
-def plot2(summary, order):
-    n = len(order)
-    # Two donuts per row — layout depends on count
-    ncols = min(n, 3)
-    nrows = (n + ncols - 1) // ncols
-    fig, axes = plt.subplots(nrows, ncols, figsize=(FIG_W, FIG_W * nrows / ncols))
-
-    # Flatten axes and hide any extras
-    axes_flat = np.array(axes).flatten()
-    for ax in axes_flat[n:]:
-        ax.set_visible(False)
-
-    for i, (ax, label) in enumerate(zip(axes_flat[:n], order)):
-        row = summary[summary['mode'] == label].iloc[0]
-        s = row['success_pct_all']
-        t = row['timeout_pct_all']
-        f = row['flip_pct']
-        sizes  = [s, t, f]
-        colors = [SUCCESS_C, TIMEOUT_C, FLIP_C]
-
-        wedges, _ = ax.pie(
-            sizes, colors=colors, startangle=90,
-            wedgeprops=dict(width=0.28, edgecolor='white', linewidth=0.8),
-            counterclock=False,
-        )
-        # Centre label: strategy name + total runs
-        total = int(row['total_all'])
-        ax.text(0, 0.08, label, ha='center', va='center',
-                fontsize=9, fontweight='bold')
-        ax.text(0, -0.18, f'n={total}', ha='center', va='center',
-                fontsize=8, color='#666666')
-
-        # Percentage annotations outside the ring
-        cumulative = 0
-        for val, color in zip(sizes, colors):
-            if val >= 5:
-                angle = 90 - (cumulative + val / 2) * 3.6
-                rad = np.deg2rad(angle)
-                rx, ry = 1.22 * np.cos(rad), 1.22 * np.sin(rad)
-                ax.text(rx, ry, f'{val:.0f}%', ha='center', va='center',
-                        fontsize=7.5, color='black')
-            cumulative += val
-
-    # Shared legend below
-    handles = [plt.Rectangle((0,0),1,1, color=c, label=l)
-               for l, c in [('Success', SUCCESS_C), ('Timeout', TIMEOUT_C), ('Flip', FLIP_C)]]
-    fig.legend(handles=handles, loc='lower center', ncol=3, frameon=False,
-               fontsize=9, bbox_to_anchor=(0.5, -0.02),
-               handlelength=0.8, handleheight=0.8)
-    fig.suptitle('Run outcomes by exploration strategy (all runs)', fontsize=11)
-    fig.tight_layout()
-    fig.subplots_adjust(bottom=0.12)
-    save(fig, os.path.join(PLOT_DIR, 'plot2_combined_with_flip.pdf'))
-
-# ── Plot 3: RSS variants only, grouped bar (excl vs incl flips) ──────────────
+# ── Plot 3: RSS variants only, flips excluded only ────────────────────────────
 def plot3(summary, order):
-    from matplotlib.patches import Patch
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
-    x        = np.arange(len(order))
-    vals_nf  = summary['success_pct_nf'].values
-    vals_all = summary['success_pct_all'].values
-    colors   = bar_colors(order)
-    w = 0.5
-    offset = w / 3
+    x      = np.arange(len(order))
+    vals   = summary['success_pct_nf'].values
+    colors = bar_colors(order)
 
-    # Flips-included bars drawn first (behind)
-    for xi, c, v in zip(x, colors, vals_all):
-        lc = lighten(c, 0.45)
-        ax.bar(xi + offset/2, v, color=lc, width=w, zorder=2,
-               edgecolor=c, linewidth=0.0, hatch='////')
-        ax.text(xi + offset/2 + w/2 + 0.01, v, f'{v:.1f}%',
-                ha='left', va='center', fontsize=7, color='#888888')
+    for xi, c, v in zip(x, colors, vals):
+        ax.bar(xi, v, color=c, width=0.5, zorder=3, edgecolor=c, linewidth=0.5)
+        ax.text(xi, v + 1.2, f'{v:.1f}%', ha='center', va='bottom', fontsize=7)
 
-    # Flips-excluded bars drawn on top (in front)
-    for xi, c, v in zip(x, colors, vals_nf):
-        ax.bar(xi - offset/2, v, color=c, width=w, zorder=3,
-               edgecolor=c, linewidth=0.5)
-        ax.text(xi - offset/2, v + 1.2, f'{v:.1f}%',
-                ha='center', va='bottom', fontsize=7)
-
-
-
-    ax.set(xticks=x, xticklabels=order, ylabel='Success rate (%)',
-           ylim=(0, 100), yticks=range(0, 101, 20))
-    ax.set_title('RSS variant success rate — noise sensitivity')
-
-    rep_c = colors[0]
-    handles = [
-        Patch(facecolor=rep_c, edgecolor=rep_c, label='Flips excluded'),
-        Patch(facecolor=lighten(rep_c, 0.45), edgecolor=rep_c, hatch='////', label='Flips included'),
-    ]
-    ax.legend(handles=handles, loc='upper left', frameon=False, fontsize=8)
+    ax.set_xticks(x)
+    ax.set_xticklabels(order)
+    ax.set_ylabel('Success rate (%)')
+    ax.set_ylim(0, 100)
+    ax.set_yticks(range(0, 101, 20))
     fig.tight_layout()
     save(fig, os.path.join(PLOT_DIR, 'plot3_rss_variants_no_flip.pdf'))
 
-# ── Plot 4: RSS variants only, donut chart with flip ─────────────────────────
-def plot4(summary, order):
-    n = len(order)
-    fig, axes = plt.subplots(1, n, figsize=(FIG_W, FIG_W / n * 1.3))
-
-    for ax, label in zip(axes, order):
-        row = summary[summary['mode'] == label].iloc[0]
-        s = row['success_pct_all']
-        t = row['timeout_pct_all']
-        f = row['flip_pct']
-        sizes  = [s, t, f]
-        colors = [SUCCESS_C, TIMEOUT_C, FLIP_C]
-
-        ax.pie(
-            sizes, colors=colors, startangle=90,
-            wedgeprops=dict(width=0.28, edgecolor='white', linewidth=0.8),
-            counterclock=False,
-        )
-        total = int(row['total_all'])
-        ax.text(0, 0.08, label, ha='center', va='center',
-                fontsize=9, fontweight='bold')
-        ax.text(0, -0.18, f'n={total}', ha='center', va='center',
-                fontsize=8, color='#666666')
-
-        cumulative = 0
-        for val, color in zip(sizes, colors):
-            if val >= 5:
-                angle = 90 - (cumulative + val / 2) * 3.6
-                rad = np.deg2rad(angle)
-                rx, ry = 1.22 * np.cos(rad), 1.22 * np.sin(rad)
-                ax.text(rx, ry, f'{val:.0f}%', ha='center', va='center',
-                        fontsize=7.5, color='black')
-            cumulative += val
-
-    handles = [plt.Rectangle((0,0),1,1, color=c, label=l)
-               for l, c in [('Success', SUCCESS_C), ('Timeout', TIMEOUT_C), ('Flip', FLIP_C)]]
-    fig.legend(handles=handles, loc='lower center', ncol=3, frameon=False,
-               fontsize=9, bbox_to_anchor=(0.5, -0.04),
-               handlelength=0.8, handleheight=0.8)
-    fig.suptitle('RSS variant run outcomes — noise sensitivity (all runs)', fontsize=11)
-    fig.tight_layout()
-    fig.subplots_adjust(bottom=0.15)
-    save(fig, os.path.join(PLOT_DIR, 'plot4_rss_variants_with_flip.pdf'))
-
 # ── Run ───────────────────────────────────────────────────────────────────────
 plot1(summary_combined, ORDER_COMBINED)
-plot2(summary_combined, ORDER_COMBINED)
 plot3(summary_rss,      ORDER_RSS)
-plot4(summary_rss,      ORDER_RSS)
 
 print("\nDone. All plots saved to:", PLOT_DIR)
