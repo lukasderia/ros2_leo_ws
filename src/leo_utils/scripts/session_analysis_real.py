@@ -38,9 +38,9 @@ from bag_analysis import (
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-REAL_BAGS_ROOT = "/media/lukas/VERBATIM HD/Lukas Master/bags_real"
+REAL_BAGS_ROOT = "/Volumes/KINGSTON/Lukas master/bags_real"
 
-CSV_OUTPUT = "/media/lukas/VERBATIM HD/Lukas Master/metrics_real.csv"
+CSV_OUTPUT = "/Volumes/KINGSTON/Lukas master/metrics_real.csv"
 
 SESSION_SUBFOLDERS = [
     "session_yamauchi",

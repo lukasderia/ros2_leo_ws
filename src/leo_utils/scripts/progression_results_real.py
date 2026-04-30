@@ -196,10 +196,6 @@ def extract_all(bags_root):
             with open(info_path) as f:
                 info = json.load(f)
 
-            if info.get("nav2") != "post_fix":
-                print(f"    SKIP {bag_name}: nav2={info.get('nav2')} (not post_fix)")
-                continue
-
             router_x = float(info["router_x"])
             router_y = float(info["router_y"])
             termination = info.get("termination_reason", "unknown")
@@ -278,6 +274,8 @@ def plot_per_mode(data, plot_dir):
 
         matrix     = np.stack([r["row"] for r in runs])
         mean_curve = np.nanmean(matrix, axis=0)
+        std_curve  = np.nanstd(matrix, axis=0)
+        ax.fill_between(x, mean_curve - std_curve, mean_curve + std_curve, color=color, alpha=0.15, linewidth=0)
 
         if SHOW_INDIVIDUAL_RUNS:
             for run in runs:
@@ -304,6 +302,39 @@ def plot_per_mode(data, plot_dir):
 # ── Main ──────────────────────────────────────────────────────────────════════
 # ══════════════════════════════════════════════════════════════════════════════
 
+def print_summary_table(data):
+    print("\n── Summary ──────────────────────────────────────────────────────────────")
+    header = f"{'Mode':<12} {'Total':>7} {'Success':>9} {'Timeout':>9} {'Rate (%)':>10}"
+    print('─' * len(header))
+    print(header)
+    print('─' * len(header))
+    for mode, runs in data.items():
+        total   = len(runs)
+        success = sum(1 for r in runs if r["termination"] == "router_found")
+        timeout = sum(1 for r in runs if r["termination"] == "timeout")
+        rate    = 100 * success / total if total > 0 else 0.0
+        print(f"  {MODE_LABELS[mode]:<10} {total:>7} {success:>9} {timeout:>9} {rate:>9.1f}%")
+    print('─' * len(header))
+
+def print_progression_table(data):
+    x = np.linspace(0, MAX_DURATION, RESOLUTION)
+    print("\n── Progression statistics ───────────────────────────────────────────────")
+    header = f"{'Mode':<12} {'n':>4} {'Mean (final)':>14} {'Std (final)':>13} {'Peak std':>10} {'Peak t(s)':>10} {'AUC':>7}"
+    print('─' * len(header))
+    print(header)
+    print('─' * len(header))
+    for mode, runs in data.items():
+        if not runs:
+            continue
+        matrix     = np.stack([r["row"] for r in runs])
+        mean_curve = np.nanmean(matrix, axis=0)
+        std_curve  = np.nanstd(matrix, axis=0)
+        peak_std   = np.nanmax(std_curve)
+        peak_t     = x[np.nanargmax(std_curve)]
+        auc        = np.trapezoid(mean_curve, dx=MAX_DURATION / RESOLUTION) / MAX_DURATION
+        print(f"  {MODE_LABELS[mode]:<10} {len(runs):>4} {mean_curve[-1]:>14.3f} {std_curve[-1]:>13.3f} {peak_std:>10.3f} {peak_t:>10.0f} {auc:>7.3f}")
+    print('─' * len(header))
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
@@ -328,6 +359,10 @@ def main():
     print("\n── Plotting ─────────────────────────────────────────────────────────────")
     plot_all_modes(data, plot_dir)
     plot_per_mode(data, plot_dir)
+
+    print_summary_table(data)
+
+    print_progression_table(data)
 
     print("\nDone.")
 
